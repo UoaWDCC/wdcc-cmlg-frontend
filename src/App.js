@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import StickyHeadTable from './DataTable';
 
-function App() {
+
+const useStyles = makeStyles(theme => ({
+  textfield: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch"
+    }
+  }
+}));
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+          <SearchTextField />
+          <StickyHeadTable />
+      </div>
   );
 }
 
-export default App;
+function SearchTextField() {
+  const classes = useStyles();
+
+  return (
+      <form className={classes.textfield} noValidate autoComplete="off">
+        <TextField id="standard-basic" label="Standard" />
+      </form>
+  );
+}
