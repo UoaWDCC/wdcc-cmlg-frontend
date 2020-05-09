@@ -61,7 +61,9 @@ const options = {
     searchOpen: true,
     disableToolbarSelect: false,
     selectableRowsHeader: false,
-    pagination: false
+    pagination: false,
+    filter:false
+
 };
 
 export default () => (
