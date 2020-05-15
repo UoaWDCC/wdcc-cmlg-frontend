@@ -62,11 +62,14 @@ const options = {
     disableToolbarSelect: false,
     selectableRowsHeader: false,
     pagination: false,
-    filter:false
+    filter:false,
+    selectableRows: 'none'
 
 };
 
+
 export default () => (
+
     <MUIDataTable
         title={"Translation list"}
         data={data}
