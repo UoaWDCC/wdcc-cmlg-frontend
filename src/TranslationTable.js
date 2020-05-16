@@ -1,9 +1,13 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
 /*This website is really useful: https://github.com/gregnb/mui-datatables*/
+
+import jsonData from './testJson.json'
 const columns = ["Chinese", "English", "Korean", "Japanese", "Thailand"];
 
-const data = [
+var arr =[];
+var data = [
+
     ["Gabby George", "Business Analyst", "Minneapolis", 30, "$100,000"],
     ["Aiden Lloyd", "Business Consultant", "Dallas", 55, "$200,000"],
     ["Jaden Collins", "Attorney", "Santa Ana", 27, "$500,000"],
@@ -54,6 +58,35 @@ const data = [
     ["Mason Ray", "Computer Scientist", "San Francisco", 39, "$142,000"]
 ];
 
+
+for(var i=0;i<10;i++){
+    var array=[];
+    jsonData.asperiores.map ((x) =>{
+        if(x.translation_id == i){
+            return (
+                array.push(x.name),
+                console.log(x.name)
+            )
+        }
+    })
+
+    jsonData.ut.map ((x) =>{
+        if(x.translation_id == i){
+            return (
+                array.push(x.name),
+                console.log(x.name)
+            )
+        }
+    })
+
+    if(array.length>0){
+        data.push([array[0],array[1]]) 
+    }
+    
+}
+
+
+
 const options = {
     filterType: "dropdown",
     responsive: "scrollFullHeight",
@@ -63,7 +96,11 @@ const options = {
     selectableRowsHeader: false,
     pagination: false,
     filter:false,
-    selectableRows: 'none'
+    selectableRows: 'none',
+    fixedHeaderOptions: {
+        xAxis: false,
+        yAxis: true
+    },
 
 };
 
