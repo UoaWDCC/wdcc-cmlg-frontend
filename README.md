@@ -3,33 +3,33 @@ This project is about the frontend of the translation website. It allowed users 
 
 The framework we use in this project is the [REAC] (https://reactjs.org/). 
 
-##Team Members:
+## Team Members:
 * Yujia Wu [ywu666](https://github.com/ywu666)
-* Kevin Ge [jge385] (https://github.com/jge385)
+* Kevin Ge [jge385](https://github.com/jge385)
 * Dave Shin 
 
-##Getted Started
+## Getted Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-###Prerequesties
+### Prerequesties
 Please make sure you install node.js, Material UI, MUI-datatables in your local machines.
 
-###Installation
-For [Node.js] (https://nodejs.org/en/), please visit the official website and download from there. All installation below via npm. 
+### Installation
+For [Node.js](https://nodejs.org/en/), please visit the official website and download from there. All installation below via npm. 
 
-Creating a  REACT project via npm
+Creating a REACT project via npm
 ```
 npx create-react-app my-app
 cd my-app
 npm start
 ```
 
-Installation for [Material UI] (https://material-ui.com/) :
+Installation for [Material UI](https://material-ui.com/) :
 ```
 npm install @material-ui/core
 ```
 
-Installation for [MUI-datatables] (https://github.com/gregnb/mui-datatables)
+Installation for [MUI-datatables](https://github.com/gregnb/mui-datatables)
 ```
 npm install mui-datatables --save
 ```
@@ -40,7 +40,7 @@ git add remote origin url
 git pull origin master
 ```
 
-###Run Project
+### Run Project
 ```
 npm start
 ```
