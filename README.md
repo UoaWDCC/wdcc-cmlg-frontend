@@ -1,7 +1,7 @@
 # Multilingual Glossary Frontend
 This project is about the frontend of the translation website. It allowed users to see a table contains translations in different languages. Users are also able to search for keywords in real-time and display optional languages. In the future, we will allow users to download the table into a .csv file, so they can use it in other places. 
 
-The framework we use in this project is the [REAC] (https://reactjs.org/). 
+The framework we use in this project is the [REACT](https://reactjs.org/). 
 
 ## Team Members:
 * Yujia Wu [ywu666](https://github.com/ywu666)
@@ -33,7 +33,7 @@ Installation for [MUI-datatables](https://github.com/gregnb/mui-datatables)
 ```
 npm install mui-datatables --save
 ```
-After finishing installation, you can pull the code from the master branch down to your local computers. (Assume you are currenly inside the my-app directory)
+After finishing installation, you can pull the code from the master branch down to your local computers. (Assume you are currently inside the my-app directory)
 ```
 git init
 git add remote origin url
@@ -45,6 +45,7 @@ git pull origin master
 npm start
 ```
 Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
+
 The page will reload if you make edits. You will also see any lint errors in the console.
 
 
