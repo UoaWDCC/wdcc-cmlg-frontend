@@ -2,7 +2,7 @@ import React from "react";
 import MUIDataTable from "mui-datatables";
 /*This website is really useful: https://github.com/gregnb/mui-datatables*/
 
-import jsonData from './testJson.json'
+import jsonData from './testJson2.json'
 const columns = ["Chinese", "English", "Korean", "Japanese", "Thailand"];
 
 var arr =[];
@@ -58,34 +58,82 @@ var data = [
     ["Mason Ray", "Computer Scientist", "San Francisco", 39, "$142,000"]
 ];
 
+console.log(columns.indexOf("Chinese"))
 
-for(var i=0;i<10;i++){
-    var array=[];
-    jsonData.asperiores.map ((x) =>{
-        if(x.translation_id == i){
-            return (
-                array.push(x.name),
-                console.log(x.name)
-            )
-        }
+
+var wholeArray=[];
+jsonData.map((x) =>{
+    var y = new Object();
+    return(
+            y.name = x.name,
+            y.language_name = x.language_name,
+            wholeArray.push(y),
+            console.log(y.name)
+        )
     })
 
-    jsonData.ut.map ((x) =>{
-        if(x.translation_id == i){
-            return (
-                array.push(x.name),
-                console.log(x.name)
-            )
-        }
-    })
+    console.log(wholeArray)
 
-    if(array.length>0){
-        data.push([array[0],array[1]]) 
+for(var i=0;i<wholeArray.length;i+=0){
+    var temp=[];
+    var j=0;
+    while(j<3){
+        
+        temp.push(wholeArray[i]);
+        i++
+        j++;
     }
     
-}
+    
+    var output=[];
+    for(var z=0;z<temp.length;z++){
+        if(temp[z].language_name ==="Chinese"){
+            //var index = columns.indexOf("Chinese");
+            output[columns.indexOf("Chinese")] = temp[z].name
+        }else if(temp[z].language_name === "English"){
+            output[columns.indexOf("English")] = temp[z].name
+        }else if(temp[z].language_name === "pingyin"){
+            output[columns.indexOf("Chinese")] += "///" + temp[z].name
+        }
+    }
+    
+    data.push([output[0],output[1]])
+
+    }
+      
 
 
+
+
+
+
+
+
+// for(var i=0;i<10;i++){
+//     var array=[];
+//     jsonData.asperiores.map ((x) =>{
+//         if(x.translation_id == i){
+//             return (
+//                 array.push(x.name),
+//                 console.log(x.name)
+//             )
+//         }
+//     })
+
+//     jsonData.ut.map ((x) =>{
+//         if(x.translation_id == i){
+//             return (
+//                 array.push(x.name),
+//                 console.log(x.name)
+//             )
+//         }
+//     })
+
+//     if(array.length>0){
+//         data.push([array[0],array[1]]) 
+//     }
+    
+// }
 
 const options = {
     filterType: "dropdown",
@@ -98,7 +146,7 @@ const options = {
     filter:false,
     selectableRows: 'none',
     fixedHeaderOptions: {
-        xAxis: false,
+        xAxis: true,
         yAxis: true
     },
 
