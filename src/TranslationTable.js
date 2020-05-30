@@ -1,6 +1,8 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
 /*This website is really useful: https://github.com/gregnb/mui-datatables*/
+import "./App.scss"
+
 const columns = ["Chinese", "English", "Korean", "Japanese", "Thailand"];
 
 const data = [
