@@ -51,6 +51,11 @@ th:first-child, th:nth-child(2) {
   z-index: 3;
 }
 
-tr:nth-child(2n+1) {
-  background: #cceeff !important;
+tr:nth-child(2n) {
+  background: #cceeff;
 }
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+
