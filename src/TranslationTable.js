@@ -65,8 +65,8 @@ const options = {
     selectableRowsHeader: false,
     pagination: false,
     filter:false,
-    selectableRows: 'none'
-
+    selectableRows: 'none',
+    rowHover: false
 };
 
 

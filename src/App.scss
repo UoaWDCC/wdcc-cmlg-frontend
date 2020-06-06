@@ -1,3 +1,7 @@
+.MUIDataTableFilterList-root-30 {
+  width: auto;
+}
+
 .MuiPaper-root MUIDataTable-paper-2 undefined MuiPaper-elevation4 MuiPaper-rounded {
   overflow: auto;
   height: auto;
@@ -45,4 +49,8 @@ th:nth-child(3), th:nth-child(4), th:nth-child(5) {
 
 th:first-child, th:nth-child(2) {
   z-index: 3;
+}
+
+tr:nth-child(2n+1) {
+  background: #cceeff !important;
 }
