@@ -3,9 +3,9 @@
 }
 
 .MuiPaper-root MUIDataTable-paper-2 undefined MuiPaper-elevation4 MuiPaper-rounded {
-  overflow: auto;
-  height: auto;
-  width: auto;
+  overflow-x: auto;
+  // height: auto;
+  // width: auto;
 }
 
 // all header cells
@@ -46,5 +46,10 @@ tr:nth-child(2n) {
 
 .MuiPaper-elevation4 {
   box-shadow: none !important;
+}
+
+/* Ensures only the table grid is scrolling */
+.MUIDataTable-responsiveScrollFullHeight-7 {
+  overflow-x: auto !important;
 }
 
