@@ -2,12 +2,18 @@ import React, {Component} from "react";
 import MUIDataTable from "mui-datatables";
 /*This website is really useful: https://github.com/gregnb/mui-datatables*/
 
-import jsonData from './response.json';
 import "./App.scss"
+
+import jsonData from './response.json';
+
 
 const columns = ["zh_cn","English", "it_italiano", "arabic","serbian","croatian","russian","de_german","hebrew","fr_french","hu_hungarian","slovak","es_spanish","portugues","turkce","gr_greek","romanian"];
 
 var data = [];
+
+
+// get data from json file and input it to the table
+
 var nameArray=[];
 
 // load data from JSON file
@@ -16,6 +22,7 @@ jsonData.map((x) =>{
             nameArray.push(x.name)
         )
     })
+
 
 // Input data to the table
 for(var i=0;i<nameArray.length;i+=0){
@@ -40,10 +47,8 @@ const options = {
     pagination: false,
     filter:false,
     selectableRows: 'none',
-    fixedHeaderOptions: {
-        xAxis: true,
-        yAxis: true
-    },
+    rowHover: false
+
 };
 
 
