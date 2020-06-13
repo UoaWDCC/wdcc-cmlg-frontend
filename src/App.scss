@@ -1,0 +1,50 @@
+.MUIDataTableFilterList-root-30 {
+  width: auto;
+}
+
+.MuiPaper-root MUIDataTable-paper-2 undefined MuiPaper-elevation4 MuiPaper-rounded {
+  overflow: auto;
+  height: auto;
+  width: auto;
+}
+
+// all header cells
+th:nth-child(n) {
+  background-color:skyblue;
+  font-weight: bold;
+}
+
+// first cell in the header
+th:nth-child(1) {
+  left: 0;
+  z-index: 200;
+  background-color:skyblue;
+  font-weight: bold;
+}
+
+//child on first column
+td:nth-child(2) {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+// background colour for even rows in first column
+tr:nth-child(even) > td:nth-child(2) {
+  background: #cceeff;
+}
+
+// background colour for odd rows in first column
+tr:nth-child(odd) > td:nth-child(2) {
+  background: white;
+}
+
+tr:nth-child(2n) {
+  background: #cceeff;
+}
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+
