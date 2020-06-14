@@ -48,3 +48,9 @@ tr:nth-child(2n) {
   box-shadow: none !important;
 }
 
+/* Ensures only the table grid is scrolling */
+.MUIDataTable-responsiveScrollFullHeight-7 {
+  overflow-x: auto !important;
+  height: 89vh !important;
+}
+
