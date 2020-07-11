@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import MUIDataTable from "mui-datatables";
 /*This website is really useful: https://github.com/gregnb/mui-datatables*/
 
-import "./App.scss"
+import "../App.scss"
 
 import jsonData from './response.json';
 

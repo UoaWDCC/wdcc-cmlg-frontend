@@ -1,11 +1,11 @@
 import React from "react";
 
-import MUIDataTable from "./TranslationTable";
+import SearchPage from "./components/SearchPage";
 
 export default function App() {
   return (
       <div className="App">
-         <MUIDataTable/>
+         <SearchPage />
       </div>
   );
 }
