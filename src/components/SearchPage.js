@@ -12,7 +12,7 @@ class SearchPage extends React.Component {
 
     render() {
        return (
-            <div className="App">
+            <div className="SearchPage">
                 place to render other components
             </div>
         );
