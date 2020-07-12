@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from "./Table";
 
 
 class SearchPage extends React.Component {
@@ -13,7 +14,7 @@ class SearchPage extends React.Component {
     render() {
        return (
             <div className="SearchPage">
-                place to render other components
+                <Table />
             </div>
         );
     }
