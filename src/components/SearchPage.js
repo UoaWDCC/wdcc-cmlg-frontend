@@ -1,4 +1,5 @@
 import React from 'react';
+import SelectCol from "./SelectCol";
 
 
 class SearchPage extends React.Component {
@@ -14,6 +15,7 @@ class SearchPage extends React.Component {
        return (
             <div className="SearchPage">
                 place to render other components
+                <SelectCol/>
             </div>
         );
     }
