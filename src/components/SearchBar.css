@@ -1,0 +1,20 @@
+.search {
+    position: relative;
+	border: 2px solid #3fc5cf;
+	overflow: auto;
+	border-radius: 35px;
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 30%;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.search:hover {
+    opacity: 1.0;
+    transition-duration: 0.5s;
+}
+
+*:focus {
+    outline: none;
+}

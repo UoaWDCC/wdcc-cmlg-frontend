@@ -1,22 +1,37 @@
 import React from 'react';
-
+import SearchBar from './SearchBar'
 
 class SearchPage extends React.Component {
-    constructor( props ) {
-        super( props );
 
-        this.state = {
-            //@todo place to store value such as search term and select column
-        }
+    constructor(props){
+        super();
+        this.state={
+            word : ''
+        };
+    }
+
+    // change the searching word which is provided by the SearchBar class
+    handleChangeWord(searchWord){
+        this.setState({
+            word : searchWord
+        });
     }
 
     render() {
        return (
             <div className="SearchPage">
-                place to render other components
+                <SearchBar data = {
+                    {
+                        changeWord : this.handleChangeWord.bind(this)
+                    }
+                }> 
+                </SearchBar>   
             </div>
         );
     }
+
+
+
 
 
 }
