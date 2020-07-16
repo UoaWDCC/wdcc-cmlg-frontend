@@ -14,7 +14,7 @@ class Table extends React.Component {
             return this.state.translationData.map( ( translation, index ) => {
 
                 const [ chinese, pinyin, english, italian, arabic, serbian, croatian, russian, german, hebrew, french,
-                    hungarian, slovak, spanish, portugues, turkce, greek, romanian ]
+                    hungarian, slovak, spanish, portuguese, turkce, greek, romanian ]
                     = translation // Destructuring.
 
                 return (
@@ -32,7 +32,7 @@ class Table extends React.Component {
                         <td>{ hungarian }</td>
                         <td>{ slovak }</td>
                         <td>{ spanish }</td>
-                        <td>{ portugues }</td>
+                        <td>{ portuguese }</td>
                         <td>{ turkce }</td>
                         <td>{ greek }</td>
                         <td>{ romanian }</td>
@@ -42,20 +42,20 @@ class Table extends React.Component {
         } else {
             return (
                 <tr>
-                    <td>{"loading"}</td>
+                    <td>{ "loading" }</td>
                 </tr>
             )
         }
     }
 
     componentDidMount() {
-        fetch('https://cmlgbackend.wdcc.co.nz/translations')
+        fetch( 'https://cmlgbackend.wdcc.co.nz/translations' )
             .then( results => {
                 return results.json();
             })
             .then( data => {
-                let sortedArray = [];
-                let innerArray = [];
+                let sortedListOfWords = [];
+                let translationsForOneWord = [];
                 let dataIndex;
                 let currentData;
 
@@ -65,36 +65,32 @@ class Table extends React.Component {
                     // innerArray.length starts from 0 whereas language_id starts from 1.
                     // Check if the translated word is in the correct column (under the correct language). So if the
                     // English translation for the word is not under English, throw an exception.
-                    if ( innerArray.length + 1 === currentData.language_id ) {
-                        innerArray[ innerArray.length ] = currentData.name;
+                    // + 1 infront of translationsForOneWord.length because the index starts from 0, whereas language_id
+                    // starts from 1.
+                    if ( translationsForOneWord.length + 1 === currentData.language_id ) {
+                        translationsForOneWord[ translationsForOneWord.length ] = currentData.name;
                     } else {
                         throw new Error( "The translated word does not match the language." );
                     }
 
-                    // Number of languages
-                    const innerArrayLength = 18;
+                    const numberOfLanguages = 18;
 
                     // When the word is translated to all languages, add innerArray into sortedArray.
                     // Empty innerArray so a new innerArray can be made for a new word.
-                    if ( innerArray.length === innerArrayLength ) {
-                        sortedArray[ sortedArray.length ] = innerArray;
-                        innerArray = [];
+                    if ( translationsForOneWord.length === numberOfLanguages ) {
+                        sortedListOfWords[ sortedListOfWords.length ] = translationsForOneWord;
+                        translationsForOneWord = [];
                     }
                 }
 
                 // asynchronous
                 this.setState({
-                    translationData: sortedArray
-                },() => { // only gets triggered when the function gets completed. This ensures that
-                                 // after the function above is finished.
-                                 // only needed for us, it is not needed in the final code.
-                    console.log("translation state changed");
+                    translationData: sortedListOfWords
                 });
             })
     }
 
     render() {
-        console.log( "render function gets called" );
         return (
             <table className="table table-striped">
                 <thead>
