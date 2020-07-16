@@ -1,6 +1,6 @@
 import React from 'react';
 
-class FormComponent extends React.Component{
+class LanguagesList extends React.Component{
     render() {
         const cardStyle= {
             width: "10rem",
@@ -18,16 +18,16 @@ class FormComponent extends React.Component{
 
         const listForm = languages.map((language) =>
             <div className="custom-control custom-checkbox">
-                <input type="checkbox" className="custom-control-input" id={language}/>
-                <label className="custom-control-label" htmlFor={language}>{language}</label>
+                <input type="checkbox" className="custom-control-input" id={ language }/>
+                <label className="custom-control-label" htmlFor={ language }>{ language }</label>
             </div>
         );
-        return(
-            <div id="language-options" className="card " style={cardStyle}>
-                <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
-                {listForm}
-            </div>
 
+        return(
+            <div id="language-options" className="card " style={ cardStyle }>
+                <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
+                { listForm }
+            </div>
         );
     }
 }
@@ -58,7 +58,6 @@ class SelectCol extends React.Component {
         console.log( "The Select Col render function gets called" );
 
         //Style will move to css file later
-
         const buttonStyle ={
             borderRadius: "50%",
             border:"none",
@@ -67,18 +66,16 @@ class SelectCol extends React.Component {
             right: "16px"
         }
 
-
-
         return (
-            <div id="selectCol" onClick={(e) => {this.handleClick(e)}}>
-                <button class="btn btn-light" onClick={this.openForm} style={buttonStyle} title="View Columns">
+            <div id="selectCol" onClick={ (e) => { this.handleClick(e) } }>
+                <button class="btn btn-light" onClick={ this.openForm } style={ buttonStyle } title="View Columns">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-list-check" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
                               d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </button>
-                <FormComponent/>
+                <LanguagesList/>
             </div>
         );
     }
