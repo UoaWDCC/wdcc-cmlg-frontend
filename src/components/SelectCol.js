@@ -1,5 +1,16 @@
 import React from 'react';
 
+class FormComponent extends React.Component{
+    render() {
+        return(
+            <div className="custom-control custom-checkbox">
+                <input type="checkbox" className="custom-control-input" id={this.props.name}/>
+                <label className="custom-control-label" htmlFor={this.props.name}>{this.props.name}</label>
+            </div>
+        );
+    }
+}
+
 class SelectCol extends React.Component {
     openForm(){
         const x = document.getElementById("language-options");
@@ -18,6 +29,7 @@ class SelectCol extends React.Component {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
     }
+
 
     render() {
         console.log( "The Select Col render function gets called" );
@@ -51,78 +63,24 @@ class SelectCol extends React.Component {
                 </button>
                 <div id="language-options" className="card" style={cardStyle}>
                     <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
-                    <div className="custom-control custom-checkbox" style={{overflow:"auto"}}>
-                        <input type="checkbox" className="custom-control-input" id="chinese"/>
-                        <label className="custom-control-label" htmlFor="chinese">Chinese</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="english"/>
-                        <label className="custom-control-label" htmlFor="english">English</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="italian"/>
-                        <label className="custom-control-label" htmlFor="italian">Italian</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="arabic"/>
-                        <label className="custom-control-label" htmlFor="arabia">Arabic</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="serbian"/>
-                        <label className="custom-control-label" htmlFor="serbian">Serbian</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="croatian"/>
-                        <label className="custom-control-label" htmlFor="croatian">Croatian</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="russian"/>
-                        <label className="custom-control-label" htmlFor="russian">Russian</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="german"/>
-                        <label className="custom-control-label" htmlFor="german">German</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="hebrew"/>
-                        <label className="custom-control-label" htmlFor="hebrew">Hebrew</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="french"/>
-                        <label className="custom-control-label" htmlFor="french">French</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="hungarian"/>
-                        <label className="custom-control-label" htmlFor="hungarian">Hungarian</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="slovak"/>
-                        <label className="custom-control-label" htmlFor="slovak">Slovak</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="spanish"/>
-                        <label className="custom-control-label" htmlFor="spanish">Spanish</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="portugues"/>
-                        <label className="custom-control-label" htmlFor="portugues">Portugues</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="hungarian"/>
-                        <label className="custom-control-label" htmlFor="hungarian">Hungarian</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="turkce"/>
-                        <label className="custom-control-label" htmlFor="turkce">Turkce</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="greek"/>
-                        <label className="custom-control-label" htmlFor="greek">Greek</label>
-                    </div>
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="romanian"/>
-                        <label className="custom-control-label" htmlFor="romanian">Romanian</label>
-                    </div>
+                    <FormComponent name="Chinese"/>
+                    <FormComponent name="English"/>
+                    <FormComponent name="Italian"/>
+                    <FormComponent name="Arabic"/>
+                    <FormComponent name="Serbian"/>
+                    <FormComponent name="Croatian"/>
+                    <FormComponent name="Russian"/>
+                    <FormComponent name="Chinese"/>
+                    <FormComponent name="German"/>
+                    <FormComponent name="Hebrew"/>
+                    <FormComponent name="French"/>
+                    <FormComponent name="Hungarian"/>
+                    <FormComponent name="Chinese"/>
+                    <FormComponent name="Slovak"/>
+                    <FormComponent name="Spanish"/>
+                    <FormComponent name="Turkce"/>
+                    <FormComponent name="Greek"/>
+                    <FormComponent name="Romanian"/>
                 </div>
             </div>
         );
