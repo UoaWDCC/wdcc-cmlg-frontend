@@ -2,16 +2,39 @@ import React from 'react';
 
 class FormComponent extends React.Component{
     render() {
-        return(
+        const cardStyle= {
+            width: "10rem",
+            display: "none",
+            paddingLeft: "10px",
+            paddingBottom:"10px",
+            position:"fixed",
+            top: "45px",
+            right: "16px",
+            //overflow:"auto"
+        }
+
+        const languages = ["Chinese", "English", "Italian", "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
+            "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian"];
+
+        const listForm = languages.map((language) =>
             <div className="custom-control custom-checkbox">
-                <input type="checkbox" className="custom-control-input" id={this.props.name}/>
-                <label className="custom-control-label" htmlFor={this.props.name}>{this.props.name}</label>
+                <input type="checkbox" className="custom-control-input" id={language}/>
+                <label className="custom-control-label" htmlFor={language}>{language}</label>
             </div>
+        );
+        return(
+            <div id="language-options" className="card " style={cardStyle}>
+                <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
+                {listForm}
+            </div>
+
         );
     }
 }
 
 class SelectCol extends React.Component {
+
+    //handle Event functions
     openForm(){
         const x = document.getElementById("language-options");
         if (x.style.display === "none") {
@@ -34,15 +57,7 @@ class SelectCol extends React.Component {
     render() {
         console.log( "The Select Col render function gets called" );
 
-        const cardStyle= {
-            width: "10rem",
-            display: "none",
-            paddingLeft: "10px",
-            paddingBottom:"10px",
-            position:"fixed",
-            top: "45px",
-            right: "16px"
-        }
+        //Style will move to css file later
 
         const buttonStyle ={
             borderRadius: "50%",
@@ -51,6 +66,8 @@ class SelectCol extends React.Component {
             top: "8px",
             right: "16px"
         }
+
+
 
         return (
             <div id="selectCol" onClick={(e) => {this.handleClick(e)}}>
@@ -61,27 +78,7 @@ class SelectCol extends React.Component {
                               d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </button>
-                <div id="language-options" className="card" style={cardStyle}>
-                    <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
-                    <FormComponent name="Chinese"/>
-                    <FormComponent name="English"/>
-                    <FormComponent name="Italian"/>
-                    <FormComponent name="Arabic"/>
-                    <FormComponent name="Serbian"/>
-                    <FormComponent name="Croatian"/>
-                    <FormComponent name="Russian"/>
-                    <FormComponent name="Chinese"/>
-                    <FormComponent name="German"/>
-                    <FormComponent name="Hebrew"/>
-                    <FormComponent name="French"/>
-                    <FormComponent name="Hungarian"/>
-                    <FormComponent name="Chinese"/>
-                    <FormComponent name="Slovak"/>
-                    <FormComponent name="Spanish"/>
-                    <FormComponent name="Turkce"/>
-                    <FormComponent name="Greek"/>
-                    <FormComponent name="Romanian"/>
-                </div>
+                <FormComponent/>
             </div>
         );
     }
