@@ -20,9 +20,14 @@ class SelectCol extends React.Component {
             position:"relative"
         }
 
+        const buttonStyle ={
+            borderRadius: "50%",
+            border:"none"
+        }
+
         return (
             <div id="selectCol">
-                <button class="btn btn-primary" onClick={this.openForm}>
+                <button class="btn btn-light" onClick={this.openForm} style={buttonStyle} title="View Columns">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-list-check" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
