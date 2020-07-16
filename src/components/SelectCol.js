@@ -33,6 +33,19 @@ class LanguagesList extends React.Component{
 }
 
 class SelectCol extends React.Component {
+    constructor(props) {
+        super(props);
+        /*this.state = {
+            data: {
+               　checkedValues: this.getCheckedValues()
+            }
+        }*/
+    }
+
+ /*   //need implement a parent call back function to pass the data to the table.
+    sendData = () => {
+        this.props.parentCallback(this.state.data.checkedValues);
+    },*/
 
     //handle Event functions
     openForm(){
@@ -53,6 +66,21 @@ class SelectCol extends React.Component {
         e.nativeEvent.stopImmediatePropagation();
     }
 
+  /* getCheckedValues(){ // need to test if this function get the expected values
+        const boxes = document.getElementsByClassName("custom-control-input");
+        const boxesChecked = [];
+
+        for(var i=0;i<boxes.length;i++){
+            if(boxes[i].checked){
+                boxesChecked.push(boxes[i].id);
+            }
+        }
+
+        // Return the array if it is non-empty, or null
+        console.log("boxedChecked:"+ boxesChecked);
+        return boxesChecked.length > 0 ? boxesChecked : null;
+
+    }*/
 
     render() {
         console.log( "The Select Col render function gets called" );
