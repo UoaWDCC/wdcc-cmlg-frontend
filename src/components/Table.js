@@ -62,7 +62,6 @@ class Table extends React.Component {
                 for ( dataIndex = 0; dataIndex < data.length; dataIndex++ ) {
                     currentData = data[ dataIndex ];
 
-                    // innerArray.length starts from 0 whereas language_id starts from 1.
                     // Check if the translated word is in the correct column (under the correct language). So if the
                     // English translation for the word is not under English, throw an exception.
                     // + 1 infront of translationsForOneWord.length because the index starts from 0, whereas language_id
@@ -75,15 +74,14 @@ class Table extends React.Component {
 
                     const numberOfLanguages = 18;
 
-                    // When the word is translated to all languages, add innerArray into sortedArray.
-                    // Empty innerArray so a new innerArray can be made for a new word.
+                    // When the word is translated to all languages, add translationsForOneWord into sortedListOfWords.
+                    // Empty translationsForOneWord so a new translationsForOneWord can be made for a new word.
                     if ( translationsForOneWord.length === numberOfLanguages ) {
                         sortedListOfWords[ sortedListOfWords.length ] = translationsForOneWord;
                         translationsForOneWord = [];
                     }
                 }
 
-                // asynchronous
                 this.setState({
                     translationData: sortedListOfWords
                 });
