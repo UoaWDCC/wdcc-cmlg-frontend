@@ -17,12 +17,19 @@ class SelectCol extends React.Component {
         const cardStyle= {
             width: "10rem",
             display: "none",
-            position:"relative"
+            paddingLeft: "10px",
+            paddingBottom:"10px",
+            position:"fixed",
+            top: "45px",
+            right: "16px"
         }
 
         const buttonStyle ={
             borderRadius: "50%",
-            border:"none"
+            border:"none",
+            position:"fixed",
+            top: "8px",
+            right: "16px"
         }
 
         return (
@@ -35,28 +42,26 @@ class SelectCol extends React.Component {
                     </svg>
                 </button>
                 <div id="language-options" className="card" style={cardStyle}>
-                    <div className="card-body custom-control custom-checkbox">
-                        <h6 className="card-title">Show columns</h6>
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="chinese"/>
-                            <label className="custom-control-label" htmlFor="chinese">Chinese</label>
-                        </div>
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="english"/>
-                            <label className="custom-control-label" htmlFor="english">English</label>
-                        </div>
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="japanese"/>
-                            <label className="custom-control-label" htmlFor="japanese">Japanese</label>
-                        </div>
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="french"/>
-                            <label className="custom-control-label" htmlFor="french">French</label>
-                        </div>
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="german"/>
-                            <label className="custom-control-label" htmlFor="german">German</label>
-                        </div>
+                    <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
+                    <div className="custom-control custom-checkbox" style={{overflow:"auto"}}>
+                        <input type="checkbox" className="custom-control-input" id="chinese"/>
+                        <label className="custom-control-label" htmlFor="chinese">Chinese</label>
+                    </div>
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="english"/>
+                        <label className="custom-control-label" htmlFor="english">English</label>
+                    </div>
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="japanese"/>
+                        <label className="custom-control-label" htmlFor="japanese">Japanese</label>
+                    </div>
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="french"/>
+                        <label className="custom-control-label" htmlFor="french">French</label>
+                    </div>
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="german"/>
+                        <label className="custom-control-label" htmlFor="german">German</label>
                     </div>
                 </div>
             </div>
