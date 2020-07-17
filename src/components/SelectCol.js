@@ -1,6 +1,24 @@
 import React from 'react';
 
 class LanguagesList extends React.Component{
+    constructor(props) {
+        super(props);
+        this.getCheckedValues = this.getCheckedValues.bind(this);
+        this.state = {checkedValues:[]};
+    }
+
+    getCheckedValues(){ // need to test if this function get the expected values
+       this.setState({checkedValues:[]});
+       const boxes = document.getElementsByClassName("custom-control-input");
+        for(var i=0;i<boxes.length;i++){
+            if(boxes[i].checked){
+                this.state.checkedValues.push(boxes[i].id);
+            }
+        }
+        console.log("Checked Values:");
+        console.log(this.state.checkedValues);
+    }
+
     render() {
         const cardStyle= {
             width: "10rem",
@@ -18,7 +36,7 @@ class LanguagesList extends React.Component{
 
         const listForm = languages.map((language) =>
             <div className="custom-control custom-checkbox">
-                <input type="checkbox" className="custom-control-input" id={ language }/>
+                <input type="checkbox" className="custom-control-input" id={ language } onClick={() => this.getCheckedValues()}/>
                 <label className="custom-control-label" htmlFor={ language }>{ language }</label>
             </div>
         );
@@ -33,15 +51,6 @@ class LanguagesList extends React.Component{
 }
 
 class SelectCol extends React.Component {
-    constructor(props) {
-        super(props);
-        /*this.state = {
-            data: {
-               　checkedValues: this.getCheckedValues()
-            }
-        }*/
-    }
-
  /*   //need implement a parent call back function to pass the data to the table.
     sendData = () => {
         this.props.parentCallback(this.state.data.checkedValues);
@@ -65,22 +74,6 @@ class SelectCol extends React.Component {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
     }
-
-  /* getCheckedValues(){ // need to test if this function get the expected values
-        const boxes = document.getElementsByClassName("custom-control-input");
-        const boxesChecked = [];
-
-        for(var i=0;i<boxes.length;i++){
-            if(boxes[i].checked){
-                boxesChecked.push(boxes[i].id);
-            }
-        }
-
-        // Return the array if it is non-empty, or null
-        console.log("boxedChecked:"+ boxesChecked);
-        return boxesChecked.length > 0 ? boxesChecked : null;
-
-    }*/
 
     render() {
         console.log( "The Select Col render function gets called" );
@@ -108,4 +101,5 @@ class SelectCol extends React.Component {
         );
     }
 }
+
 export default SelectCol;
