@@ -92,29 +92,29 @@ class Table extends React.Component {
         return (
             <table className="table table-striped">
                 <thead>
-                <tr>
-                    <th scope="col">zh_cn</th>
-                    <th scope="col">English</th>
-                    <th scope="col">it_italiano</th>
-                    <th scope="col">arabic</th>
-                    <th scope="col">serbian</th>
-                    <th scope="col">croatian</th>
-                    <th scope="col">russian</th>
-                    <th scope="col">de_german</th>
-                    <th scope="col">hebrew</th>
-                    <th scope="col">fr_french</th>
-                    <th scope="col">hu_hungarian</th>
-                    <th scope="col">slovak</th>
-                    <th scope="col">es_spanish</th>
-                    <th scope="col">portugues</th>
-                    <th scope="col">turkce</th>
-                    <th scope="col">gr_greek</th>
-                    <th scope="col">romanian</th>
-                </tr>
+                    <tr>
+                        <th scope="col">zh_cn</th>
+                        <th scope="col">English</th>
+                        <th scope="col">it_italiano</th>
+                        <th scope="col">arabic</th>
+                        <th scope="col">serbian</th>
+                        <th scope="col">croatian</th>
+                        <th scope="col">russian</th>
+                        <th scope="col">de_german</th>
+                        <th scope="col">hebrew</th>
+                        <th scope="col">fr_french</th>
+                        <th scope="col">hu_hungarian</th>
+                        <th scope="col">slovak</th>
+                        <th scope="col">es_spanish</th>
+                        <th scope="col">portugues</th>
+                        <th scope="col">turkce</th>
+                        <th scope="col">gr_greek</th>
+                        <th scope="col">romanian</th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                { this.renderTableData() }
+                    { this.renderTableData() }
                 </tbody>
             </table>
         );
