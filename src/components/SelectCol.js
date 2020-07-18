@@ -8,23 +8,20 @@ class SelectCol extends React.Component {
 
     getCheckedValues(){ //Get the selected Value and pass to other component
         const values = [];
-
         const boxes = document.getElementsByClassName("custom-control-input");
         for(var i=0;i<boxes.length;i++){
             if(boxes[i].checked){
-                // this.state.checkedValues.push(boxes[i].id);
-                values.push(boxes[i].id);
+               values.push(boxes[i].id);
             }
         }
+
+        //print the results
         console.log("Checked Values:");
         console.log(values);
-        return values;
-    }
 
-    /*   //need implement a parent call back function to pass the data to the table.
-    sendData = () => {
-        this.props.parentCallback(this.state.data.checkedValues);
-    },*/
+        //pass the values to the searchPage component
+        this.props.parentCallback(values);
+    }
 
     //handle Event functions
     openForm(){
