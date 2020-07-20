@@ -4,12 +4,25 @@ class SelectCol extends React.Component {
     constructor(props) {
         super(props);
         this.getCheckedValues = this.getCheckedValues.bind(this);
+        this.state = {
+            languages: [ "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
+                "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian"],
+            defaultLans: this.props.default
+        }
     }
 
-    getCheckedValues(){ //Get the selected Value and pass to other component
+    getCheckedValues(index){ //Get the selected Value and pass to other component
+        //toggle the default languages
+        if (index == null) {
+        }else {
+            const newLans = this.state.defaultLans.slice() //copy the array
+            newLans[index].value = !this.state.defaultLans[index].value;  //execute the manipulations
+            this.setState({ defaultLans: newLans }) //set the new state
+        }
+
         const values = [];
         const boxes = document.getElementsByClassName("custom-control-input");
-        for(var i=0;i<boxes.length;i++){
+        for(let i=0; i< boxes.length; i++){
             if(boxes[i].checked){
                values.push(boxes[i].id);
             }
@@ -65,10 +78,15 @@ class SelectCol extends React.Component {
             //overflow:"auto"
         }
 
-        const languages = ["Chinese", "English", "Italian", "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
-            "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian"];
+        const defaultLanguages = this.props.default.map(( language, index) =>
+            <div className="custom-control custom-checkbox">
+                <input type="checkbox" className="custom-control-input" id={ language.name } checked={ language.value }
+                       onClick={() => this.getCheckedValues(index)} />
+                <label className="custom-control-label" htmlFor={ language.name }>{ language.name }</label>
+            </div>
+        );
 
-        const listForm = languages.map((language) =>
+        const listLanguages = this.state.languages.map(( language) =>
             <div className="custom-control custom-checkbox">
                 <input type="checkbox" className="custom-control-input" id={ language } onClick={() => this.getCheckedValues()}/>
                 <label className="custom-control-label" htmlFor={ language }>{ language }</label>
@@ -76,7 +94,7 @@ class SelectCol extends React.Component {
         );
 
         return (
-            <div id="selectCol" onClick={ (e) => { this.handleClick(e) } }>
+            <div id="selectColumns" onClick={ (e) => { this.handleClick(e) } }>
                 <button class="btn btn-light" onClick={ this.openForm } style={ buttonStyle } title="View Columns">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-list-check" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
@@ -84,9 +102,10 @@ class SelectCol extends React.Component {
                               d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </button>
-                <div id="language-options" className="card " style={ cardStyle }>
+                <div id="language-options" className="card" style={ cardStyle }>
                     <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
-                    { listForm }
+                    { defaultLanguages }
+                    { listLanguages }
                 </div>
             </div>
         );
