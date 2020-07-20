@@ -10,7 +10,7 @@ class SearchBar extends React.Component{
             <div className='search'> 
                 <SearchIcon className='search-icon'/>
                 <input className='bar' type="text" placeholder="Please enter the word you want to search" 
-                onChange = { ( e ) => this.props.data.changeWord( e.target.value ) }/>
+                       onChange = { ( e ) => this.props.data.changeWord( e.target.value ) }/>
             </div>
         )
     }
