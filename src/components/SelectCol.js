@@ -28,10 +28,6 @@ class SelectCol extends React.Component {
             }
         }
 
-        //print the results
-        console.log("Checked Values:");
-        console.log(values);
-
         //pass the values to the searchPage component
         this.props.parentCallback(values);
     }
