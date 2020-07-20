@@ -1,20 +1,22 @@
 import React from 'react';
 import SearchBar from './SearchBar'
+import Table from "./Table";
+
 
 class SearchPage extends React.Component {
 
-    constructor(props){
-        super();
-        this.state={
-            word : ''
+    constructor( props ) {
+        super( props );
+        this.state = {
+            word: ''
         };
     }
 
     // change the searching word which is provided by the SearchBar class
-    handleChangeWord(searchWord){
-        this.setState({
-            word : searchWord
-        });
+    handleChangeWord( searchWord ) {
+        this.setState( {
+            word: searchWord
+        } );
     }
 
     render() {
@@ -22,17 +24,14 @@ class SearchPage extends React.Component {
             <div className="SearchPage">
                 <SearchBar data = {
                     {
-                        changeWord : this.handleChangeWord.bind(this)
+                        changeWord: this.handleChangeWord.bind(this)
                     }
                 }> 
                 </SearchBar>   
+                <Table />
             </div>
         );
     }
-
-
-
-
 
 }
 

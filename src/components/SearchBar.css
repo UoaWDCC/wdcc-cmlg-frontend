@@ -5,8 +5,9 @@
 	border-radius: 35px;
     margin-top: 3%;
     margin-left: 2%;
+    margin-bottom: 2%;
     text-align: center;
-    width: 30%;
+    width: 40%;
     opacity: 0.5;
 }
 
@@ -24,6 +25,7 @@
 .search-icon {
     position: relative;
     padding-left: 2%;
+    width: 5%;
 }
 
 *:focus {
