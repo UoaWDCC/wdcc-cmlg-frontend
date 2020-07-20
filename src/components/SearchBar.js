@@ -5,7 +5,7 @@ import { ReactComponent as SearchIcon } from './search-solid.svg';
 class SearchBar extends React.Component{
 
     // call the changeWord function in the SearchPage class to change its state
-    render(){
+    render() {
         return(
             <div className='search'> 
                 <SearchIcon className='search-icon'/>
