@@ -73,7 +73,7 @@ class SelectCol extends React.Component {
             //overflow:"auto"
         }
 
-        const defaultLanguages = this.props.default.map(( language, index) =>
+        const defaultLanguages = this.state.defaultLans.map(( language, index) =>
             <div className="custom-control custom-checkbox">
                 <input type="checkbox" className="custom-control-input" id={ language.name } checked={ language.value }
                        onClick={() => this.getCheckedValues(index)} />
