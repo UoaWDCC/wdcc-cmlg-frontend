@@ -109,7 +109,7 @@ class Table extends React.Component {
                         <td>{ romanian }</td>
                     </tr>
                 )
-            })
+            } )
         } else {
             return (
                 <tr>
@@ -135,7 +135,7 @@ class Table extends React.Component {
         fetch( 'https://cmlgbackend.wdcc.co.nz/translations' )
             .then( results => {
                 return results.json();
-            })
+            } )
             .then( data => {
                 let sortedListOfWords = [];
                 let translationsForOneWord = [];
@@ -165,10 +165,10 @@ class Table extends React.Component {
                     }
                 }
 
-                this.setState({
+                this.setState( {
                     translationData: sortedListOfWords
-                });
-            })
+                } );
+            } )
     }
 
     sortColumn( event ) {
@@ -191,7 +191,7 @@ class Table extends React.Component {
 
         const order = newColumnConfig[ clickedColumnIndex ].sortOrder;
         let sortedTranslationData = this.state.translationData.slice();
-        sortedTranslationData.sort(( row1, row2 ) => {
+        sortedTranslationData.sort( ( row1, row2 ) => {
 
             let word1 = row1[ sortElementIndex ];
             let word2 = row2[ sortElementIndex ];
@@ -211,12 +211,12 @@ class Table extends React.Component {
                 }
             }
 
-        });
+        } );
 
-        this.setState({
+        this.setState( {
             translationData: sortedTranslationData,
             columnConfig: newColumnConfig
-        })
+        } )
     }
 
 
