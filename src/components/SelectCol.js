@@ -11,16 +11,15 @@ class SelectCol extends React.Component {
         }
     }
 
-    getCheckedValues(index){ //Get the selected Value and pass to other component
+    getCheckedValues(index) { //Get the selected Value and pass to other component
         //toggle the default languages
-        if (index == null) {
-        }else {
+        if (index != null) {
             const newLans = this.state.defaultLans.slice() //copy the array
             newLans[index].value = !this.state.defaultLans[index].value;  //execute the manipulations
             this.setState({ defaultLans: newLans }) //set the new state
         }
 
-        const values = [];
+        const values = [ ];
         const boxes = document.getElementsByClassName("custom-control-input");
         for(let i=0; i< boxes.length; i++){
             if(boxes[i].checked){
