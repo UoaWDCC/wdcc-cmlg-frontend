@@ -6,7 +6,6 @@ class Table extends React.Component {
         super( props )
         this.state = {
             translationData: [],
-            sortInIncreasingOrder: true,
             columnConfig: [
                 {
                     name: "zh_cn",
@@ -120,7 +119,7 @@ class Table extends React.Component {
         }
     }
 
-    renderTableHeader() {
+    renderTableHeaders() {
         return (
             this.state.columnConfig.map( ( column, index ) => {
                 return (
@@ -226,7 +225,7 @@ class Table extends React.Component {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        { this.renderTableHeader() }
+                        { this.renderTableHeaders() }
                     </tr>
                 </thead>
 
