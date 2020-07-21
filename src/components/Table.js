@@ -1,11 +1,83 @@
 import React from "react";
-
+import './css/Table.css'
 
 class Table extends React.Component {
     constructor( props ) {
         super( props )
         this.state = {
-            translationData: []
+            translationData: [],
+            sortInIncreasingOrder: true,
+            columnConfig: [
+                {
+                    name: "zh_cn",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "English",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "it_italiano",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "arabic",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "serbian",
+                    sortOrder: "undefined",
+
+                },
+                {
+                    name: "croatian",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "russian",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "de_german",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "hebrew",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "fr_french",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "hu_hungarian",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "slovak",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "es_spanish",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "portugues",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "turkce",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "gr_greek",
+                    sortOrder: "undefined"
+                },
+                {
+                    name: "romanian",
+                    sortOrder: "undefined"
+                }
+            ]
         };
     }
 
@@ -48,6 +120,18 @@ class Table extends React.Component {
         }
     }
 
+    renderTableHeader() {
+        return (
+            this.state.columnConfig.map( ( column, index ) => {
+                return (
+                    <th key={ index } scope={ "col" } className={ column.sortOrder }
+                        onClick={ ( event ) => this.sortColumn( event ) }>{ column.name }
+                    </th>
+                );
+            } )
+        );
+    }
+
     componentDidMount() {
         fetch( 'https://cmlgbackend.wdcc.co.nz/translations' )
             .then( results => {
@@ -88,28 +172,61 @@ class Table extends React.Component {
             })
     }
 
+    sortColumn( event ) {
+
+        // headers in the table are in the format: [ chinese + pinyin, english ... ]
+        // translationData contains array in the format: [ chinese, pinyin, english ... ]
+        const clickedColumnIndex = event.target.cellIndex;
+        const sortElementIndex = clickedColumnIndex + 1;
+
+        let newColumnConfig = this.state.columnConfig.slice();
+
+        newColumnConfig.map( ( column, index ) => {
+            if ( index === clickedColumnIndex ) {
+                return column.sortOrder === "ascending" ? column.sortOrder = "descending" :
+                       column.sortOrder = "ascending";
+            } else {
+                return column.sortOrder = "undefined"
+            }
+        } )
+
+        const order = newColumnConfig[ clickedColumnIndex ].sortOrder;
+        let sortedTranslationData = this.state.translationData.slice();
+        sortedTranslationData.sort(( row1, row2 ) => {
+
+            let word1 = row1[ sortElementIndex ];
+            let word2 = row2[ sortElementIndex ];
+
+            if ( !word1 ) {
+                return 1;
+            } else if ( !word2 ) {
+                return -1;
+            } else {
+
+                const collator = new Intl.Collator();
+
+                if ( order === "ascending" ) {
+                    return collator.compare( word1, word2 );
+                } else {
+                    return collator.compare( word2, word1 );
+                }
+            }
+
+        });
+
+        this.setState({
+            translationData: sortedTranslationData,
+            columnConfig: newColumnConfig
+        })
+    }
+
+
     render() {
         return (
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">zh_cn</th>
-                        <th scope="col">English</th>
-                        <th scope="col">it_italiano</th>
-                        <th scope="col">arabic</th>
-                        <th scope="col">serbian</th>
-                        <th scope="col">croatian</th>
-                        <th scope="col">russian</th>
-                        <th scope="col">de_german</th>
-                        <th scope="col">hebrew</th>
-                        <th scope="col">fr_french</th>
-                        <th scope="col">hu_hungarian</th>
-                        <th scope="col">slovak</th>
-                        <th scope="col">es_spanish</th>
-                        <th scope="col">portugues</th>
-                        <th scope="col">turkce</th>
-                        <th scope="col">gr_greek</th>
-                        <th scope="col">romanian</th>
+                        { this.renderTableHeader() }
                     </tr>
                 </thead>
 
