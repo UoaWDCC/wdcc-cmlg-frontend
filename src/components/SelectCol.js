@@ -53,7 +53,6 @@ class SelectCol extends React.Component {
     render() {
         console.log( "The Select Col render function gets called" );
 
-        //Style will move to css file later
         const buttonStyle ={
             borderRadius: "50%",
             border:"none",
