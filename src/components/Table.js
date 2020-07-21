@@ -62,7 +62,7 @@ class Table extends React.Component {
                     sortOrder: "undefined"
                 },
                 {
-                    name: "portugues",
+                    name: "portuguese",
                     sortOrder: "undefined"
                 },
                 {
