@@ -17,7 +17,8 @@ class SearchPage extends React.Component {
     callbackFunction = (childData) => {
         console.log("The parent Call back function is called.")
         //store the selectedValues from selectCol and print to check
-        this.setState({ selectedColumns: childData },() => { console.log(this.state.selectedColumns)});
+        this.setState({ selectedColumns: childData },
+            () => { console.log("checkedValues:", this.state.selectedColumns)});
     }
 
     render() {
