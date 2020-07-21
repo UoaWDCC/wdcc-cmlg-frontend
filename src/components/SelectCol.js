@@ -90,7 +90,7 @@ class SelectCol extends React.Component {
 
         return (
             <div id="selectColumns" onClick={ (e) => { this.handleClick(e) } }>
-                <button class="btn btn-light" onClick={ this.openForm } style={ buttonStyle } title="View Columns">
+                <button className="btn btn-light" onClick={ this.openForm } style={ buttonStyle } title="View Columns">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-list-check" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
