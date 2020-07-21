@@ -10,8 +10,9 @@ class SearchPage extends React.Component {
         this.state = {
             //@todo place to store value such as search term and select column
             selectedColumns: [ ],
-            defaultLans: [{ name:'Chinese', value: true }, { name:'English',value: true },
-                { name:'Italian',value: true }],
+            defaultLans: [{ name:'Chinese', value: true }, 
+                          { name:'English',value: true },
+                          { name:'Italian',value: true }],
             word: ''
         };
     }
