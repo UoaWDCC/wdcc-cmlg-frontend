@@ -1,48 +1,36 @@
 import React from 'react';
 
-class Language extends React.Component{
-
-    render() {
-        return(
-            <div  className="custom-control custom-checkbox">
-                <input
-                    type="checkbox"
-                    checked={this.props.item.select}
-                    onChange={()=>{this.props.handleChange(this.props.item.id)}}
-                />
-                <label className="custom-control-label" htmlFor={ this.props.item.language }>{ this.props.item.language }</label>
-
-            </div>
-        );
-
-    }
-}
-
 class SelectCol extends React.Component {
-
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
+        this.getCheckedValues = this.getCheckedValues.bind(this);
         this.state = {
-            selectLanguages: this.initLanguage()
+            languages: [ "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
+                "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian"],
+            defaultLans: this.props.default
         }
-        this.handleChange = this.handleChange.bind(this)
     }
 
- /*   //need implement a parent call back function to pass the data to the table.
-    sendData = () => {
-        this.props.parentCallback(this.state.data.checkedValues);
-    },*/
+    getCheckedValues( index ) { //Get the selected Value and pass to other component
+        //toggle the default languages
+        if (index != null) {
+            const newLans = this.state.defaultLans.slice() //copy the array
+            newLans[ index ].value = !this.state.defaultLans[ index ].value;  //execute the manipulations
+            this.setState({ defaultLans: newLans }) //set the new state
+        }
 
-    initLanguage(){
-        const languages = ["Chinese", "English", "Italian", "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
-            "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian"]
+        const values = [ ];
+        const boxes = document.getElementsByClassName("custom-control-input");
+        for(let i=0; i< boxes.length; i++){
+            if(boxes[i].checked){
+               values.push(boxes[i].id);
+            }
+        }
 
-        let allLanguages = []
-        languages.forEach((language,index)=>
-            allLanguages.push({id:index,language:language,select:true}))
-        console.log(allLanguages)
-        return allLanguages
+        //pass the values to the searchPage component
+        this.props.parentCallback(values);
     }
+
     //handle Event functions
     openForm(){
         const x = document.getElementById("language-options");
@@ -62,28 +50,9 @@ class SelectCol extends React.Component {
         e.nativeEvent.stopImmediatePropagation();
     }
 
-    handleChange(id){
-        console.log("Changed:" + id)
-        this.setState(prevState => {
-            const updatedSelectLanguages = prevState.selectLanguages.map(selectLanguage => {
-                if (selectLanguage.id === id) {
-                    console.log("Changed:" + id)
-                    return{
-                        ...selectLanguage,
-                        select: !selectLanguage.select
-                    }
-                }
-                return selectLanguage
-            })
-            return {
-                selectLanguages: updatedSelectLanguages
-            }
-        })
-    }
-
     render() {
+        console.log( "The Select Col render function gets called" );
 
-        //Style will move to css file later
         const buttonStyle ={
             borderRadius: "50%",
             border:"none",
@@ -91,6 +60,7 @@ class SelectCol extends React.Component {
             top: "8px",
             right: "16px"
         }
+
         const cardStyle= {
             width: "10rem",
             display: "none",
@@ -102,25 +72,38 @@ class SelectCol extends React.Component {
             //overflow:"auto"
         }
 
-        const Languages = this.state.selectLanguages.map(language => <Language key={language.id} item={language} handleChange={this.handleChange}/>)
+        const defaultLanguages = this.state.defaultLans.map(( language, index) =>
+            <div className="custom-control custom-checkbox">
+                <input type="checkbox" className="custom-control-input" id={ language.name } checked={ language.value }
+                       onChange={() => this.getCheckedValues(index)} />
+                <label className="custom-control-label" htmlFor={ language.name }>{ language.name }</label>
+            </div>
+        );
 
-        console.log( "The Select Col render function gets called" );
+        const listLanguages = this.state.languages.map(( language) =>
+            <div className="custom-control custom-checkbox">
+                <input type="checkbox" className="custom-control-input" id={ language } onClick={() => this.getCheckedValues()}/>
+                <label className="custom-control-label" htmlFor={ language }>{ language }</label>
+            </div>
+        );
 
         return (
-            <div id="selectCol" onClick={ (e) => { this.handleClick(e) } }>
-                <button class="btn btn-light" onClick={ this.openForm } style={ buttonStyle } title="Select Language">
+            <div id="selectColumns" onClick={ (e) => { this.handleClick(e) } }>
+                <button className="btn btn-light" onClick={ this.openForm } style={ buttonStyle } title="View Columns">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-list-check" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
                               d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </button>
-                <div id="language-options" className="card " style={ cardStyle }>
-                    <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Languages</h6>
-                    {Languages}
+                <div id="language-options" className="card" style={ cardStyle }>
+                    <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
+                    { defaultLanguages }
+                    { listLanguages }
                 </div>
             </div>
         );
     }
 }
+
 export default SelectCol;
