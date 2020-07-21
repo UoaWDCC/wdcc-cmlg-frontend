@@ -1,8 +1,8 @@
 import React from 'react';
 
 class SelectCol extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.getCheckedValues = this.getCheckedValues.bind(this);
         this.state = {
             languages: [ "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
@@ -11,11 +11,11 @@ class SelectCol extends React.Component {
         }
     }
 
-    getCheckedValues(index) { //Get the selected Value and pass to other component
+    getCheckedValues( index ) { //Get the selected Value and pass to other component
         //toggle the default languages
         if (index != null) {
             const newLans = this.state.defaultLans.slice() //copy the array
-            newLans[index].value = !this.state.defaultLans[index].value;  //execute the manipulations
+            newLans[ index ].value = !this.state.defaultLans[ index ].value;  //execute the manipulations
             this.setState({ defaultLans: newLans }) //set the new state
         }
 
