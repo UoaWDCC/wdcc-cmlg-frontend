@@ -20,10 +20,10 @@ class SelectCol extends React.Component {
         }
 
         const values = [ ];
-        const boxes = document.getElementsByClassName("custom-control-input");
+        const boxes = document.getElementsByClassName( "custom-control-input" );
         for(let i=0; i< boxes.length; i++){
-            if(boxes[i].checked){
-               values.push(boxes[i].id);
+            if(boxes[i ].checked){
+               values.push(boxes[ i ].id);
             }
         }
 
@@ -53,7 +53,7 @@ class SelectCol extends React.Component {
     render() {
         console.log( "The Select Col render function gets called" );
 
-        const buttonStyle ={
+        const buttonStyle = {
             borderRadius: "50%",
             border:"none",
             position:"fixed",
@@ -61,7 +61,7 @@ class SelectCol extends React.Component {
             right: "16px"
         }
 
-        const cardStyle= {
+        const cardStyle = {
             width: "10rem",
             display: "none",
             paddingLeft: "10px",
@@ -75,7 +75,7 @@ class SelectCol extends React.Component {
         const defaultLanguages = this.state.defaultLans.map(( language, index) =>
             <div className="custom-control custom-checkbox">
                 <input type="checkbox" className="custom-control-input" id={ language.name } checked={ language.value }
-                       onChange={() => this.getCheckedValues(index)} />
+                       onChange={() => this.getCheckedValues( index )} />
                 <label className="custom-control-label" htmlFor={ language.name }>{ language.name }</label>
             </div>
         );
@@ -88,7 +88,7 @@ class SelectCol extends React.Component {
         );
 
         return (
-            <div id="selectColumns" onClick={ (e) => { this.handleClick(e) } }>
+            <div id="selectColumns" onClick={ ( e ) => { this.handleClick( e ) } }>
                 <button className="btn btn-light" onClick={ this.openForm } style={ buttonStyle } title="View Columns">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-list-check" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,7 @@ class SelectCol extends React.Component {
                     </svg>
                 </button>
                 <div id="language-options" className="card" style={ cardStyle }>
-                    <h6 className="card-title" style={{color:"grey", paddingTop:"8px"}}>Show Columns</h6>
+                    <h6 className="card-title" style={{ color:"grey", paddingTop:"8px" }}>Show Columns</h6>
                     { defaultLanguages }
                     { listLanguages }
                 </div>
