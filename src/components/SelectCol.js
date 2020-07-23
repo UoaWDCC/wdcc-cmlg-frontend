@@ -11,7 +11,7 @@ class SelectCol extends React.Component {
 
     initLanguages() {
         const languages = [ "Chinese", "English", "Italian", "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
-            "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian" ]
+                            "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian" ]
         let allLanguages = []
         languages.forEach( ( language, index ) => {
             if ( index < 5 ) {
@@ -20,6 +20,8 @@ class SelectCol extends React.Component {
             else {
                 allLanguages.push( { id: language, select: false } )
             } } )
+        //passing  the value to searchPage when first load it.
+        this.props.getsSelectedLanguage( allLanguages );
         return allLanguages;
     }
 
