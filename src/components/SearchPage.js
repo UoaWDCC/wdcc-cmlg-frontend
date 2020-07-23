@@ -9,10 +9,7 @@ class SearchPage extends React.Component {
         super( props );
         this.state = {
             //@todo place to store value such as search term and select column
-            selectedColumns: [ ],
-            defaultLans: [ { name: 'Chinese', value: true },
-                           { name: 'English', value: true },
-                           { name: 'Italian', value: true } ],
+            selectedColumns: [],
             word: ''
         };
     }
@@ -23,18 +20,19 @@ class SearchPage extends React.Component {
             word: searchWord
         } );
     }
-      
-   // received the selected values from select Columns
-    handleSelectCol = ( childData ) => {
-        //store the selectedValues from selectCol and print to check
-        this.setState( { selectedColumns: childData } );
+
+    // received all languages with their state from select Columns
+    handleSelectCol = ( allLanguages ) => {
+        this.setState( {
+            selectedColumns: allLanguages
+        } ) ;
     }
 
     render() {
-       return (
+        return (
             <div className = "SearchPage">
                 <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
-                <SelectCol getsSelectedLanguage = { this.handleSelectCol } default={ this.state.defaultLans }/>
+                <SelectCol getsSelectedLanguage = { this.handleSelectCol } />
                 <Table />
             </div>
         );
