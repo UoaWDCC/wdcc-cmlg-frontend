@@ -73,7 +73,7 @@ class SelectCol extends React.Component {
             //overflow:"auto"
         }
 
-        const defaultLanguages = this.state.allLanguages.map( ( language, index ) =>
+        const Languages = this.state.allLanguages.map( ( language, index ) =>
             <div className = "custom-control custom-checkbox" key = { index }>
                 <input type = "checkbox" className = "custom-control-input" id = { language.id } checked = { language.select }
                        onChange = { () => this.getCheckedValues( index ) } />
@@ -92,7 +92,7 @@ class SelectCol extends React.Component {
                 </button>
                 <div id = "language-options" className = "card" style = { cardStyle }>
                     <h6 className = "card-title" style = { { color: "grey", paddingTop: "8px" } }>All Languages</h6>
-                    { defaultLanguages }
+                    { Languages }
                 </div>
             </div>
         );
