@@ -63,7 +63,6 @@ class Table extends React.Component {
             this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
                 return (
                     <th key={ colIndex } scope={ "col" } className={ sortStatus }
-
                         onClick={ ( event ) => this.sortColumn( event ) }
                         style={ { display: this.props.columns[ colIndex ].select ?
                                   "table-cell" : "none" } }>
