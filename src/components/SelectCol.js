@@ -4,34 +4,14 @@ class SelectCol extends React.Component {
     constructor( props ) {
         super( props );
         this.getCheckedValues = this.getCheckedValues.bind( this );
-        this.state = {
-            allLanguages : this.initLanguages()
-        }
-    }
-
-    initLanguages() {
-        const languages = [ "Chinese", "English", "Italian", "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
-                            "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian" ]
-        let allLanguages = []
-        languages.forEach( ( language, index ) => {
-            if ( index < 5 ) {
-                allLanguages.push( { id: language, select: true } )
-            }
-            else {
-                allLanguages.push( { id: language, select: false } )
-            } } )
-        //passing  the value to searchPage when first load it.
-        this.props.getsSelectedLanguage( allLanguages );
-        return allLanguages;
     }
 
     getCheckedValues( index ) {
         //Get the selected Value and pass to other component
         //toggle all languages
         if ( index != null ) {
-            const newLans = this.state.allLanguages.slice(); //copy the array
-            newLans[ index ].select = !this.state.allLanguages[ index ].select;  //execute the manipulations
-            this.setState( { allLanguages: newLans } ); //set the new state
+            const newLans = this.props.allLanguages.slice(); //copy the array
+            newLans[ index ].select = !this.props.allLanguages[ index ].select;  //execute the manipulations
             this.props.getsSelectedLanguage( newLans );
         }
     }
@@ -75,7 +55,7 @@ class SelectCol extends React.Component {
             //overflow:"auto"
         }
 
-        const Languages = this.state.allLanguages.map( ( language, index ) =>
+        const Languages = this.props.allLanguages.map( ( language, index ) =>
             <div className = "custom-control custom-checkbox" key = { index }>
                 <input type = "checkbox" className = "custom-control-input" id = { language.id } checked = { language.select }
                        onChange = { () => this.getCheckedValues( index ) } />
