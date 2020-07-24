@@ -6,77 +6,7 @@ class Table extends React.Component {
         super( props )
         this.state = {
             translationData: [],
-            columnConfig: [
-                {
-                    name: "zh_cn",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "English",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "it_italiano",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "arabic",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "serbian",
-                    sortOrder: "undefined",
-
-                },
-                {
-                    name: "croatian",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "russian",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "de_german",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "hebrew",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "fr_french",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "hu_hungarian",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "slovak",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "es_spanish",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "portuguese",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "turkce",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "gr_greek",
-                    sortOrder: "undefined"
-                },
-                {
-                    name: "romanian",
-                    sortOrder: "undefined"
-                }
-            ]
+            columnSortStatus: new Array( 17 ).fill( "undefined" )
         };
     }
 
@@ -121,10 +51,11 @@ class Table extends React.Component {
 
     renderTableHeaders() {
         return (
-            this.state.columnConfig.map( ( column, index ) => {
+            this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
                 return (
-                    <th key={ index } scope={ "col" } className={ column.sortOrder }
-                        onClick={ ( event ) => this.sortColumn( event ) }>{ column.name }
+                    <th key={ colIndex } scope={ "col" } className={ sortStatus }
+                        onClick={ ( event ) => this.sortColumn( event ) }>
+                        { this.props.columns[ colIndex ].id }
                     </th>
                 );
             } )
@@ -178,18 +109,18 @@ class Table extends React.Component {
         const clickedColumnIndex = event.target.cellIndex;
         const sortElementIndex = clickedColumnIndex + 1;
 
-        let newColumnConfig = this.state.columnConfig.slice();
+        let newColumnSortStatus = this.state.columnSortStatus.slice();
 
-        newColumnConfig.map( ( column, index ) => {
-            if ( index === clickedColumnIndex ) {
-                return column.sortOrder === "ascending" ? column.sortOrder = "descending" :
-                       column.sortOrder = "ascending";
+        newColumnSortStatus.map( ( sortDirection, colIndex ) => {
+            if ( colIndex === clickedColumnIndex ) {
+                return sortDirection === "ascending" ? newColumnSortStatus[ colIndex ] = "descending" :
+                       newColumnSortStatus[ colIndex ] = "ascending";
             } else {
-                return column.sortOrder = "undefined"
+                return newColumnSortStatus[ colIndex ] = "undefined";
             }
         } )
 
-        const order = newColumnConfig[ clickedColumnIndex ].sortOrder;
+        const order = newColumnSortStatus[ clickedColumnIndex ];
         let sortedTranslationData = this.state.translationData.slice();
         sortedTranslationData.sort( ( row1, row2 ) => {
 
@@ -215,7 +146,7 @@ class Table extends React.Component {
 
         this.setState( {
             translationData: sortedTranslationData,
-            columnConfig: newColumnConfig
+            columnSortStatus: newColumnSortStatus
         } )
     }
 

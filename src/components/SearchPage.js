@@ -15,8 +15,9 @@ class SearchPage extends React.Component {
     }
 
     initLanguages() {
-        const languages = [ "Chinese", "English", "Italian", "Arabic", "Serbian", "Croatian", "Russian", "German", "Hebrew", "French",
-                            "Hungarian", "Slovak", "Spanish", "Portugues", "Turkce", "Greek", "Romanian" ]
+        const languages = [ "Chinese", "English", "Italian", "Arabic", "Serbian", "Croatian", "Russian", "German",
+                            "Hebrew", "French", "Hungarian", "Slovak", "Spanish", "Português", "Türkçe", "Greek",
+                            "Romanian" ]
         let allLanguages = []
         languages.forEach( ( language, index ) => {
             if ( index < 5 ) {
@@ -55,7 +56,7 @@ class SearchPage extends React.Component {
             <div className = "SearchPage">
                 <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
                 <SelectCol getsSelectedLanguage = { this.handleSelectCol } allLanguages = { this.state.selectedColumns }/>
-                <Table />
+                <Table columns = { this.state.selectedColumns } />
             </div>
         );
     }
