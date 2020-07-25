@@ -1,4 +1,5 @@
 import React from 'react';
+import "./css/SelectCol.css";
 
 class SelectCol extends React.Component {
     constructor( props ) {
@@ -36,20 +37,13 @@ class SelectCol extends React.Component {
     }
 
     render() {
-        const buttonStyle = {
-            borderRadius: "50%",
-            border:"none",
-            position:"fixed",
-            top: "6%",
-            right: "2%"
-        }
 
         const cardStyle = {
             width: "10rem",
             display: "none",
             paddingLeft: "10px",
             paddingBottom:"10px",
-            position:"fixed",
+            position: "fixed",
             top: "45px",
             right: "16px",
             //overflow:"auto"
@@ -65,7 +59,8 @@ class SelectCol extends React.Component {
 
         return (
             <div id = "selectColumns" onClick = { ( e ) => { this.handleClick( e ) } }>
-                <button className = "btn btn-light" onClick = { this.openForm } style = { buttonStyle } title = "Select Languages">
+                <button className = "btn btn-light selectColButton" onClick = { this.openForm }  title = "Select Languages">
+
                     <svg width = "1em" height = "1em" viewBox = "0 0 16 16" className = "bi bi-list-check" fill = "currentColor"
                          xmlns = "http://www.w3.org/2000/svg">
                         <path
