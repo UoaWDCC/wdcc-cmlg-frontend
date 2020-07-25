@@ -1,11 +1,12 @@
 import React from "react";
-
+import './css/Table.css'
 
 class Table extends React.Component {
     constructor( props ) {
         super( props )
         this.state = {
-            translationData: []
+            translationData: [],
+            columnSortStatus: new Array( 17 ).fill( "undefined" )
         };
     }
 
@@ -38,7 +39,7 @@ class Table extends React.Component {
                         <td>{ romanian }</td>
                     </tr>
                 )
-            })
+            } )
         } else {
             return (
                 <tr>
@@ -48,11 +49,24 @@ class Table extends React.Component {
         }
     }
 
+    renderTableHeaders() {
+        return (
+            this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
+                return (
+                    <th key={ colIndex } scope={ "col" } className={ sortStatus }
+                        onClick={ ( event ) => this.sortColumn( event ) }>
+                        { this.props.columns[ colIndex ].id }
+                    </th>
+                );
+            } )
+        );
+    }
+
     componentDidMount() {
         fetch( 'https://cmlgbackend.wdcc.co.nz/translations' )
             .then( results => {
                 return results.json();
-            })
+            } )
             .then( data => {
                 let sortedListOfWords = [];
                 let translationsForOneWord = [];
@@ -82,34 +96,67 @@ class Table extends React.Component {
                     }
                 }
 
-                this.setState({
+                this.setState( {
                     translationData: sortedListOfWords
-                });
-            })
+                } );
+            } )
     }
+
+    sortColumn( event ) {
+
+        // headers in the table are in the format: [ chinese + pinyin, english ... ]
+        // translationData contains array in the format: [ chinese, pinyin, english ... ]
+        const clickedColumnIndex = event.target.cellIndex;
+        const sortElementIndex = clickedColumnIndex + 1;
+
+        let newColumnSortStatus = this.state.columnSortStatus.slice();
+
+        newColumnSortStatus.map( ( sortDirection, colIndex ) => {
+            if ( colIndex === clickedColumnIndex ) {
+                return sortDirection === "ascending" ? newColumnSortStatus[ colIndex ] = "descending" :
+                       newColumnSortStatus[ colIndex ] = "ascending";
+            } else {
+                return newColumnSortStatus[ colIndex ] = "undefined";
+            }
+        } )
+
+        const order = newColumnSortStatus[ clickedColumnIndex ];
+        let sortedTranslationData = this.state.translationData.slice();
+        sortedTranslationData.sort( ( row1, row2 ) => {
+
+            let word1 = row1[ sortElementIndex ];
+            let word2 = row2[ sortElementIndex ];
+
+            if ( !word1 ) {
+                return 1;
+            } else if ( !word2 ) {
+                return -1;
+            } else {
+
+                const collator = new Intl.Collator();
+
+                if ( order === "ascending" ) {
+                    return collator.compare( word1, word2 );
+                } else {
+                    return collator.compare( word2, word1 );
+                }
+            }
+
+        } );
+
+        this.setState( {
+            translationData: sortedTranslationData,
+            columnSortStatus: newColumnSortStatus
+        } )
+    }
+
 
     render() {
         return (
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">zh_cn</th>
-                        <th scope="col">English</th>
-                        <th scope="col">it_italiano</th>
-                        <th scope="col">arabic</th>
-                        <th scope="col">serbian</th>
-                        <th scope="col">croatian</th>
-                        <th scope="col">russian</th>
-                        <th scope="col">de_german</th>
-                        <th scope="col">hebrew</th>
-                        <th scope="col">fr_french</th>
-                        <th scope="col">hu_hungarian</th>
-                        <th scope="col">slovak</th>
-                        <th scope="col">es_spanish</th>
-                        <th scope="col">portugues</th>
-                        <th scope="col">turkce</th>
-                        <th scope="col">gr_greek</th>
-                        <th scope="col">romanian</th>
+                        { this.renderTableHeaders() }
                     </tr>
                 </thead>
 
