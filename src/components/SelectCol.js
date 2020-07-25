@@ -44,7 +44,7 @@ class SelectCol extends React.Component {
             paddingLeft: "10px",
             paddingBottom:"10px",
             position: "fixed",
-            top: "45px",
+            top: "9%",
             right: "16px",
             //overflow:"auto"
         }
