@@ -40,8 +40,8 @@ class SelectCol extends React.Component {
             borderRadius: "50%",
             border:"none",
             position:"fixed",
-            top: "8px",
-            right: "16px"
+            top: "6%",
+            right: "2%"
         }
 
         const cardStyle = {
