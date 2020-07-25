@@ -14,29 +14,38 @@ class Table extends React.Component {
         if ( this.state.translationData.length !== 0 ) {
             return this.state.translationData.map( ( translation, index ) => {
 
-                const [ chinese, pinyin, english, italian, arabic, serbian, croatian, russian, german, hebrew, french,
-                    hungarian, slovak, spanish, portuguese, turkce, greek, romanian ]
-                    = translation // Destructuring.
+                const [ chinese, pinyin, english ] = translation // Destructuring.
+                const translationsWithoutChineseAndEnglish = translation.slice( 3 );
 
                 return (
                     <tr key={ index }>
-                        <td>{ chinese + " " + pinyin }</td>
-                        <td>{ english }</td>
-                        <td>{ italian }</td>
-                        <td>{ arabic }</td>
-                        <td>{ serbian }</td>
-                        <td>{ croatian }</td>
-                        <td>{ russian }</td>
-                        <td>{ german }</td>
-                        <td>{ hebrew }</td>
-                        <td>{ french }</td>
-                        <td>{ hungarian }</td>
-                        <td>{ slovak }</td>
-                        <td>{ spanish }</td>
-                        <td>{ portuguese }</td>
-                        <td>{ turkce }</td>
-                        <td>{ greek }</td>
-                        <td>{ romanian }</td>
+                        <td style={ { display: this.props.columns[ 0 ].select ? "table-cell" : "none" } }>
+                            { chinese + " " + pinyin }
+                        </td>
+
+                        {/* English is not put into the loop because we may need to put a special function
+                            on it later to fix the position of this column, i.e. when the user scrolls the table
+                            to the right, this column is fixed.
+                         */}
+                        <td style={ { display: this.props.columns[ 1 ].select ? "table-cell" : "none" } }>
+                            { english }
+                        </td>
+
+                        {
+                            // index starts with 0, representing the word in Italian
+                            // Italian in property "columns" is at position 2
+                            translationsWithoutChineseAndEnglish.map( ( word, index ) => {
+                                const columnIndex = index + 2;
+                                return (
+                                    <td key={ columnIndex }
+                                        style={ { display: this.props.columns[ columnIndex ].select ?
+                                                "table-cell" : "none" } }>
+                                        { word }
+                                    </td>
+                                );
+                            } )
+                        }
+
                     </tr>
                 )
             } )
@@ -54,7 +63,9 @@ class Table extends React.Component {
             this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
                 return (
                     <th key={ colIndex } scope={ "col" } className={ sortStatus }
-                        onClick={ ( event ) => this.sortColumn( event ) }>
+                        onClick={ ( event ) => this.sortColumn( event ) }
+                        style={ { display: this.props.columns[ colIndex ].select ?
+                                  "table-cell" : "none" } }>
                         { this.props.columns[ colIndex ].id }
                     </th>
                 );
@@ -149,7 +160,6 @@ class Table extends React.Component {
             columnSortStatus: newColumnSortStatus
         } )
     }
-
 
     render() {
         return (
