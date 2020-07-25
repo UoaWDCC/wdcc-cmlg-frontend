@@ -1,0 +1,13 @@
+thead th.ascending::after {
+    content: ' \2191';
+}
+
+thead th.descending::after {
+    content: ' \2193';
+}
+
+thead th:hover {
+    cursor: pointer;
+}
+
+
