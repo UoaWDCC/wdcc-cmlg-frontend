@@ -6,7 +6,8 @@ class Table extends React.Component {
         super( props )
         this.state = {
             translationData: [],
-            columnSortStatus: new Array( 17 ).fill( "undefined" )
+            columnSortStatus: new Array( 17 ).fill( "undefined" ),
+            loading: true, // True when the data is loading at initialisation. False when there are no search results.
         };
     }
 
@@ -49,10 +50,16 @@ class Table extends React.Component {
                     </tr>
                 )
             } )
+        } else if ( this.state.loading ) {
+            return (
+                <tr>
+                    <td>{ "Loading" }</td>
+                </tr>
+            )
         } else {
             return (
                 <tr>
-                    <td>{ "loading" }</td>
+                    <td>{ "No results found" }</td>
                 </tr>
             )
         }
@@ -73,8 +80,8 @@ class Table extends React.Component {
         );
     }
 
-    componentDidMount() {
-        fetch( 'https://cmlgbackend.wdcc.co.nz/translations' )
+    getData() {
+        fetch( 'https://cmlgbackend.wdcc.co.nz/translations/' + this.props.words )
             .then( results => {
                 return results.json();
             } )
@@ -111,6 +118,20 @@ class Table extends React.Component {
                     translationData: sortedListOfWords
                 } );
             } )
+    }
+
+    componentDidMount() {
+        this.getData();
+
+        this.setState( {
+            loading: false
+        } );
+    }
+
+    componentDidUpdate( prevProps, prevState, snapshot ) {
+        if ( this.props.words !== prevProps.words ) {
+            this.getData();
+        }
     }
 
     sortColumn( event ) {
