@@ -7,7 +7,7 @@ class Table extends React.Component {
         this.state = {
             translationData: [],
             columnSortStatus: new Array( 17 ).fill( "undefined" ),
-            loading: true, // True when the data is loading at initialisation. False when there are no search results.
+            loading: true // True when the data is loading at initialisation. False when there are no search results.
         };
     }
 
@@ -115,17 +115,14 @@ class Table extends React.Component {
                 }
 
                 this.setState( {
-                    translationData: sortedListOfWords
+                    translationData: sortedListOfWords,
+                    loading: false
                 } );
             } )
     }
 
     componentDidMount() {
         this.getData();
-
-        this.setState( {
-            loading: false
-        } );
     }
 
     componentDidUpdate( prevProps, prevState, snapshot ) {
