@@ -1,0 +1,10 @@
+.selectColButton {
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border-radius: 50%;
+    border: "none";
+    position: "fixed";
+    margin-right: 2%;
+    float: right;
+}
+

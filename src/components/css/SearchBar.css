@@ -1,20 +1,22 @@
 .search {
     position: relative;
-	border: 2px solid #3fc5cf;
-	overflow: auto;
-	border-radius: 35px;
-    margin-top: 3%;
+    border: 2px solid #3fc5cf;
+    border-radius: 35px;
+    float: left;
+    margin-top: 2%;
     margin-left: 2%;
     margin-bottom: 2%;
     text-align: center;
     width: 40%;
     opacity: 0.5;
+    overflow: block;
+    white-space: nowrap;
 }
 
 .bar {
     border:0;
     text-align: center;
-    width: 85%;
+    width: 75%;
 }
 
 .search:hover {
@@ -24,8 +26,9 @@
 
 .search-icon {
     position: relative;
-    padding-left: 2%;
-    width: 5%;
+    padding-left: 1%;
+    padding-top: 0.3%;
+    padding-bottom: 0.8%;
 }
 
 *:focus {
