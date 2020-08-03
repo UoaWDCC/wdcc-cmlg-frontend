@@ -1,0 +1,11 @@
+.startButton {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    border-radius: 25px;
+    /* box-shadow: 3px 4px 4px 0px #6c757d; */
+}
