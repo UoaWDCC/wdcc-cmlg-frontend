@@ -5,11 +5,14 @@ import { Link } from "react-router-dom";
 class WelcomePage extends React.Component {
     render() {
         return (
-          <div class="startButton">
-            <Link to="/translations">
-            <button type="button" class="btn btn-outline-dark">Start searching</button>
-            </Link>
-          </div>
+            <div className="welcomePage">
+                <h1>Welcome</h1>
+                <p>to Crisis Translation</p>
+                <Link to="/translations">
+                    <button type="button" className="btn btn-outline-dark">Start searching</button>
+                </Link>
+            </div>
+
         );
     }
 
