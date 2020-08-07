@@ -82,18 +82,15 @@ class Table extends React.Component {
 
     getData() {
         let sequenceTime = new Date();
+        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
+                  '&word=' + this.props.words;
 
-        const url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() + '&word='
-            + this.props.words;
-        
         fetch( url )
             .then( results => {
                 return results.json();
             } )
             .then( responseData => {
-
                 const data = responseData.data;
-
                 let sortedListOfWords = [];
                 let translationsForOneWord = [];
                 let dataIndex;
