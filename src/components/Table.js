@@ -81,11 +81,21 @@ class Table extends React.Component {
     }
 
     getData() {
-        fetch( 'https://cmlgbackend.wdcc.co.nz/translations/' + this.props.words )
+        let sequenceTime = new Date();
+
+        const url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() + '&word='
+            + this.props.words;
+
+        console.log( url )
+        fetch( url )
             .then( results => {
                 return results.json();
             } )
-            .then( data => {
+            .then( responseData => {
+
+                const data = responseData.data;
+                console.log( data );
+
                 let sortedListOfWords = [];
                 let translationsForOneWord = [];
                 let dataIndex;
@@ -105,7 +115,7 @@ class Table extends React.Component {
                     }
 
                     const numberOfLanguages = 18;
-
+                    console.log( translationsForOneWord )
                     // When the word is translated to all languages, add translationsForOneWord into sortedListOfWords.
                     // Empty translationsForOneWord so a new translationsForOneWord can be made for a new word.
                     if ( translationsForOneWord.length === numberOfLanguages ) {
@@ -113,10 +123,12 @@ class Table extends React.Component {
                         translationsForOneWord = [];
                     }
                 }
-
+                console.log( sortedListOfWords )
                 this.setState( {
                     translationData: sortedListOfWords,
                     loading: false
+                }, ()=> {
+                    console.log( this.state.translationData )
                 } );
             } )
     }
