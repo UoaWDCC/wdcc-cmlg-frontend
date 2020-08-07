@@ -6,7 +6,8 @@ class Table extends React.Component {
         super( props )
         this.state = {
             translationData: [],
-            columnSortStatus: new Array( 17 ).fill( "undefined" )
+            columnSortStatus: new Array( 17 ).fill( "undefined" ),
+            loading: true // True when the data is loading at initialisation. False when there are no search results.
         };
     }
 
@@ -49,10 +50,16 @@ class Table extends React.Component {
                     </tr>
                 )
             } )
+        } else if ( this.state.loading ) {
+            return (
+                <tr>
+                    <td>{ "Loading" }</td>
+                </tr>
+            )
         } else {
             return (
                 <tr>
-                    <td>{ "loading" }</td>
+                    <td>{ "No results found" }</td>
                 </tr>
             )
         }
@@ -73,12 +80,20 @@ class Table extends React.Component {
         );
     }
 
-    componentDidMount() {
-        fetch( 'https://cmlgbackend.wdcc.co.nz/translations' )
+    getData() {
+        let sequenceTime = new Date();
+
+        const url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() + '&word='
+            + this.props.words;
+        
+        fetch( url )
             .then( results => {
                 return results.json();
             } )
-            .then( data => {
+            .then( responseData => {
+
+                const data = responseData.data;
+
                 let sortedListOfWords = [];
                 let translationsForOneWord = [];
                 let dataIndex;
@@ -98,7 +113,6 @@ class Table extends React.Component {
                     }
 
                     const numberOfLanguages = 18;
-
                     // When the word is translated to all languages, add translationsForOneWord into sortedListOfWords.
                     // Empty translationsForOneWord so a new translationsForOneWord can be made for a new word.
                     if ( translationsForOneWord.length === numberOfLanguages ) {
@@ -106,11 +120,21 @@ class Table extends React.Component {
                         translationsForOneWord = [];
                     }
                 }
-
                 this.setState( {
-                    translationData: sortedListOfWords
+                    translationData: sortedListOfWords,
+                    loading: false
                 } );
             } )
+    }
+
+    componentDidMount() {
+        this.getData();
+    }
+
+    componentDidUpdate( prevProps, prevState, snapshot ) {
+        if ( this.props.words !== prevProps.words ) {
+            this.getData();
+        }
     }
 
     sortColumn( event ) {
