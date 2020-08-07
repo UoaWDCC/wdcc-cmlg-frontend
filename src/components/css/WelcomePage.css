@@ -7,6 +7,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.4;
+    
 }
 
 .welcomePage {
@@ -14,12 +15,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column;   
+    background-image: url("../background.png");
+    background-position: 50% 30%;
+    background-size: 50%;
+    background-repeat: no-repeat;
 }
 
 .btn {
     border-radius: 25px;
-    /* box-shadow: 3px 4px 4px 0px #6c757d; */
 }
 
 h1 {
