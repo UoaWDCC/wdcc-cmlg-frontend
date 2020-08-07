@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.4;
+    
+}
+
+.welcomePage {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;   
+    /* background-image: url("../background.png");
+    background-position: 50% 30%;
+    background-size: 50%;
+    background-repeat: no-repeat; */
+}
+
+.btn {
+    border-radius: 25px;
+}
+
+h1 {
+    color: black;
+    font-size: 4.25em;
+    font-weight: 900;
+    color: #2c2c2c;
+    letter-spacing: 0.05em;
+    text-shadow: 4px 4px 0px rgba(72, 154, 232, 0.89);
+}
+
+p {
+    font-size: 1.3rem;
+}
+/*Responsive design for h1*/
+@media (min-width: 320px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    #background-img {
+        width: 40%
+    }
+}
+
+@media (min-width: 450px) {
+    h1 {
+        font-size: 1.75em;
+    }
+
+    #background-img {
+        width: 40%
+    }
+}
+
+@media (min-width: 760px) {
+    h1{
+        font-size: 3.25em;
+    }
+    
+    #background-img {
+        width: 50%
+    }
+}
+
+@media (min-width: 900px) {
+    h1 {
+        font-size: 6.25em;
+    }
+
+    #background-img {
+        width: 60%;
+    }
+}
