@@ -16,10 +16,10 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;   
-    background-image: url("../background.png");
+    /* background-image: url("../background.png");
     background-position: 50% 30%;
     background-size: 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
 
 .btn {
@@ -39,9 +39,23 @@ p {
     font-size: 1.3rem;
 }
 /*Responsive design for h1*/
+@media (min-width: 320px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    #background-img {
+        width: 40%
+    }
+}
+
 @media (min-width: 450px) {
     h1 {
         font-size: 1.75em;
+    }
+
+    #background-img {
+        width: 40%
     }
 }
 
@@ -49,10 +63,18 @@ p {
     h1{
         font-size: 3.25em;
     }
+    
+    #background-img {
+        width: 50%
+    }
 }
 
 @media (min-width: 900px) {
     h1 {
         font-size: 6.25em;
+    }
+
+    #background-img {
+        width: 60%;
     }
 }
