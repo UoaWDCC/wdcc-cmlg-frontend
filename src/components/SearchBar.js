@@ -12,29 +12,29 @@ class SearchBar extends React.Component{
     }
 
     updateDimensions() {
-        if(window.innerWidth < 900) {
-          this.setState({ placeholderText : "Search a word" });
+        if ( window.innerWidth < 900 ) {
+          this.setState( { placeholderText : "Search a word" } );
         } else {
-          this.setState({ placeholderText : "Enter the word you want to search" });
+          this.setState( { placeholderText : "Enter the word you want to search" } );
         }
     }
 
     // Add event listener
     componentDidMount() {
         this.updateDimensions();
-        window.addEventListener("resize", this.updateDimensions.bind(this));
+        window.addEventListener( "resize", this.updateDimensions.bind( this ) );
     }
 
     //Remove event listener
     componentWillUnmount() {
-        window.removeEventListener("resize", this.updateDimensions.bind(this));
+        window.removeEventListener( "resize", this.updateDimensions.bind( this ) );
     }
 
     // call the changeWord function in the SearchPage class to change its state
     render() {
         return(
             <div className='search'> 
-                <input className='bar' type="text" placeholder={this.state.placeholderText} 
+                <input className='bar' type="text" placeholder={ this.state.placeholderText } 
                        onChange = { ( e ) => this.props.data.changeWord( e.target.value ) }/>
                 <SearchIcon className='search-icon'/>
             </div>
