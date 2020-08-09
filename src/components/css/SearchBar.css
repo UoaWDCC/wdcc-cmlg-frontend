@@ -34,3 +34,9 @@
 *:focus {
     outline: none;
 }
+
+@media (max-width: 700px) {
+    .search {
+        width: 60% !important;
+    }
+}
