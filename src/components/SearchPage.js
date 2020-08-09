@@ -3,6 +3,8 @@ import SelectCol from "./SelectCol";
 import SearchBar from './SearchBar'
 import Table from "./Table";
 
+import "./css/SearchPage.css"
+
 class SearchPage extends React.Component {
 
     constructor( props ) {
@@ -53,12 +55,13 @@ class SearchPage extends React.Component {
 
     render() {
         return (
-            <div className = "SearchPage" style={ { display: "grid", height: "100vh" } }>
+            <div className = "search-page">
                 <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
-                    <SelectCol getsSelectedLanguage = { this.handleSelectCol } allLanguages = { this.state.selectedColumns }/>
+                    <SelectCol getsSelectedLanguage = { this.handleSelectCol }
+                               allLanguages = { this.state.selectedColumns }/>
                 </div>
-                <div style={ { overflow: "scroll", height: "100%" } }>
+                <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
                            words = { this.state.word }
                     />
