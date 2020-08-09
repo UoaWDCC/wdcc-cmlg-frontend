@@ -7,7 +7,8 @@ class Table extends React.Component {
         this.state = {
             translationData: [],
             columnSortStatus: new Array( 17 ).fill( "undefined" ),
-            loading: true // True when the data is loading at initialisation. False when there are no search results.
+            loading: true, // True when the data is loading at initialisation. False when there are no search results.
+            sequence: -1
         };
     }
 
@@ -91,6 +92,12 @@ class Table extends React.Component {
             } )
             .then( responseData => {
                 const data = responseData.data;
+                const sequence = responseData.sequence;
+
+                if ( sequence <= this.state.sequence ) {
+                    return;
+                }
+
                 let sortedListOfWords = [];
                 let translationsForOneWord = [];
                 let dataIndex;
@@ -119,7 +126,8 @@ class Table extends React.Component {
                 }
                 this.setState( {
                     translationData: sortedListOfWords,
-                    loading: false
+                    loading: false,
+                    sequence: sequence
                 } );
             } )
     }
