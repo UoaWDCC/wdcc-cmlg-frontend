@@ -53,12 +53,12 @@ class SearchPage extends React.Component {
 
     render() {
         return (
-            <div className = "SearchPage" style={{ display: "grid", height: "100vh" }}>
+            <div className = "SearchPage" style={ { display: "grid", height: "100vh" } }>
                 <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
                     <SelectCol getsSelectedLanguage = { this.handleSelectCol } allLanguages = { this.state.selectedColumns }/>
                 </div>
-                <div style={{ overflow: "scroll", height: "100%" }}>
+                <div style={ { overflow: "scroll", height: "100%" } }>
                     <Table columns = { this.state.selectedColumns }
                            words = { this.state.word }
                     />
