@@ -61,6 +61,7 @@ class SearchPage extends React.Component {
                     <SelectCol getsSelectedLanguage = { this.handleSelectCol }
                                allLanguages = { this.state.selectedColumns }/>
                 </div>
+
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
                            words = { this.state.word }
