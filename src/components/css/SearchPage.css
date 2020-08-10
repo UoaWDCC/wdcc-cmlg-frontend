@@ -1,0 +1,11 @@
+.search-page {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: max-content;
+}
+
+.table-div {
+    overflow: scroll;
+    height: 100%;
+}
+
