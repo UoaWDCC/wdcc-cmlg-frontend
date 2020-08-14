@@ -38,26 +38,27 @@ h1 {
 p {
     font-size: 1.3rem;
 }
-/*Responsive design for h1*/
+
+/* Responsive design for h1 */
 @media (min-width: 320px) {
     h1 {
         font-size: 1.5em;
     }
     
     #background-img {
-        width: 40%
+        width: 90%
     }
 }
 
-@media (min-width: 450px) {
+/* @media (min-width: 450px) {
     h1 {
         font-size: 1.75em;
     }
 
     #background-img {
-        width: 40%
+        width: 55%
     }
-}
+} */
 
 @media (min-width: 760px) {
     h1{
@@ -65,16 +66,7 @@ p {
     }
     
     #background-img {
-        width: 50%
+        width: 60%
     }
 }
 
-@media (min-width: 900px) {
-    h1 {
-        font-size: 6.25em;
-    }
-
-    #background-img {
-        width: 60%;
-    }
-}
