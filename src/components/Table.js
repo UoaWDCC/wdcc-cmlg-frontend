@@ -3,7 +3,8 @@ import './css/Table.css'
 
 class Table extends React.Component {
     constructor( props ) {
-        super( props )
+        super( props );
+        this.chineseHeader = React.createRef();
         this.state = {
             translationData: [],
             columnSortStatus: new Array( 17 ).fill( "undefined" ),
@@ -69,14 +70,40 @@ class Table extends React.Component {
     renderTableHeaders() {
         return (
             this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
-                return (
-                    <th key={ colIndex } scope={ "col" } className={ sortStatus }
-                        onClick={ ( event ) => this.sortColumn( event ) }
-                        style={ { display: this.props.columns[ colIndex ].select ?
-                                  "table-cell" : "none" } }>
-                        { this.props.columns[ colIndex ].id }
-                    </th>
-                );
+                if ( colIndex === 0 ) {
+                    return (
+                        <th key={ colIndex } scope={ "col" } className={ sortStatus }
+                            onClick={ ( event ) => this.sortColumn( event ) }
+                            style={ {
+                                display: this.props.columns[ colIndex ].select ?
+                                         "table-cell" : "none"
+                            } } ref={ this.chineseHeader }>
+                            { this.props.columns[ colIndex ].id }
+                        </th>
+                    );
+                } else if ( colIndex === 1 ) {
+                    return (
+                        <th key={ colIndex } scope={ "col" } className={ sortStatus }
+                            onClick={ ( event ) => this.sortColumn( event ) }
+                            style={ {
+                                display: this.props.columns[ colIndex ].select ?
+                                    "table-cell" : "none"
+                            } }>
+                            { this.props.columns[ colIndex ].id }
+                        </th>
+                    );
+                } else {
+                    return (
+                        <th key={ colIndex } scope={ "col" } className={ sortStatus }
+                            onClick={ ( event ) => this.sortColumn( event ) }
+                            style={ {
+                                display: this.props.columns[ colIndex ].select ?
+                                    "table-cell" : "none"
+                            } }>
+                            { this.props.columns[ colIndex ].id }
+                        </th>
+                    );
+                }
             } )
         );
     }
