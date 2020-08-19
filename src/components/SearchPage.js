@@ -12,7 +12,8 @@ class SearchPage extends React.Component {
         this.state = {
             //@todo place to store value such as search term and select column
             selectedColumns : this.initLanguages(),
-            word: ''
+            word: '',
+            chineseWidth: '459px'
         };
     }
 
@@ -53,18 +54,27 @@ class SearchPage extends React.Component {
         } ) ;
     }
 
+    handleChineseWidth( width ) {
+        this.setState( {
+            chineseWidth: width
+        })
+        // () => {console.log(this.state.chineseWidth)})
+    }
+
     render() {
         return (
             <div className = "search-page">
                 <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
                     <SelectCol getsSelectedLanguage = { this.handleSelectCol }
-                               allLanguages = { this.state.selectedColumns }/>
+                               allLanguages = { this.state.selectedColumns }
+                               chineseWidth = { this.handleChineseWidth.bind( this )}
+                    />
                 </div>
-
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
                            words = { this.state.word }
+                           width = {this.state.chineseWidth}
                     />
                 </div>
             </div>
