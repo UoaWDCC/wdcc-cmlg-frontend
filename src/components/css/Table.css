@@ -37,7 +37,7 @@ td:nth-child(1) {
 
 th:nth-child(1) {
     left: 0;
-    z-index: 100;
+    z-index: 300;
     font-weight: bold;
     position: sticky;
     background-color: white;
@@ -45,7 +45,7 @@ th:nth-child(1) {
 
 th:nth-child(2){
     position: sticky;
-    z-index: 100;
+    z-index: 200;
     background-color: white;
 }
 
