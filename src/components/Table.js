@@ -71,7 +71,6 @@ class Table extends React.Component {
     renderTableHeaders() {
         return (
             this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
-                // console.log(this.props.width)
                 if ( colIndex === 1 ) {
                     return (
                         <th key={ colIndex } scope={ "col" } className={ sortStatus }
