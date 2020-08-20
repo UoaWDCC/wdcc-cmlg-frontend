@@ -59,8 +59,7 @@ class SearchPage extends React.Component {
                 <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
                     <SelectCol getsSelectedLanguage = { this.handleSelectCol }
-                               allLanguages = { this.state.selectedColumns }
-                    />
+                               allLanguages = { this.state.selectedColumns }/>
                 </div>
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }

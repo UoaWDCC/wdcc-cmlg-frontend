@@ -3,7 +3,7 @@ import './css/Table.css'
 
 class Table extends React.Component {
     constructor( props ) {
-        super( props );
+        super( props )
         this.state = {
             translationData: [],
             columnSortStatus: new Array( 17 ).fill( "undefined" ),
@@ -77,8 +77,7 @@ class Table extends React.Component {
                         <th key={ colIndex } scope={ "col" } className={ sortStatus }
                             onClick={ ( event ) => this.sortColumn( event ) }
                             style={ {
-                                display: this.props.columns[ colIndex ].select ?
-                                    "table-cell" : "none",
+                                display: this.props.columns[ colIndex ].select ? "table-cell" : "none",
                                 left: this.props.columns[ 0 ].select ? "11.45%" : 0
                             } }>
                             { this.props.columns[ colIndex ].id }

@@ -52,7 +52,7 @@ class SelectCol extends React.Component {
         const Languages = this.props.allLanguages.map( ( language, index ) =>
             <div className = "custom-control custom-checkbox" key = { index }>
                 <input type = "checkbox" className = "custom-control-input" id = { language.id } checked = { language.select }
-                       onChange = { () => {this.getCheckedValues( index ) } } />
+                       onChange = { () => this.getCheckedValues( index ) } />
                 <label className = "custom-control-label" htmlFor = { language.id }>{ language.id }</label>
             </div>
         );
