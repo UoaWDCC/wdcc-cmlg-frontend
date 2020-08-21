@@ -31,7 +31,6 @@ td:nth-child(1) {
     position: sticky;
     left: 0;
     z-index: 200;
-    background-color: lightgray;
 }
 
 
@@ -39,14 +38,10 @@ th:nth-child(1) {
     left: 0;
     z-index: 300;
     font-weight: bold;
-    position: sticky;
-    background-color: white;
 }
 
 th:nth-child(2){
-    position: sticky;
     z-index: 200;
-    background-color: white;
 }
 
 td:nth-child(2) {

@@ -30,7 +30,7 @@ class Table extends React.Component {
                             to the right, this column is fixed.
                          */}
                         <td style={ { display: this.props.columns[ 1 ].select ? "table-cell" : "none",
-                            left: this.props.columns[ 0 ].select ? "11.45%" : 0
+                            // left: this.props.columns[ 0 ].select ? "11.45%" : 0
                         } }>
                             { english }
                         </td>
@@ -77,7 +77,7 @@ class Table extends React.Component {
                             onClick={ ( event ) => this.sortColumn( event ) }
                             style={ {
                                 display: this.props.columns[ colIndex ].select ? "table-cell" : "none",
-                                left: this.props.columns[ 0 ].select ? "11.45%" : 0
+                                // left: this.props.columns[ 0 ].select ? "11.45%" : 0
                             } }>
                             { this.props.columns[ colIndex ].id }
                         </th>
