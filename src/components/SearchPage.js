@@ -2,6 +2,7 @@ import React from 'react';
 import SelectCol from "./SelectCol";
 import SearchBar from './SearchBar'
 import Table from "./Table";
+import debounce from 'lodash.debounce';
 
 import "./css/SearchPage.css"
 
@@ -14,6 +15,9 @@ class SearchPage extends React.Component {
             selectedColumns : this.initLanguages(),
             word: ''
         };
+
+        // only emit changes if this function has not been called in the past 180 ms
+        this.emitChangeDebounced = debounce(this.emitChange, 180);
     }
 
     initLanguages() {
@@ -39,8 +43,12 @@ class SearchPage extends React.Component {
         return allLanguages;
     }
 
-    // change the searching word which is provided by the SearchBar class
     handleChangeWord( searchWord ) {
+        this.emitChangeDebounced( searchWord );
+    }
+
+    // change the searching word which is provided by the SearchBar class
+    emitChange( searchWord ) {
         this.setState( {
             word: searchWord
         } );
