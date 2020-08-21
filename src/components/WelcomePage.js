@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/WelcomePage.css";
 import { Link } from "react-router-dom";
-import flagsImage from "./background3.png";
+import flagsImage from "./background4.png";
 
 class WelcomePage extends React.Component {
     render() {
