@@ -26,3 +26,41 @@ thead th {
 .table td, .table th {
     border-top: 0px;
 }
+
+td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 200;
+}
+
+
+th:nth-child(1) {
+    left: 0;
+    z-index: 300;
+    font-weight: bold;
+}
+
+th:nth-child(2){
+    z-index: 200;
+}
+
+td:nth-child(2) {
+    position: sticky;
+    z-index: 100;
+}
+
+tr:nth-child(odd) > td:nth-child(2) {
+    background: #F2F2F2;
+}
+
+tr:nth-child(even) > td:nth-child(2) {
+    background: white;
+}
+
+tr:nth-child(odd) > td:nth-child(1) {
+    background: #F2F2F2;
+}
+
+tr:nth-child(even) > td:nth-child(1) {
+    background: white;
+}

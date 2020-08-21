@@ -29,7 +29,9 @@ class Table extends React.Component {
                             on it later to fix the position of this column, i.e. when the user scrolls the table
                             to the right, this column is fixed.
                          */}
-                        <td style={ { display: this.props.columns[ 1 ].select ? "table-cell" : "none" } }>
+                        <td style={ { display: this.props.columns[ 1 ].select ? "table-cell" : "none",
+                            // left: this.props.columns[ 0 ].select ? "11.45%" : 0
+                        } }>
                             { english }
                         </td>
 
@@ -69,14 +71,29 @@ class Table extends React.Component {
     renderTableHeaders() {
         return (
             this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
-                return (
-                    <th key={ colIndex } scope={ "col" } className={ sortStatus }
-                        onClick={ ( event ) => this.sortColumn( event ) }
-                        style={ { display: this.props.columns[ colIndex ].select ?
-                                  "table-cell" : "none" } }>
-                        { this.props.columns[ colIndex ].id }
-                    </th>
-                );
+                if ( colIndex === 1 ) {
+                    return (
+                        <th key={ colIndex } scope={ "col" } className={ sortStatus }
+                            onClick={ ( event ) => this.sortColumn( event ) }
+                            style={ {
+                                display: this.props.columns[ colIndex ].select ? "table-cell" : "none",
+                                // left: this.props.columns[ 0 ].select ? "11.45%" : 0
+                            } }>
+                            { this.props.columns[ colIndex ].id }
+                        </th>
+                    );
+                } else {
+                    return (
+                        <th key={ colIndex } scope={ "col" } className={ sortStatus }
+                            onClick={ ( event ) => this.sortColumn( event ) }
+                            style={ {
+                                display: this.props.columns[ colIndex ].select ?
+                                    "table-cell" : "none"
+                            } }>
+                            { this.props.columns[ colIndex ].id }
+                        </th>
+                    );
+                }
             } )
         );
     }
