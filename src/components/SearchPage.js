@@ -78,7 +78,7 @@ class SearchPage extends React.Component {
 
         let sequenceTime = new Date();
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
-            '&word=' + this.state.word;
+                  '&word=' + this.state.word;
 
         fetch( url )
             .then( results => {
