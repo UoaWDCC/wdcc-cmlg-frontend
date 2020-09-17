@@ -11,7 +11,6 @@ class SearchPage extends React.Component {
     constructor( props ) {
         super( props );
         this.state = {
-            //@todo place to store value such as search term and select column
             selectedColumns : this.initLanguages(),
             word: '',
             tableData: [],
@@ -76,7 +75,6 @@ class SearchPage extends React.Component {
 
     // retrieve data for table
     retrieveTableData() {
-        console.log("retrieve data called");
 
         let sequenceTime = new Date();
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
@@ -104,7 +102,7 @@ class SearchPage extends React.Component {
 
                     // Check if the translated word is in the correct column (under the correct language). So if the
                     // English translation for the word is not under English, throw an exception.
-                    // + 1 infront of translationsForOneWord.length because the index starts from 0, whereas language_id
+                    // + 1 in front of translationsForOneWord.length because the index starts from 0, whereas language_id
                     // starts from 1.
                     if ( translationsForOneWord.length + 1 === currentData.language_id ) {
                         translationsForOneWord[ translationsForOneWord.length ] = currentData.name;

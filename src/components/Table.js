@@ -5,28 +5,20 @@ class Table extends React.Component {
     constructor( props ) {
         super( props )
         this.state = {
-            translationData: this.props.data,
-            columnSortStatus: new Array( 17 ).fill( "undefined" )
+            columnSortStatus: {
+                currentSortedColumnIndex: -1,
+                value: new Array( 17 ).fill( "undefined" )
+            }
         };
     }
 
-    componentDidUpdate( prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS ) {
-        console.log("component did update gets called");
-
-        if ( this.props.data !== prevState.translationData ) {
-            console.log("update state is called")
-            this.setState( {
-                translationData: this.props.data
-            } )
-        }
-    }
-
     renderTableData() {
-        console.log("data in table state")
-        console.log(this.state.translationData);
 
-        if ( this.state.translationData.length !== 0 ) {
-            return this.state.translationData.map( ( translation, index ) => {
+        if ( this.props.data.length !== 0 ) {
+
+            const sortedData = this.sortColumn();
+
+            return sortedData.map( ( translation, index ) => {
 
                 const [ chinese, pinyin, english ] = translation // Destructuring.
                 const translationsWithoutChineseAndEnglish = translation.slice( 3 );
@@ -37,7 +29,8 @@ class Table extends React.Component {
                             { chinese + " " + pinyin }
                         </td>
 
-                        {/* English is not put into the loop because we may need to put a special function
+                        {   // TODO fix the english column
+                            /* English is not put into the loop because we may need to put a special function
                             on it later to fix the position of this column, i.e. when the user scrolls the table
                             to the right, this column is fixed.
                          */}
@@ -82,13 +75,14 @@ class Table extends React.Component {
 
     renderTableHeaders() {
         return (
-            this.state.columnSortStatus.map( ( sortStatus, colIndex ) => {
+            this.state.columnSortStatus.value.map( ( sortStatus, colIndex ) => {
                 if ( colIndex === 1 ) {
                     return (
                         <th key={ colIndex } scope={ "col" } className={ sortStatus }
-                            onClick={ ( event ) => this.sortColumn( event ) }
+                            onClick={ ( event ) => this.onSortChanges( event ) }
                             style={ {
                                 display: this.props.columns[ colIndex ].select ? "table-cell" : "none",
+                                // TODO: fix this column when scrolling horizontally
                                 // left: this.props.columns[ 0 ].select ? "11.45%" : 0
                             } }>
                             { this.props.columns[ colIndex ].id }
@@ -97,7 +91,7 @@ class Table extends React.Component {
                 } else {
                     return (
                         <th key={ colIndex } scope={ "col" } className={ sortStatus }
-                            onClick={ ( event ) => this.sortColumn( event ) }
+                            onClick={ ( event ) => this.onSortChanges( event ) }
                             style={ {
                                 display: this.props.columns[ colIndex ].select ?
                                     "table-cell" : "none"
@@ -110,30 +104,44 @@ class Table extends React.Component {
         );
     }
 
-    sortColumn( event ) {
-
-        // headers in the table are in the format: [ chinese + pinyin, english ... ]
-        // translationData contains array in the format: [ chinese, pinyin, english ... ]
+    onSortChanges( event ) {
         const clickedColumnIndex = event.target.cellIndex;
-        const sortElementIndex = clickedColumnIndex + 1;
 
-        let newColumnSortStatus = this.state.columnSortStatus.slice();
+        let newColumnSortStatusValue = this.state.columnSortStatus.value.slice();
 
-        newColumnSortStatus.map( ( sortDirection, colIndex ) => {
+        newColumnSortStatusValue.map( ( sortDirection, colIndex ) => {
             if ( colIndex === clickedColumnIndex ) {
-                return sortDirection === "ascending" ? newColumnSortStatus[ colIndex ] = "descending" :
-                       newColumnSortStatus[ colIndex ] = "ascending";
+                return sortDirection === "ascending" ? newColumnSortStatusValue[ colIndex ] = "descending" :
+                       newColumnSortStatusValue[ colIndex ] = "ascending";
             } else {
-                return newColumnSortStatus[ colIndex ] = "undefined";
+                return newColumnSortStatusValue[ colIndex ] = "undefined";
             }
         } )
 
-        const order = newColumnSortStatus[ clickedColumnIndex ];
-        let sortedTranslationData = this.state.translationData.slice();
+        const newColumnSortStatus = {
+            currentSortedColumnIndex: clickedColumnIndex,
+            value: newColumnSortStatusValue
+        }
+
+        this.setState( {
+            columnSortStatus: newColumnSortStatus
+        } )
+    }
+
+    sortColumn() {
+
+        // headers in the table are in the format: [ chinese + pinyin, english ... ]
+        // translationData contains array in the format: [ chinese, pinyin, english ... ]
+        const sortedColumnIndex = this.state.columnSortStatus.currentSortedColumnIndex;
+        const dataIndex = sortedColumnIndex + 1;
+
+        const order = this.state.columnSortStatus.value[ sortedColumnIndex ];
+
+        let sortedTranslationData = this.props.data.slice();
         sortedTranslationData.sort( ( row1, row2 ) => {
 
-            let word1 = row1[ sortElementIndex ];
-            let word2 = row2[ sortElementIndex ];
+            let word1 = row1[ dataIndex ];
+            let word2 = row2[ dataIndex ];
 
             if ( !word1 ) {
                 return 1;
@@ -152,10 +160,7 @@ class Table extends React.Component {
 
         } );
 
-        this.setState( {
-            translationData: sortedTranslationData,
-            columnSortStatus: newColumnSortStatus
-        } )
+        return sortedTranslationData;
     }
 
     render() {
