@@ -13,11 +13,18 @@ class SearchPage extends React.Component {
         this.state = {
             //@todo place to store value such as search term and select column
             selectedColumns : this.initLanguages(),
-            word: ''
+            word: '',
+            tableData: [],
+            isTableLoading: true,
+            sequenceNumber: ""
         };
 
         // only emit changes if this function has not been called in the past 180 ms
         this.emitChangeDebounced = debounce(this.emitChange, 180);
+    }
+
+    componentDidMount() {
+        this.retrieveTableData();
     }
 
     initLanguages() {
@@ -61,6 +68,67 @@ class SearchPage extends React.Component {
         } ) ;
     }
 
+    componentDidUpdate( prevProps, prevState, snapshot ) {
+        if (this.state.word !== prevState.word ) {
+            this.retrieveTableData();
+        }
+    }
+
+    // retrieve data for table
+    retrieveTableData() {
+        console.log("retrieve data called");
+
+        let sequenceTime = new Date();
+        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
+            '&word=' + this.state.word;
+
+        fetch( url )
+            .then( results => {
+                return results.json();
+            } )
+            .then( responseData => {
+                const data = responseData.data;
+                const sequence = responseData.sequence;
+
+                if ( sequence <= this.state.sequenceNumber ) {
+                    return;
+                }
+
+                let sortedListOfWords = [];
+                let translationsForOneWord = [];
+                let dataIndex;
+                let currentData;
+
+                for ( dataIndex = 0; dataIndex < data.length; dataIndex++ ) {
+                    currentData = data[ dataIndex ];
+
+                    // Check if the translated word is in the correct column (under the correct language). So if the
+                    // English translation for the word is not under English, throw an exception.
+                    // + 1 infront of translationsForOneWord.length because the index starts from 0, whereas language_id
+                    // starts from 1.
+                    if ( translationsForOneWord.length + 1 === currentData.language_id ) {
+                        translationsForOneWord[ translationsForOneWord.length ] = currentData.name;
+                    } else {
+                        throw new Error( "The translated word does not match the language." );
+                    }
+
+                    const numberOfLanguages = 18;
+                    // When the word is translated to all languages, add translationsForOneWord into sortedListOfWords.
+                    // Empty translationsForOneWord so a new translationsForOneWord can be made for a new word.
+                    if ( translationsForOneWord.length === numberOfLanguages ) {
+                        sortedListOfWords[ sortedListOfWords.length ] = translationsForOneWord;
+                        translationsForOneWord = [];
+                    }
+                }
+                this.setState( {
+                    tableData: sortedListOfWords,
+                    isTableLoading: false,
+                    sequenceNumber: sequence
+                } );
+            } )
+
+    }
+
     render() {
         return (
             <div className = "search-page">
@@ -72,7 +140,8 @@ class SearchPage extends React.Component {
 
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
-                           words = { this.state.word }
+                           data = { this.state.tableData }
+                           isLoading = { this.state.isTableLoading }
                     />
                 </div>
             </div>

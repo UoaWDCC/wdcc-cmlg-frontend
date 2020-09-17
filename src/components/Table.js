@@ -5,14 +5,26 @@ class Table extends React.Component {
     constructor( props ) {
         super( props )
         this.state = {
-            translationData: [],
-            columnSortStatus: new Array( 17 ).fill( "undefined" ),
-            loading: true, // True when the data is loading at initialisation. False when there are no search results.
-            sequence: -1
+            translationData: this.props.data,
+            columnSortStatus: new Array( 17 ).fill( "undefined" )
         };
     }
 
+    componentDidUpdate( prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS ) {
+        console.log("component did update gets called");
+
+        if ( this.props.data !== prevState.translationData ) {
+            console.log("update state is called")
+            this.setState( {
+                translationData: this.props.data
+            } )
+        }
+    }
+
     renderTableData() {
+        console.log("data in table state")
+        console.log(this.state.translationData);
+
         if ( this.state.translationData.length !== 0 ) {
             return this.state.translationData.map( ( translation, index ) => {
 
@@ -53,7 +65,7 @@ class Table extends React.Component {
                     </tr>
                 )
             } )
-        } else if ( this.state.loading ) {
+        } else if ( this.props.isLoading ) {
             return (
                 <tr>
                     <td>{ "Loading" }</td>
@@ -96,67 +108,6 @@ class Table extends React.Component {
                 }
             } )
         );
-    }
-
-    getData() {
-        let sequenceTime = new Date();
-        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
-                  '&word=' + this.props.words;
-
-        fetch( url )
-            .then( results => {
-                return results.json();
-            } )
-            .then( responseData => {
-                const data = responseData.data;
-                const sequence = responseData.sequence;
-
-                if ( sequence <= this.state.sequence ) {
-                    return;
-                }
-
-                let sortedListOfWords = [];
-                let translationsForOneWord = [];
-                let dataIndex;
-                let currentData;
-
-                for ( dataIndex = 0; dataIndex < data.length; dataIndex++ ) {
-                    currentData = data[ dataIndex ];
-
-                    // Check if the translated word is in the correct column (under the correct language). So if the
-                    // English translation for the word is not under English, throw an exception.
-                    // + 1 infront of translationsForOneWord.length because the index starts from 0, whereas language_id
-                    // starts from 1.
-                    if ( translationsForOneWord.length + 1 === currentData.language_id ) {
-                        translationsForOneWord[ translationsForOneWord.length ] = currentData.name;
-                    } else {
-                        throw new Error( "The translated word does not match the language." );
-                    }
-
-                    const numberOfLanguages = 18;
-                    // When the word is translated to all languages, add translationsForOneWord into sortedListOfWords.
-                    // Empty translationsForOneWord so a new translationsForOneWord can be made for a new word.
-                    if ( translationsForOneWord.length === numberOfLanguages ) {
-                        sortedListOfWords[ sortedListOfWords.length ] = translationsForOneWord;
-                        translationsForOneWord = [];
-                    }
-                }
-                this.setState( {
-                    translationData: sortedListOfWords,
-                    loading: false,
-                    sequence: sequence
-                } );
-            } )
-    }
-
-    componentDidMount() {
-        this.getData();
-    }
-
-    componentDidUpdate( prevProps, prevState, snapshot ) {
-        if ( this.props.words !== prevProps.words ) {
-            this.getData();
-        }
     }
 
     sortColumn( event ) {
