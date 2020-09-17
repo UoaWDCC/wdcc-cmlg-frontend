@@ -7,7 +7,7 @@ class Table extends React.Component {
         this.state = {
             columnSortStatus: {
                 currentSortedColumnIndex: -1,
-                value: new Array( 17 ).fill( "undefined" )
+                sortStatus: new Array( 17 ).fill( "undefined" )
             }
         };
     }
@@ -75,7 +75,7 @@ class Table extends React.Component {
 
     renderTableHeaders() {
         return (
-            this.state.columnSortStatus.value.map( ( sortStatus, colIndex ) => {
+            this.state.columnSortStatus.sortStatus.map( ( sortStatus, colIndex ) => {
                 if ( colIndex === 1 ) {
                     return (
                         <th key={ colIndex } scope={ "col" } className={ sortStatus }
@@ -107,7 +107,7 @@ class Table extends React.Component {
     onSortChanges( event ) {
         const clickedColumnIndex = event.target.cellIndex;
 
-        let newColumnSortStatusValue = this.state.columnSortStatus.value.slice();
+        let newColumnSortStatusValue = this.state.columnSortStatus.sortStatus.slice();
 
         newColumnSortStatusValue.map( ( sortDirection, colIndex ) => {
             if ( colIndex === clickedColumnIndex ) {
@@ -118,47 +118,49 @@ class Table extends React.Component {
             }
         } )
 
-        const newColumnSortStatus = {
-            currentSortedColumnIndex: clickedColumnIndex,
-            value: newColumnSortStatusValue
-        }
-
         this.setState( {
-            columnSortStatus: newColumnSortStatus
+            columnSortStatus: {
+                currentSortedColumnIndex: clickedColumnIndex,
+                sortStatus: newColumnSortStatusValue
+            }
         } )
     }
 
     sortColumn() {
 
-        // headers in the table are in the format: [ chinese + pinyin, english ... ]
-        // translationData contains array in the format: [ chinese, pinyin, english ... ]
-        const sortedColumnIndex = this.state.columnSortStatus.currentSortedColumnIndex;
-        const dataIndex = sortedColumnIndex + 1;
-
-        const order = this.state.columnSortStatus.value[ sortedColumnIndex ];
-
         let sortedTranslationData = this.props.data.slice();
-        sortedTranslationData.sort( ( row1, row2 ) => {
+        const sortedColumnIndex = this.state.columnSortStatus.currentSortedColumnIndex;
 
-            let word1 = row1[ dataIndex ];
-            let word2 = row2[ dataIndex ];
+        // check if a column needs to be sorted
+        if ( sortedColumnIndex >= 0 ) {
+            // headers in the table are in the format: [ chinese + pinyin, english ... ]
+            // translationData contains array in the format: [ chinese, pinyin, english ... ]
+            const dataIndex = sortedColumnIndex + 1;
 
-            if ( !word1 ) {
-                return 1;
-            } else if ( !word2 ) {
-                return -1;
-            } else {
+            const order = this.state.columnSortStatus.sortStatus[ sortedColumnIndex ];
 
-                const collator = new Intl.Collator();
+            sortedTranslationData.sort( ( row1, row2 ) => {
 
-                if ( order === "ascending" ) {
-                    return collator.compare( word1, word2 );
+                let word1 = row1[ dataIndex ];
+                let word2 = row2[ dataIndex ];
+
+                if ( !word1 ) {
+                    return 1;
+                } else if ( !word2 ) {
+                    return -1;
                 } else {
-                    return collator.compare( word2, word1 );
-                }
-            }
 
-        } );
+                    const collator = new Intl.Collator();
+
+                    if ( order === "ascending" ) {
+                        return collator.compare( word1, word2 );
+                    } else {
+                        return collator.compare( word2, word1 );
+                    }
+                }
+
+            } );
+        }
 
         return sortedTranslationData;
     }
