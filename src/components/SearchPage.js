@@ -68,7 +68,7 @@ class SearchPage extends React.Component {
     }
 
     componentDidUpdate( prevProps, prevState, snapshot ) {
-        if (this.state.word !== prevState.word ) {
+        if ( this.state.word !== prevState.word ) {
             this.retrieveTableData();
         }
     }
