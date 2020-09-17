@@ -7,6 +7,8 @@ import {
 
 import SearchPage from "./components/SearchPage";
 import WelcomePage from "./components/WelcomePage";
+import HeaderBar from "./components/HeaderBar";
+import AboutUs from "./components/AboutUs";
 
 export default function App() {
   return (
@@ -15,10 +17,16 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/translations">
+            <HeaderBar />
             <SearchPage />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
+            <HeaderBar />
             <WelcomePage />
+          </Route>
+          <Route path="/about">
+            <HeaderBar />
+            <AboutUs />
           </Route>
         </Switch>
     </Router>
