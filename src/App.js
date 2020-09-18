@@ -17,16 +17,22 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/translations">
-            <HeaderBar />
-            <SearchPage />
+            <div>
+              <HeaderBar />
+              <SearchPage />
+            </div>
           </Route>
           <Route exact path="/">
-            <HeaderBar />
-            <WelcomePage />
+            <div>
+              <HeaderBar />
+              <WelcomePage />
+            </div>
           </Route>
           <Route path="/about">
-            <HeaderBar />
-            <AboutUs />
+            <div>
+              <HeaderBar />
+              <AboutUs />
+            </div>
           </Route>
         </Switch>
     </Router>
