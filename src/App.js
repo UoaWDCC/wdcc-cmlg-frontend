@@ -8,33 +8,25 @@ import {
 import SearchPage from "./components/SearchPage";
 import WelcomePage from "./components/WelcomePage";
 import HeaderBar from "./components/HeaderBar";
-import AboutUs from "./components/AboutUs";
+import AboutUsPage from "./components/AboutUsPage";
 
 export default function App() {
   return (
-    <Router className="App">
-        {/* A <Switch> looks through its children <Route>s and
+        <Router className="App">
+            <HeaderBar />
+            {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/translations">
-            <div>
-              <HeaderBar />
-              <SearchPage />
-            </div>
-          </Route>
-          <Route exact path="/">
-            <div>
-              <HeaderBar />
-              <WelcomePage />
-            </div>
-          </Route>
-          <Route path="/about">
-            <div>
-              <HeaderBar />
-              <AboutUs />
-            </div>
-          </Route>
-        </Switch>
-    </Router>
+                <Switch>
+                    <Route path="/translations">
+                        <SearchPage />
+                    </Route>
+                    <Route exact path="/">
+                        <WelcomePage />
+                    </Route>
+                    <Route path="/about">
+                        <AboutUsPage />
+                    </Route>
+                </Switch>
+        </Router>
   );
 }
