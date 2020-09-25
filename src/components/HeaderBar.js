@@ -6,14 +6,38 @@ class HeaderBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            BarOpen : true
+            BarOpen : this.InitState()
         }
         this.HandleBarToggleClick = this.HandleBarToggleClick.bind(this)
     }
+
+    InitState(){
+        return window.innerWidth >= 600;
+    }
+
     HandleBarToggleClick(){
         this.setState( (prevState) => {
             return {BarOpen: !prevState.BarOpen}
         } )
+    }
+
+    updateBarOpen() {
+        if ( window.innerWidth >= 600 ) {
+            this.setState( {BarOpen: true} );
+        } else {
+            this.setState( {BarOpen:false} );
+        }
+    }
+
+    // Add event listener
+    componentDidMount() {
+        this.updateBarOpen();
+        window.addEventListener( "resize", this.updateBarOpen.bind( this ) );
+    }
+
+    //Remove event listener
+    componentWillUnmount() {
+        window.removeEventListener( "resize", this.updateBarOpen.bind( this ) );
     }
 
     render() {
@@ -37,15 +61,12 @@ class HeaderBar extends React.Component {
                 </Link>
             </div>
         );
-        if(this.state.BarOpen){
+        if( this.state.BarOpen ){
             values = items;
         }
         return (
             <nav>
-             {/*<nav className="navbar navbar-expand-lg navbar-light bg-light">*/}
-             <ul>
-                {/*<ul className="navbar-nav mr-auto mt-2 mt-lg-0">*/}
-                {/* {items}*/}
+                <ul>
                     <li id="bar" onClick={this.HandleBarToggleClick}>
                         <i className="fas fa-bars"/>
                     </li>
