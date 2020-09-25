@@ -17,7 +17,7 @@ li i{
 }
 
 li i:hover{
-    background-color: darkgrey;
+    opacity: 0.7;
 }
 
 #darkMode{

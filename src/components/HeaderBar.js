@@ -22,17 +22,17 @@ class HeaderBar extends React.Component {
             <div>
                 <Link to="/">
                     <li>
-                        <i className="fas fa-home">Home</i>
+                        <i className="fas fa-home">&nbsp;Home</i>
                     </li>
                 </Link>
                 <Link to="/translations">
                     <li>
-                        <i className="fas fa-search">Search</i>
+                        <i className="fas fa-search">&nbsp;Search</i>
                     </li>
                 </Link>
                 <Link to="/about">
                     <li>
-                        <i className="fas fa-info-circle">About</i>
+                        <i className="fas fa-info-circle">&nbsp;About</i>
                     </li>
                 </Link>
             </div>
