@@ -38,6 +38,8 @@ class HeaderBar extends React.Component {
     //Remove event listener
     componentWillUnmount() {
         window.removeEventListener( "resize", this.updateBarOpen.bind( this ) );
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = ( state, callback ) => { };
     }
 
     render() {
