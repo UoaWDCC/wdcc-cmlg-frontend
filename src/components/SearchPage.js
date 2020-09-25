@@ -6,6 +6,7 @@ import Pagination from './Pagination';
 import debounce from 'lodash.debounce';
 
 import "./css/SearchPage.css"
+import { RowsPerPageToggleButton } from "./RowsPerPageToggleButton";
 
 class SearchPage extends React.Component {
 
@@ -18,11 +19,14 @@ class SearchPage extends React.Component {
             isTableLoading: true,
             sequenceNumber: "",
             totalPages: 1,
-            currentPage: 1
+            currentPage: 1,
+			rowsPerPage: 10
         };
 
         // only emit changes if this function has not been called in the past 180 ms
-        this.emitChangeDebounced = debounce( this.emitChange, 180 );
+        this.emitChangeDebounced = debounce(this.emitChange, 180);
+
+        this.handleRowsPerPageChanges = this.handleRowsPerPageChanges.bind(this);
     }
 
     componentDidMount() {
@@ -70,8 +74,15 @@ class SearchPage extends React.Component {
         } ) ;
     }
 
+    handleRowsPerPageChanges( numberOfPagesPerRow ) {
+    	this.setState( {
+			rowsPerPage: numberOfPagesPerRow
+		} )
+	}
+
     componentDidUpdate( prevProps, prevState, snapshot ) {
-        if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage) {
+        if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage
+             || this.state.rowsPerPage !== prevState.rowsPerPage) {
             this.retrieveTableData();
         }
     }
@@ -85,9 +96,12 @@ class SearchPage extends React.Component {
     retrieveTableData() {
 
         let sequenceTime = new Date();
-        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() + '&pageNum=' + this.state.currentPage +
+        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' +
+                  sequenceTime.getTime() +
+                  '&pageNum=' + this.state.currentPage +
+                  '&pageRow=' + this.state.rowsPerPage +
                   '&word=' + this.state.word;
- 
+
         fetch( url )
             .then( results => {
                 return results.json();
@@ -139,10 +153,13 @@ class SearchPage extends React.Component {
     render() {
         return (
             <div className = "search-page">
-                <div>
+                <div style = { { display: "flex", justifyContent: "space-between" } }>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
-                    <SelectCol getsSelectedLanguage = { this.handleSelectCol }
-                               allLanguages = { this.state.selectedColumns }/>
+                    <div style = { { display: "flex" } }>
+                        <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
+                        <SelectCol getsSelectedLanguage = { this.handleSelectCol }
+                                   allLanguages = { this.state.selectedColumns }/>
+                    </div>
                 </div>
 
                 <div className = "table-div">
