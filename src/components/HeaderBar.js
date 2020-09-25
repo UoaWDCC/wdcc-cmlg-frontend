@@ -8,16 +8,16 @@ class HeaderBar extends React.Component {
         this.state = {
             BarOpen : this.initState()
         }
-        this.handleBarToggleClick = this.handleBarToggleClick.bind(this)
+        this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
     }
 
     initState(){
         return window.innerWidth >= 600;
     }
 
-    handleBarToggleClick(){
-        this.setState( (prevState) => {
-            return {BarOpen: !prevState.BarOpen}
+    handleBarToggleClick() {
+        this.setState( ( prevState ) => {
+            return { BarOpen: !prevState.BarOpen }
         } )
     }
 
@@ -63,13 +63,13 @@ class HeaderBar extends React.Component {
                 </Link>
             </div>
         );
-        if( this.state.BarOpen ){
+        if( this.state.BarOpen ) {
             values = items;
         }
         return (
             <nav>
                 <ul>
-                    <li id="bar" onClick={this.handleBarToggleClick}>
+                    <li id="bar" onClick={ this.handleBarToggleClick }>
                         <i className="fas fa-bars"/>
                     </li>
                     <li id="darkMode">
