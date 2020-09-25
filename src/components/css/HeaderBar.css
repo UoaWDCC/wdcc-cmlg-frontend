@@ -1,0 +1,42 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /*background-color: lightgrey;*/
+}
+
+li i{
+    display: block;
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width:30%;
+}
+
+li i:hover{
+    background-color: darkgrey;
+}
+
+#darkMode{
+    float: right;
+}
+
+#bar{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    li i {
+        float: none;
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+    #bar{
+        float: left;
+        display: block;
+    }
+}
