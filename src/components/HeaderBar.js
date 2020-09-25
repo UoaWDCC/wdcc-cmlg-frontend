@@ -23,9 +23,9 @@ class HeaderBar extends React.Component {
 
     updateBarOpen() {
         if ( window.innerWidth >= 600 ) {
-            this.setState( {BarOpen: true} );
+            this.setState( { BarOpen: true } );
         } else {
-            this.setState( {BarOpen:false} );
+            this.setState( { BarOpen: false } );
         }
     }
 
