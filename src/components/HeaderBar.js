@@ -6,16 +6,16 @@ class HeaderBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            BarOpen : this.InitState()
+            BarOpen : this.initState()
         }
-        this.HandleBarToggleClick = this.HandleBarToggleClick.bind(this)
+        this.handleBarToggleClick = this.handleBarToggleClick.bind(this)
     }
 
-    InitState(){
+    initState(){
         return window.innerWidth >= 600;
     }
 
-    HandleBarToggleClick(){
+    handleBarToggleClick(){
         this.setState( (prevState) => {
             return {BarOpen: !prevState.BarOpen}
         } )
@@ -69,7 +69,7 @@ class HeaderBar extends React.Component {
         return (
             <nav>
                 <ul>
-                    <li id="bar" onClick={this.HandleBarToggleClick}>
+                    <li id="bar" onClick={this.handleBarToggleClick}>
                         <i className="fas fa-bars"/>
                     </li>
                     <li id="darkMode">
