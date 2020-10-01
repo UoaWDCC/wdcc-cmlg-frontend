@@ -3,16 +3,14 @@ import "./css/HeaderBar.css";
 import { Link } from "react-router-dom";
 
 class HeaderBar extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            BarOpen : this.initState()
+            BarOpen : window.innerWidth > 600
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
-    }
-
-    initState(){
-        return window.innerWidth >= 600;
+        this.updateBarOpen = this.updateBarOpen.bind( this )
     }
 
     handleBarToggleClick() {
@@ -22,7 +20,7 @@ class HeaderBar extends React.Component {
     }
 
     updateBarOpen() {
-        if ( window.innerWidth >= 600 ) {
+        if ( window.innerWidth > 600 ) {
             this.setState( { BarOpen: true } );
         } else {
             this.setState( { BarOpen: false } );
@@ -32,14 +30,14 @@ class HeaderBar extends React.Component {
     // Add event listener
     componentDidMount() {
         this.updateBarOpen();
-        window.addEventListener( "resize", this.updateBarOpen.bind( this ) );
+        window.addEventListener( "resize", this.updateBarOpen);
     }
 
     //Remove event listener
     componentWillUnmount() {
-        window.removeEventListener( "resize", this.updateBarOpen.bind( this ) );
+        window.removeEventListener( "resize", this.updateBarOpen );
         // fix Warning: Can't perform a React state update on an unmounted component
-        this.setState = ( state, callback ) => { };
+        // this.setState = ( state, callback ) => { };
     }
 
     render() {
@@ -75,7 +73,7 @@ class HeaderBar extends React.Component {
                     <li id="darkMode">
                         <i className="fas fa-moon"/>
                     </li>
-                 {values}
+                    {values}
                 </ul>
             </nav>
         );

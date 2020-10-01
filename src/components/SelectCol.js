@@ -38,17 +38,6 @@ class SelectCol extends React.Component {
 
     render() {
 
-        const cardStyle = {
-            width: "10rem",
-            display: "none",
-            paddingLeft: "10px",
-            paddingBottom:"10px",
-            position: "fixed",
-            top: "9%",
-            right: "16px",
-            //overflow:"auto"
-        }
-
         const Languages = this.props.allLanguages.map( ( language, index ) =>
             <div className = "custom-control custom-checkbox" key = { index }>
                 <input type = "checkbox" className = "custom-control-input" id = { language.id } checked = { language.select }
@@ -67,7 +56,7 @@ class SelectCol extends React.Component {
                             d = "M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </button>
-                <div id = "language-options" className = "card" style = { cardStyle }>
+                <div id = "language-options" className = "card">
                     <h6 className = "card-title" style = { { color: "grey", paddingTop: "8px" } }>All Languages</h6>
                     { Languages }
                 </div>
