@@ -2,6 +2,7 @@ import React from 'react';
 import SelectCol from "./SelectCol";
 import SearchBar from './SearchBar'
 import Table from "./Table";
+import Pagination from './Pagination';
 import debounce from 'lodash.debounce';
 
 import "./css/SearchPage.css"
@@ -11,11 +12,13 @@ class SearchPage extends React.Component {
     constructor( props ) {
         super( props );
         this.state = {
-            selectedColumns : this.initLanguages(),
+            selectedColumns: this.initLanguages(),
             word: '',
             tableData: [],
             isTableLoading: true,
-            sequenceNumber: ""
+            sequenceNumber: "",
+            totalPages: 1,
+            currentPage: 1
         };
 
         // only emit changes if this function has not been called in the past 180 ms
@@ -68,9 +71,14 @@ class SearchPage extends React.Component {
     }
 
     componentDidUpdate( prevProps, prevState, snapshot ) {
-        if ( this.state.word !== prevState.word ) {
+        if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage) {
             this.retrieveTableData();
         }
+    }
+
+    // update table on page change
+    onPageChanged = data => {
+        this.setState({currentPage: data});
     }
 
     // retrieve data for table
@@ -78,17 +86,17 @@ class SearchPage extends React.Component {
 
         let sequenceTime = new Date();
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
-                  '&word=' + this.state.word;
-
-        fetch( url )
-            .then( results => {
+                  '&word=' + this.state.word + '&pageNum=' + this.state.currentPage;
+ 
+        fetch(url)
+            .then(results => {
                 return results.json();
-            } )
-            .then( responseData => {
+            })
+            .then(responseData => {
                 const data = responseData.data;
                 const sequence = responseData.sequence;
 
-                if ( sequence <= this.state.sequenceNumber ) {
+                if (sequence <= this.state.sequenceNumber) {
                     return;
                 }
 
@@ -121,7 +129,8 @@ class SearchPage extends React.Component {
                 this.setState( {
                     tableData: sortedListOfWords,
                     isTableLoading: false,
-                    sequenceNumber: sequence
+                    sequenceNumber: sequence,
+                    totalPages: responseData.totalPageNum    
                 } );
             } )
 
@@ -141,6 +150,9 @@ class SearchPage extends React.Component {
                            data = { this.state.tableData }
                            isLoading = { this.state.isTableLoading }
                     />
+                </div>
+                <div>
+                    { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } ></Pagination> }
                 </div>
             </div>
         );
