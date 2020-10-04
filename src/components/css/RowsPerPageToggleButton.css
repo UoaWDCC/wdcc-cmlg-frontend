@@ -1,3 +1,10 @@
 .toggle-button {
     border-radius: unset !important;
 }
+
+.btn-group-toggle {
+    margin-top: 2%;
+    margin-right: 2%;
+    /*margin-bottom: 2%;*/
+    float: right;
+}

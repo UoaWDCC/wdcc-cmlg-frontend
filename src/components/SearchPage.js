@@ -141,14 +141,14 @@ class SearchPage extends React.Component {
     render() {
         return (
             <div className = "search-page">
-                <div style = { { display: "flex", justifyContent: "space-between" } }>
+                <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
-                    <div style = { { display: "flex" } }>
-                        <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
-                        <SelectCol getsSelectedLanguage = { this.handleSelectCol }
-                                   allLanguages = { this.state.selectedColumns }/>
-                    </div>
+                    <SelectCol getsSelectedLanguage = { this.handleSelectCol }
+                               allLanguages = { this.state.selectedColumns }/>
+
+                    <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
                 </div>
+
 
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
