@@ -3,7 +3,6 @@ import "./css/HeaderBar.css";
 import { Link } from "react-router-dom";
 
 class HeaderBar extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -36,8 +35,6 @@ class HeaderBar extends React.Component {
     //Remove event listener
     componentWillUnmount() {
         window.removeEventListener( "resize", this.updateBarOpen );
-        // fix Warning: Can't perform a React state update on an unmounted component
-        // this.setState = ( state, callback ) => { };
     }
 
     render() {

@@ -3,7 +3,6 @@ import './css/SearchBar.css';
 import { ReactComponent as SearchIcon } from './search-solid.svg';
 
 class SearchBar extends React.Component{
-
     constructor( props ) {
         super( props )
         this.state = {
@@ -28,6 +27,8 @@ class SearchBar extends React.Component{
     //Remove event listener
     componentWillUnmount() {
         window.removeEventListener( "resize", this.updateDimensions.bind( this ) );
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = ( state, callback ) => { };
     }
 
     // call the changeWord function in the SearchPage class to change its state
