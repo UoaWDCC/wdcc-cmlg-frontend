@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
         };
 
         // only emit changes if this function has not been called in the past 180 ms
-        this.emitChangeDebounced = debounce(this.emitChange, 180);
+        this.emitChangeDebounced = debounce( this.emitChange, 180 );
     }
 
     componentDidMount() {
@@ -85,18 +85,18 @@ class SearchPage extends React.Component {
     retrieveTableData() {
 
         let sequenceTime = new Date();
-        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
-                  '&word=' + this.state.word + '&pageNum=' + this.state.currentPage;
+        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() + '&pageNum=' + this.state.currentPage +
+                  '&word=' + this.state.word;
  
-        fetch(url)
-            .then(results => {
+        fetch( url )
+            .then( results => {
                 return results.json();
             })
-            .then(responseData => {
+            .then( responseData => {
                 const data = responseData.data;
                 const sequence = responseData.sequence;
 
-                if (sequence <= this.state.sequenceNumber) {
+                if ( sequence <= this.state.sequenceNumber ) {
                     return;
                 }
 

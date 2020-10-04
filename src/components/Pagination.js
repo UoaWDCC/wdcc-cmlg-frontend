@@ -69,34 +69,33 @@ class Pagination extends React.Component {
         if ( totalPages <= centreNumberBlocks + 2 ) {
             displayedPages = range(1, totalPages);
         } else {
-            let hasLeftElipsis = (currentPage - pageNeighbours) > pageNeighbours;
-            let hasRightElipsis = (currentPage + pageNeighbours) < (totalPages + 1 - pageNeighbours);
+            let hasLeftElipsis = currentPage - pageNeighbours > pageNeighbours;
+            let hasRightElipsis = currentPage + pageNeighbours < totalPages + 1 - pageNeighbours;
 
             switch ( true ) {
                 // handle: [1] ... [5] [6] (7) [8] [9]
                 case ( hasLeftElipsis && !hasRightElipsis ): {
                     const pages = range( totalPages + 1 - centreNumberBlocks, totalPages );
-                    displayedPages = [1, ELLIPSIS, ...pages];
+                    displayedPages = [ 1, ELLIPSIS, ...pages ];
                     break;
                 }
 
                 // handle: [1] [2] (3) [4] (5) ...[9]
                 case ( !hasLeftElipsis && hasRightElipsis ): {
                     const pages = range( 1, centreNumberBlocks );
-                    displayedPages = [...pages, ELLIPSIS, totalPages];
+                    displayedPages = [ ...pages, ELLIPSIS, totalPages ];
                     break;
                 }
 
                 // handle: [1] ... [3] [4] (5) [6] [7] ...[9]
-                case ( hasLeftElipsis && hasRightElipsis ):
                 default: {
                     const pages = range( currentPage - pageNeighbours, currentPage + pageNeighbours );
-                    displayedPages = [1, ELLIPSIS, ...pages, ELLIPSIS, totalPages];
+                    displayedPages = [ 1, ELLIPSIS, ...pages, ELLIPSIS, totalPages ];
                     break;
                 }
             }
         }
-        return [LEFT_PAGE, ...displayedPages, RIGHT_PAGE];
+        return [ LEFT_PAGE, ...displayedPages, RIGHT_PAGE ];
     }
 
     render() {
@@ -105,7 +104,7 @@ class Pagination extends React.Component {
         return (
             <nav aria-label="Pagination">
                 <ul className="pagination">
-                    {pages.map( ( page, index ) => {
+                    { pages.map( ( page, index ) => {
 
                         if ( page === LEFT_PAGE ) return (
                             <li key={ index } className="page-item">
@@ -133,7 +132,7 @@ class Pagination extends React.Component {
                         );
 
                         return (
-                            <li key={ index } className={`page-item${ this.state.currentPage === page ? ' active' : '' }`}>
+                            <li key={ index } className={ `page-item${ this.state.currentPage === page ? ' active' : '' }` }>
                                 <a className="page-link" href="#" onClick={ this.handleClick( page ) }>{ page }</a>
                             </li>
                         );
