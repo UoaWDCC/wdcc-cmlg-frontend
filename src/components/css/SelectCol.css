@@ -2,9 +2,22 @@
     margin-bottom: 2%;
     margin-top: 2%;
     border-radius: 50%;
+    border: none;
+    position: "fixed";
     margin-right: 2%;
     float: right;
     z-index: 10;
+}
+
+.card {
+    width: 10rem;
+    display: none;
+    padding-left: 10px;
+    padding-bottom:10px;
+    position: fixed;
+    top: 15%;
+    right: 16px;
+    /*overflow:"auto"*/
 }
 
 #language-options {
