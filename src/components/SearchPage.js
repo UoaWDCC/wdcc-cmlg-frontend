@@ -71,7 +71,7 @@ class SearchPage extends React.Component {
     handleSelectCol = ( allLanguages ) => {
         this.setState( {
             selectedColumns: allLanguages
-        } ) ;
+        } );
     }
 
     handleRowsPerPageChanges( numberOfPagesPerRow ) {
