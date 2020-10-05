@@ -82,7 +82,7 @@ class SearchPage extends React.Component {
 
     componentDidUpdate( prevProps, prevState, snapshot ) {
         if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage
-             || this.state.rowsPerPage !== prevState.rowsPerPage) {
+             || this.state.rowsPerPage !== prevState.rowsPerPage ) {
             this.retrieveTableData();
         }
     }
@@ -96,16 +96,25 @@ class SearchPage extends React.Component {
     retrieveTableData() {
 
         let sequenceTime = new Date();
-        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' +
-                  sequenceTime.getTime() +
-                  '&pageNum=' + this.state.currentPage +
-                  '&pageRow=' + this.state.rowsPerPage +
-                  '&word=' + this.state.word;
+
+        // for testing, change cmlgbackend.wdcc to cmlgdevbackend.wdcc
+        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
+                  '&pageRows=' + this.state.rowsPerPage;
+
+        if ( this.state.word !== '' ) {
+            // add search words
+            url += '&word=' + this.state.word;
+        }
+
+        if ( this.state.rowsPerPage !== "all" ) {
+            // retrieve information for one page only
+            url += '&pageNum=' + this.state.currentPage;
+        }
 
         fetch( url )
             .then( results => {
                 return results.json();
-            })
+            } )
             .then( responseData => {
                 const data = responseData.data;
                 const sequence = responseData.sequence;
@@ -169,7 +178,7 @@ class SearchPage extends React.Component {
                     />
                 </div>
                 <div>
-                    { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } ></Pagination> }
+                    { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } /> }
                 </div>
             </div>
         );
