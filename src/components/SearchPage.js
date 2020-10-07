@@ -6,6 +6,7 @@ import Pagination from './Pagination';
 import debounce from 'lodash.debounce';
 
 import "./css/SearchPage.css"
+import { RowsPerPageToggleButton } from "./RowsPerPageToggleButton";
 
 class SearchPage extends React.Component {
 
@@ -18,11 +19,14 @@ class SearchPage extends React.Component {
             isTableLoading: true,
             sequenceNumber: "",
             totalPages: 1,
-            currentPage: 1
+            currentPage: 1,
+			rowsPerPage: 10
         };
 
         // only emit changes if this function has not been called in the past 180 ms
-        this.emitChangeDebounced = debounce( this.emitChange, 180 );
+        this.emitChangeDebounced = debounce(this.emitChange, 180);
+
+        this.handleRowsPerPageChanges = this.handleRowsPerPageChanges.bind(this);
     }
 
     componentDidMount() {
@@ -67,11 +71,18 @@ class SearchPage extends React.Component {
     handleSelectCol = ( allLanguages ) => {
         this.setState( {
             selectedColumns: allLanguages
-        } ) ;
+        } );
     }
 
+    handleRowsPerPageChanges( numberOfPagesPerRow ) {
+    	this.setState( {
+			rowsPerPage: numberOfPagesPerRow
+		} )
+	}
+
     componentDidUpdate( prevProps, prevState, snapshot ) {
-        if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage) {
+        if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage
+             || this.state.rowsPerPage !== prevState.rowsPerPage ) {
             this.retrieveTableData();
         }
     }
@@ -85,13 +96,25 @@ class SearchPage extends React.Component {
     retrieveTableData() {
 
         let sequenceTime = new Date();
-        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() + '&pageNum=' + this.state.currentPage +
-                  '&word=' + this.state.word;
- 
+
+        // for testing, change cmlgbackend.wdcc to cmlgdevbackend.wdcc
+        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
+                  '&pageRows=' + this.state.rowsPerPage;
+
+        if ( this.state.word !== '' ) {
+            // add search words
+            url += '&word=' + this.state.word;
+        }
+
+        if ( this.state.rowsPerPage !== "all" ) {
+            // retrieve information for one page only
+            url += '&pageNum=' + this.state.currentPage;
+        }
+
         fetch( url )
             .then( results => {
                 return results.json();
-            })
+            } )
             .then( responseData => {
                 const data = responseData.data;
                 const sequence = responseData.sequence;
@@ -143,7 +166,10 @@ class SearchPage extends React.Component {
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
                     <SelectCol getsSelectedLanguage = { this.handleSelectCol }
                                allLanguages = { this.state.selectedColumns }/>
+
+                    <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
                 </div>
+
 
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
@@ -152,7 +178,7 @@ class SearchPage extends React.Component {
                     />
                 </div>
                 <div>
-                    { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } ></Pagination> }
+                    { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } /> }
                 </div>
             </div>
         );
