@@ -43,16 +43,16 @@ p {
 }
 
 /* Responsive design for h1 */
-@media screen and (min-width: 320px) {
+@media (min-width: 320px) {
     h1 {
         font-size: 1.5em;
     }
-
+    
     #background-img {
         width: 100%;
         padding-bottom: 15px;
     }
-
+    
 }
 
 @media (min-width: 760px) {
@@ -64,7 +64,7 @@ p {
         width: 70%;
         padding-bottom: 20px;
     }
-
+  
     .btn {
         font-size: 1.25rem;
         padding: .5rem 1rem;
