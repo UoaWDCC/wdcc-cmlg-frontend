@@ -21,10 +21,10 @@ class SelectCol extends React.Component {
         }
     }
 
-    onButtonClick(){
-        this.setState(prevState => ({
+    onButtonClick() {
+        this.setState( prevState => ( {
             showComponent: !prevState.showComponent
-        }));
+        } ) );
     }
 
     render() {
