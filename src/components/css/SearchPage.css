@@ -9,6 +9,12 @@
     height: 100%;
 }
 
+.pagination {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 5px;
+}
+
 .dark-mode {
     background-color: black;
 }

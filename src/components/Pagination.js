@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "./css/Pagination.css"
 
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
@@ -103,7 +104,6 @@ class Pagination extends React.Component {
                             <li key={ index } className="page-item">
                                 <a className="page-link" href="#" aria-label="Previous" onClick={ this.handleMoveLeft }>
                                     <span aria-hidden="true">&lt;</span>
-                                    <span className="sr-only">Previous</span>
                                 </a>
                             </li>
                         );
@@ -112,15 +112,15 @@ class Pagination extends React.Component {
                             <li key={ index } className="page-item">
                                 <a className="page-link" href="#" aria-label="Next" onClick={ this.handleMoveRight }>
                                     <span aria-hidden="true">&gt;</span>
-                                    <span className="sr-only">Next</span>
                                 </a>
                             </li>
                         );
 
                         if ( page === ELLIPSIS ) return (
                             <li key={ index } className="page-item">
-                                <span aria-hidden="true">&hellip;</span>
-                                <span className="sr-only"/>
+                                <a className="page-link" id="ellipsis" aria-label="Ellipsis">
+                                    <span aria-hidden="true">&hellip;</span>
+                                </a>
                             </li>
                         );
 

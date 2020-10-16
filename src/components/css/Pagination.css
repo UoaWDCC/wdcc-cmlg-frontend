@@ -1,0 +1,26 @@
+.page-link {
+   margin: 1px; 
+   border: none;
+   color: gray;
+   background-color: white;
+}
+
+.page-item.active .page-link {
+   color: black;
+   background-color: white;
+   text-decoration: underline;
+}
+
+.page-link:hover {
+   color: #212529;
+}
+
+#ellipsis:hover {
+   color: gray;
+   background-color: white;
+}
+
+#ellipsis {
+   pointer-events: none;
+   cursor: default;
+}
