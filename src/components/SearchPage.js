@@ -81,8 +81,7 @@ class SearchPage extends React.Component {
 	}
 
     componentDidUpdate( prevProps, prevState, snapshot ) {
-        if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage
-             || this.state.rowsPerPage !== prevState.rowsPerPage ) {
+        if ( this.state.word !== prevState.word ) {
             this.retrieveTableData();
         }
     }
@@ -99,16 +98,11 @@ class SearchPage extends React.Component {
 
         // for testing, change cmlgbackend.wdcc to cmlgdevbackend.wdcc
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
-                  '&pageRows=' + this.state.rowsPerPage;
+                  '&pageRows=all';
 
         if ( this.state.word !== '' ) {
             // add search words
             url += '&word=' + this.state.word;
-        }
-
-        if ( this.state.rowsPerPage !== "all" ) {
-            // retrieve information for one page only
-            url += '&pageNum=' + this.state.currentPage;
         }
 
         fetch( url )
@@ -149,11 +143,19 @@ class SearchPage extends React.Component {
                         translationsForOneWord = [];
                     }
                 }
+
+                // calculate how many pages are needed if user doesn't want to see all pages
+                let totalPages = responseData.totalPageNum;
+                if ( this.state.rowsPerPage !== "all" ) {
+                    totalPages = Math.ceil( sortedListOfWords.length / this.state.rowsPerPage );
+                }
+
                 this.setState( {
                     tableData: sortedListOfWords,
                     isTableLoading: false,
                     sequenceNumber: sequence,
-                    totalPages: responseData.totalPageNum    
+                    totalPages: totalPages,
+                    currentPage: 1
                 } );
             } )
 
@@ -170,15 +172,15 @@ class SearchPage extends React.Component {
                     <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
                 </div>
 
-
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
                            data = { this.state.tableData }
                            isLoading = { this.state.isTableLoading }
+                           currentPage = { this.state.currentPage }
+                           rowsPerPage = { this.state.rowsPerPage }
                     />
                 </div>
                 <div>
-                    { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } /> }
                     { this.state.totalPages > 1 &&
                       <Pagination totalPages = { this.state.totalPages }
                                   pageNeighbours={ 2 }
