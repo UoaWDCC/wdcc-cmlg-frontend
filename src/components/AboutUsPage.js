@@ -5,7 +5,6 @@ import Pagination from './Pagination';
 class AboutUsPage extends React.Component {
     render() {
         return (
-            // <div className="aboutUsPage" style={{overflow: "auto", maxHeight: "10px"}}>
             <div className="aboutUsPage">
                 <h1>
                     About us<br/>
