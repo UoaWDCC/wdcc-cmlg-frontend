@@ -23,13 +23,6 @@ const range = ( from, to, step = 1 ) => {
 
 class Pagination extends React.Component {
 
-    constructor( props ) {
-        super( props )
-        this.state = {
-            currentPage: 1
-        }
-    }
-
     componentDidMount() {
         this.goToPage( 1 );
     }
@@ -38,7 +31,7 @@ class Pagination extends React.Component {
         const { onPageChanged = f => f } = this.props;
         const currentPage = Math.max( 1, Math.min( page, this.props.totalPages ) );
 
-        this.setState( { currentPage }, () => onPageChanged( currentPage ) );
+        onPageChanged( currentPage );
     }
 
     handleClick = page => evt => {
@@ -48,18 +41,18 @@ class Pagination extends React.Component {
 
     handleMoveLeft = evt => {
         evt.preventDefault();
-        this.goToPage( this.state.currentPage - 1 );
+        this.goToPage( this.props.currentPage - 1 );
     }
 
     handleMoveRight = evt => {
         evt.preventDefault();
-        this.goToPage( this.state.currentPage + 1 );
+        this.goToPage( this.props.currentPage + 1 );
     }
 
 
     getPageNumbers = () => {
         const totalPages = this.props.totalPages;
-        const currentPage = this.state.currentPage;
+        const currentPage = this.props.currentPage;
         const pageNeighbours = this.props.pageNeighbours;
 
         const centreNumberBlocks = 1 + pageNeighbours * 2;
@@ -127,12 +120,12 @@ class Pagination extends React.Component {
                         if ( page === ELLIPSIS ) return (
                             <li key={ index } className="page-item">
                                 <span aria-hidden="true">&hellip;</span>
-                                <span className="sr-only"></span>
+                                <span className="sr-only"/>
                             </li>
                         );
 
                         return (
-                            <li key={ index } className={ `page-item${ this.state.currentPage === page ? ' active' : '' }` }>
+                            <li key={ index } className={ `page-item${ this.props.currentPage === page ? ' active' : '' }` }>
                                 <a className="page-link" href="#" onClick={ this.handleClick( page ) }>{ page }</a>
                             </li>
                         );

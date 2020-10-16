@@ -89,7 +89,7 @@ class SearchPage extends React.Component {
 
     // update table on page change
     onPageChanged = data => {
-        this.setState({currentPage: data});
+        this.setState( { currentPage: data } );
     }
 
     // retrieve data for table
@@ -179,6 +179,12 @@ class SearchPage extends React.Component {
                 </div>
                 <div>
                     { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } /> }
+                    { this.state.totalPages > 1 &&
+                      <Pagination totalPages = { this.state.totalPages }
+                                  pageNeighbours={ 2 }
+                                  onPageChanged={ this.onPageChanged }
+                                  currentPage = { this.state.currentPage }
+                      /> }
                 </div>
             </div>
         );
