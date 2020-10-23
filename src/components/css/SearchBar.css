@@ -13,10 +13,15 @@
     white-space: nowrap;
 }
 
+
 .bar {
     border:0;
     text-align: center;
     width: 75%;
+}
+
+.dark-mode-bar {
+    background-color: black;
 }
 
 .search:hover {
@@ -44,4 +49,10 @@
 .dark-mode {
     color : white;
 }
+
+
+.dark-mode-bar::-webkit-input-placeholder {
+    color: white;
+}
+
 

@@ -163,7 +163,7 @@ class SearchPage extends React.Component {
         return (
             <div className = { this.props.darkMode ? "search-page dark-mode" : "search-page"   }>
                 <div>
-                    <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
+                    <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } } darkMode = { this.props.darkMode }> </SearchBar>
                     <SelectCol darkMode= {this.props.darkMode}
                                getsSelectedLanguage = { this.handleSelectCol }
                                allLanguages = { this.state.selectedColumns }/>
