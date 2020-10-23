@@ -10,7 +10,7 @@ class HeaderBar extends React.Component {
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
-        this.handleClickOutside = this.handleClickOutside.bind(this)
+        this.handleClickOutside = this.handleClickOutside.bind( this )
     }
 
     handleBarToggleClick() {
@@ -27,24 +27,24 @@ class HeaderBar extends React.Component {
         }
     }
 
-    handleClickOutside(event) {
-        if (!this.node || !this.node.contains(event.target)) {
-            this.setState({
+    handleClickOutside( event ) {
+        if ( !this.node || !this.node.contains( event.target ) ) {
+            this.setState( {
                 BarOpen: window.innerWidth > 600
-            });
+            } );
         }
     }
 
     // Add event listener
     componentDidMount() {
-        window.addEventListener( "resize", this.updateBarOpen);
-        document.addEventListener('click', this.handleClickOutside);
+        window.addEventListener( "resize", this.updateBarOpen );
+        document.addEventListener( 'click', this.handleClickOutside );
     }
 
     //Remove event listener
     componentWillUnmount() {
         window.removeEventListener( "resize", this.updateBarOpen );
-        document.removeEventListener('click', this.handleClickOutside);
+        document.removeEventListener( 'click', this.handleClickOutside );
     }
 
     render() {
@@ -76,7 +76,7 @@ class HeaderBar extends React.Component {
                     <li id="darkMode">
                         <i className="fas fa-moon"/>
                     </li>
-                    {this.state.BarOpen ? items : null}
+                    { this.state.BarOpen ? items : null }
                 </ul>
             </nav>
         );

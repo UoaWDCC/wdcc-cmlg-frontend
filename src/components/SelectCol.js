@@ -36,11 +36,11 @@ class SelectCol extends React.Component {
     }
 
     componentDidMount() {
-        document.addEventListener('click', this.handleClickOutside);
+        document.addEventListener('click', this.handleClickOutside );
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.handleClickOutside);
+        document.removeEventListener('click', this.handleClickOutside );
     }
 
     render() {
@@ -60,8 +60,8 @@ class SelectCol extends React.Component {
         );
 
         return (
-            <div id = "selectColumns" ref={node => this.node = node}>
-                <button className = "btn btn-light selectColButton"  onClick = {this.onButtonClick}  title = "Select Languages">
+            <div id = "selectColumns" ref={ node => this.node = node }>
+                <button className = "btn btn-light selectColButton"  onClick = { this.onButtonClick }  title = "Select Languages">
                     <i className="fas fa-tasks"/>
                 </button>
                 { this.state.showComponent ? card : null }
