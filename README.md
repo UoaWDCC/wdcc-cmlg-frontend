@@ -24,15 +24,6 @@ cd my-app
 npm start
 ```
 
-Installation for [Material UI](https://material-ui.com/) :
-```
-npm install @material-ui/core
-```
-
-Installation for [MUI-datatables](https://github.com/gregnb/mui-datatables)
-```
-npm install mui-datatables --save
-```
 After finishing installation, you can pull the code from the master branch down to your local computers. (Assume you are currently inside the my-app directory)
 ```
 git init
@@ -47,10 +38,3 @@ npm start
 Runs the app in the development mode. Open http://localhost:3000 to view it in the browser.
 
 The page will reload if you make edits. You will also see any lint errors in the console.
-
-
-
-
-
-
-
