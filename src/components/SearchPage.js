@@ -81,15 +81,14 @@ class SearchPage extends React.Component {
 	}
 
     componentDidUpdate( prevProps, prevState, snapshot ) {
-        if ( this.state.word !== prevState.word || this.state.currentPage !== prevState.currentPage
-             || this.state.rowsPerPage !== prevState.rowsPerPage ) {
+        if ( this.state.word !== prevState.word ) {
             this.retrieveTableData();
         }
     }
 
     // update table on page change
     onPageChanged = data => {
-        this.setState({currentPage: data});
+        this.setState( { currentPage: data } );
     }
 
     // retrieve data for table
@@ -101,14 +100,10 @@ class SearchPage extends React.Component {
         let url = 'https://cmlgdevbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
                   '&pageRows=' + this.state.rowsPerPage;
 
+
         if ( this.state.word !== '' ) {
             // add search words
             url += '&word=' + this.state.word;
-        }
-
-        if ( this.state.rowsPerPage !== "all" ) {
-            // retrieve information for one page only
-            url += '&pageNum=' + this.state.currentPage;
         }
 
         fetch( url )
@@ -149,11 +144,19 @@ class SearchPage extends React.Component {
                         translationsForOneWord = [];
                     }
                 }
+
+                // calculate how many pages are needed if user doesn't want to see all pages
+                let totalPages = responseData.totalPageNum;
+                if ( this.state.rowsPerPage !== "all" ) {
+                    totalPages = Math.ceil( sortedListOfWords.length / this.state.rowsPerPage );
+                }
+
                 this.setState( {
                     tableData: sortedListOfWords,
                     isTableLoading: false,
                     sequenceNumber: sequence,
-                    totalPages: responseData.totalPageNum    
+                    totalPages: totalPages,
+                    currentPage: 1
                 } );
             } )
 
@@ -172,15 +175,22 @@ class SearchPage extends React.Component {
                 </div>
 
 
-                <div className = "table-div" >
+                <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
                            data = { this.state.tableData }
                            isLoading = { this.state.isTableLoading }
+                           currentPage = { this.state.currentPage }
+                           rowsPerPage = { this.state.rowsPerPage }
                            darkMode = { this.props.darkMode }
                     />
                 </div>
                 <div>
-                    { this.state.totalPages > 1 && <Pagination totalPages = { this.state.totalPages } pageNeighbours={ 2 } onPageChanged={ this.onPageChanged } /> }
+                    { this.state.totalPages > 1 &&
+                      <Pagination totalPages = { this.state.totalPages }
+                                  pageNeighbours={ 2 }
+                                  onPageChanged={ this.onPageChanged }
+                                  currentPage = { this.state.currentPage }
+                      /> }
                 </div>
             </div>
         );
