@@ -27,6 +27,22 @@ class SelectCol extends React.Component {
         } ) );
     }
 
+    handleClickOutside = event => {
+        if ( !this.node || !this.node.contains( event.target ) ) {
+            this.setState( {
+                showComponent: false
+            } );
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('click', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside);
+    }
+
     render() {
         const Languages = this.props.allLanguages.map( ( language, index ) =>
             <div className = "custom-control custom-checkbox" key = { index }>
@@ -44,8 +60,8 @@ class SelectCol extends React.Component {
         );
 
         return (
-            <div id = "selectColumns">
-                <button className = "btn btn-light selectColButton" onClick = {this.onButtonClick}  title = "Select Languages">
+            <div id = "selectColumns" ref={node => this.node = node}>
+                <button className = "btn btn-light selectColButton"  onClick = {this.onButtonClick}  title = "Select Languages">
                     <i className="fas fa-tasks"/>
                 </button>
                 { this.state.showComponent ? card : null }
