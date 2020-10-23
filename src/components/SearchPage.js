@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
             sequenceNumber: "",
             totalPages: 1,
             currentPage: 1,
-			rowsPerPage: 10
+            rowsPerPage: 10,
         };
 
         // only emit changes if this function has not been called in the past 180 ms
@@ -98,7 +98,7 @@ class SearchPage extends React.Component {
         let sequenceTime = new Date();
 
         // for testing, change cmlgbackend.wdcc to cmlgdevbackend.wdcc
-        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
+        let url = 'https://cmlgdevbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
                   '&pageRows=' + this.state.rowsPerPage;
 
         if ( this.state.word !== '' ) {
@@ -161,7 +161,8 @@ class SearchPage extends React.Component {
 
     render() {
         return (
-            <div className = "search-page">
+            // <div className = "search-page">
+            <div className = { this.props.darkMode ? "search-page dark-mode" : "search-page"   }>
                 <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
                     <SelectCol getsSelectedLanguage = { this.handleSelectCol }
@@ -171,10 +172,11 @@ class SearchPage extends React.Component {
                 </div>
 
 
-                <div className = "table-div">
+                <div className = "table-div" >
                     <Table columns = { this.state.selectedColumns }
                            data = { this.state.tableData }
                            isLoading = { this.state.isTableLoading }
+                           darkMode = { this.props.darkMode }
                     />
                 </div>
                 <div>

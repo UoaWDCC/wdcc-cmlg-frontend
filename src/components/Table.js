@@ -24,7 +24,8 @@ class Table extends React.Component {
                 const translationsWithoutChineseAndEnglish = translation.slice( 3 );
 
                 return (
-                    <tr key={ index }>
+                    // <tr key={ index } className={ this.props.darkMode ? "" : "" }>
+                    <tr key={ index } >
                         <td style={ { display: this.props.columns[ 0 ].select ? "table-cell" : "none" } }>
                             { chinese + " " + pinyin }
                         </td>
@@ -167,7 +168,9 @@ class Table extends React.Component {
 
     render() {
         return (
-            <table className="table table-striped">
+            // <table className={ this.props.darkMode ? "table table-dark table-striped " : "table table-striped"  }>
+            <table className={ this.props.darkMode ? "table table-dark table-striped " : "table table-striped"  }>
+
                 <thead>
                     <tr>
                         { this.renderTableHeaders() }

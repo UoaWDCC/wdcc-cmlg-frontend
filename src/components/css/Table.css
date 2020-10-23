@@ -64,3 +64,30 @@ tr:nth-child(odd) > td:nth-child(1) {
 tr:nth-child(even) > td:nth-child(1) {
     background: white;
 }
+
+
+
+
+/* dark mode css */
+
+.table-dark thead th{
+    background-color: black;
+}
+
+
+.table-dark tr:nth-child(odd) > td:nth-child(2) {
+    background: #343a40;
+}
+
+.table-dark  tr:nth-child(even) > td:nth-child(2) {
+    background: #343a40;
+}
+
+.table-dark tr:nth-child(odd) > td:nth-child(1) {
+    background: #343a40;
+}
+
+.table-dark tr:nth-child(even) > td:nth-child(1) {
+    background: #343a40;
+}
+

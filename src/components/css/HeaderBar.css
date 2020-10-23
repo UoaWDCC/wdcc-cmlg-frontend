@@ -41,3 +41,12 @@ li i:hover {
         display: block;
     }
 }
+
+
+.dark-mode-Headerbar{
+    background-color: black;
+}
+
+.dark-mode-icon{
+    color: white;
+}
