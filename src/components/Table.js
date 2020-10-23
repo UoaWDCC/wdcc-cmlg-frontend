@@ -16,7 +16,11 @@ class Table extends React.Component {
 
         if ( this.props.data.length !== 0 ) {
 
-            const sortedData = this.sortColumn();
+            let sortedData = this.sortColumn();
+
+            if ( this.props.rowsPerPage !== "all" ) {
+                sortedData = this.getDisplayedData( sortedData );
+            }
 
             return sortedData.map( ( translation, index ) => {
 
@@ -163,6 +167,24 @@ class Table extends React.Component {
         }
 
         return sortedTranslationData;
+    }
+
+    getDisplayedData(sortedData ) {
+
+        let dataDisplayed = [];
+
+        // only display the required rows of data
+        const startRowIndex = ( this.props.currentPage - 1 ) * this.props.rowsPerPage;
+
+        for ( let rowCount = 0; rowCount < this.props.rowsPerPage; rowCount++ ) {
+            if ( startRowIndex + rowCount < sortedData.length ) {
+                dataDisplayed[ rowCount ] = sortedData[ startRowIndex + rowCount ];
+            } else {
+                break;
+            }
+        }
+
+        return dataDisplayed;
     }
 
     render() {
