@@ -19,7 +19,7 @@ class Table extends React.Component {
             let sortedData = this.sortColumn();
 
             if ( this.props.rowsPerPage !== "all" ) {
-                sortedData = this.getDataNeedTOBeDisplayedOnOnePage( sortedData );
+                sortedData = this.getDisplayedData( sortedData );
             }
 
             return sortedData.map( ( translation, index ) => {
@@ -169,7 +169,7 @@ class Table extends React.Component {
         return sortedTranslationData;
     }
 
-    getDataNeedTOBeDisplayedOnOnePage( sortedData ) {
+    getDisplayedData(sortedData ) {
 
         let dataDisplayed = [];
 
