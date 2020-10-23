@@ -4,7 +4,7 @@ import "./css/AboutUsPage.css";
 class AboutUsPage extends React.Component {
     render() {
         return (
-            <div className="aboutUsPage">
+            <div className= { this.props.darkMode ? "aboutUsPage dark-mode" : "aboutUsPage" }>
                 <h1>
                     About us<br/>
                 </h1>

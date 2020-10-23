@@ -76,7 +76,7 @@ tr:nth-child(even) > td:nth-child(1) {
 
 
 .table-dark tr:nth-child(odd) > td:nth-child(2) {
-    background: #343a40;
+    background: #3e444a;
 }
 
 .table-dark  tr:nth-child(even) > td:nth-child(2) {
@@ -84,7 +84,7 @@ tr:nth-child(even) > td:nth-child(1) {
 }
 
 .table-dark tr:nth-child(odd) > td:nth-child(1) {
-    background: #343a40;
+    background: #3e444a;
 }
 
 .table-dark tr:nth-child(even) > td:nth-child(1) {

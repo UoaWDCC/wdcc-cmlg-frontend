@@ -25,7 +25,6 @@ class App extends React.Component{
         this.setState( {
             darkMode : bool
         } );
-        console.log("in the APP darkMode is" + this.state.darkMode);
     }
 
 
@@ -53,24 +52,4 @@ class App extends React.Component{
 
 export default App;
 
-// export default function App() {
-//   return (
-//         <Router className="App">
-//             <HeaderBar/>
-//             {/* A <Switch> looks through its children <Route>s and
-//             renders the first one that matches the current URL. */}
-//                 <Switch>
-//                     <Route path="/translations">
-//                         <SearchPage />
-//                     </Route>
-//                     <Route exact path="/">
-//                         <WelcomePage />
-//                     </Route>
-//                     <Route path="/about">
-//                         <AboutUsPage />
-//                     </Route>
-//                 </Switch>
-//         </Router>
-//   );
-// }
 

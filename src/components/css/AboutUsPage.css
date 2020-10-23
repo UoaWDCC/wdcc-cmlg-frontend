@@ -31,3 +31,6 @@ p {
     margin-right: 80px;
 }
 
+.dark-mode {
+    background-color: black;
+}

@@ -16,8 +16,13 @@
     top: 15%;
     right: 16px;
     /*overflow:"auto"*/
+    
 }
 
 #language-options {
     z-index: 1000;
+}
+
+.dark-mode {
+    background-color: black;
 }
