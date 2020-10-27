@@ -13,11 +13,24 @@
     padding-left: 10px;
     padding-bottom:10px;
     position: fixed;
-    top: 15%;
+    top: 90px;
     right: 16px;
-    /*overflow:"auto"*/
 }
 
 #language-options {
     z-index: 1000;
+}
+
+@media (max-height: 35rem) {
+   .card {
+       height: 15rem;
+       overflow: auto;
+   }
+}
+
+@media (max-height: 15rem) {
+    .card {
+        height: 7rem;
+        overflow: auto;
+    }
 }
