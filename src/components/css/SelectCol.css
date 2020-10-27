@@ -13,8 +13,8 @@
     padding-left: 10px;
     padding-bottom:10px;
     position: fixed;
-    top: 90px;
     right: 16px;
+    top: 120px;
 }
 
 #language-options {
@@ -26,6 +26,12 @@
        height: 15rem;
        overflow: auto;
    }
+}
+
+@media (max-width: 760px) {
+    .card {
+        top: 90px;
+    }
 }
 
 @media (max-height: 15rem) {
