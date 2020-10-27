@@ -9,16 +9,17 @@
 
 .card {
     width: 10rem;
-    display: none;
     padding-left: 10px;
     padding-bottom:10px;
     position: fixed;
     right: 16px;
     top: 120px;
+    z-index: 1000;
 }
 
-#language-options {
-    z-index: 1000;
+#card-title {
+    color: grey;
+    padding-top: 8px;
 }
 
 @media (max-height: 35rem) {
