@@ -9,15 +9,35 @@
 
 .card {
     width: 10rem;
-    display: none;
     padding-left: 10px;
     padding-bottom:10px;
     position: fixed;
-    top: 15%;
     right: 16px;
-    /*overflow:"auto"*/
+    top: 120px;
+    z-index: 1000;
 }
 
-#language-options {
-    z-index: 1000;
+#card-title {
+    color: grey;
+    padding-top: 8px;
+}
+
+@media (max-height: 35rem) {
+   .card {
+       height: 15rem;
+       overflow: auto;
+   }
+}
+
+@media (max-width: 760px) {
+    .card {
+        top: 90px;
+    }
+}
+
+@media (max-height: 15rem) {
+    .card {
+        height: 7rem;
+        overflow: auto;
+    }
 }

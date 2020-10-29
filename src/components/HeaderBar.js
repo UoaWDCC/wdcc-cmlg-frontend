@@ -13,6 +13,7 @@ class HeaderBar extends React.Component {
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
         this.handleDarkMode = this.handleDarkModeChanged.bind( this )
+        this.handleClickOutside = this.handleClickOutside.bind( this )
     }
 
     handleBarToggleClick() {
@@ -29,15 +30,24 @@ class HeaderBar extends React.Component {
         }
     }
 
+    handleClickOutside( event ) {
+        if ( !this.node || !this.node.contains( event.target ) ) {
+            this.setState( {
+                BarOpen: window.innerWidth > 600
+            } );
+        }
+    }
+
     // Add event listener
     componentDidMount() {
-        this.updateBarOpen();
-        window.addEventListener( "resize", this.updateBarOpen);
+        window.addEventListener( "resize", this.updateBarOpen );
+        document.addEventListener( 'click', this.handleClickOutside );
     }
 
     //Remove event listener
     componentWillUnmount() {
         window.removeEventListener( "resize", this.updateBarOpen );
+        document.removeEventListener( 'click', this.handleClickOutside );
     }
     
 
@@ -53,7 +63,6 @@ class HeaderBar extends React.Component {
 
     render() {
 
-        let values;
         const items = (
             // <div className={this.state.darkMode ? "dark-mode-Headerbar" : ""} >
             <div className={this.state.darkMode ? "" : "dark-mode-Headerbar"} >
@@ -77,30 +86,21 @@ class HeaderBar extends React.Component {
                 </Link>
             </div>
         );
-        if( this.state.BarOpen ) {
-            values = items;
-        }
         return (
-            // <nav className={this.state.darkMode ? "dark-mode-Headerbar" : ""}>
-            <nav className={this.state.darkMode ? "" : "dark-mode-Headerbar"}>
-                <ul >
-                    <li id="bar" onClick={ this.handleBarToggleClick }>
-                        {/* <i className={this.state.darkMode ? "fas fa-bars " : "fas fa-bars dark-mode-Headerbar"}/> */}
+
+            <nav className={this.state.darkMode ? "" : "dark-mode-Headerbar"}> 
+                <ul>
+                    <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
                         <i className="fas fa-bars"/>
                     </li>
                     
-                    {/* <li id="darkMode" onClick={ this.handleDarkMode } > */}
-
                     <li id="darkMode" onClick={this.handleDarkMode } >
-
-
-                    {/* this.props.darkMode.handleDarkMode(this.state.darkMode); */}
                         <i className={ this.state.darkMode ? "fas fa-sun" : "fas fa-moon dark-mode-icon" }/>
-                        {/* <i className={this.state.darkMode ? "fas fa-moon dark-mode-Headerbar" : "fas fa-moon"} /> */}
                     </li>
-                    {values}
+                    { this.state.BarOpen ? items : null }
                 </ul>
             </nav>
+            
         );
     }
 
