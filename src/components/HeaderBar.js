@@ -88,7 +88,7 @@ class HeaderBar extends React.Component {
             <nav className={this.state.darkMode ? "" : "dark-mode-Headerbar"}> 
                 <ul>
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
-                        <i className="fas fa-bars"/>
+                        <i className= { this.state.darkMode ? "fas fa-bars" : " fas fa-bars dark-mode-icon " } />
                     </li>
                     
                     <li id="darkMode" onClick={this.handleDarkMode } >
