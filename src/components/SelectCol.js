@@ -67,12 +67,7 @@ class SelectCol extends React.Component {
                 </button>
 
                 { this.state.showComponent ? card : null }
-{/* 
-                <div id = "language-options" className = { this.props.darkMode ? "card  dark-mode" : "card" }>
-                    <h6 className = "card-title" style = { { color: "grey", paddingTop: "8px" } }>All Languages</h6>
-                    { Languages }
-                </div>
-                 */}
+
             </div>
         );
     }
