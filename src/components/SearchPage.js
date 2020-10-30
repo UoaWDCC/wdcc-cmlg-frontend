@@ -167,11 +167,16 @@ class SearchPage extends React.Component {
             <div className = { this.props.darkMode ? "search-page dark-mode" : "search-page"   }>
                 <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } } darkMode = { this.props.darkMode }> </SearchBar>
-                    <SelectCol darkMode= {this.props.darkMode}
-                               getsSelectedLanguage = { this.handleSelectCol }
-                               allLanguages = { this.state.selectedColumns }/>
+                    
+                    <div style={ { display: "flow-root" } }>
 
-                    <RowsPerPageToggleButton darkMode= {this.props.darkMode} onButtonClicked = { this.handleRowsPerPageChanges }/>
+                        <SelectCol darkMode= {this.props.darkMode}
+                                   getsSelectedLanguage = { this.handleSelectCol }
+                                   allLanguages = { this.state.selectedColumns }/>
+
+                        <RowsPerPageToggleButton darkMode= {this.props.darkMode} onButtonClicked = { this.handleRowsPerPageChanges }/>
+                    </div>
+
                 </div>
 
 
