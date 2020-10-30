@@ -61,7 +61,7 @@ class SelectCol extends React.Component {
 
         return (
             <div id = "selectColumns" ref={ node => this.node = node }>
-                <button className = "btn btn-light selectColButton"  onClick = { this.onButtonClick }  title = "Select Languages">
+                <button className = "btn btn-light selectColButton"  onClick = { this.onButtonClick }>
                     <i className="fas fa-tasks"/>
                 </button>
                 { this.state.showComponent ? card : null }
