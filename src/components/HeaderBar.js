@@ -8,7 +8,6 @@ class HeaderBar extends React.Component {
         super(props);
         this.state = {
             BarOpen : window.innerWidth > 600,
-            darkMode : false
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
