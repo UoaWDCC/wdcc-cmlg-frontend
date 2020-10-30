@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/WelcomePage.css";
 import { Link } from "react-router-dom";
-import flagsImageNight from "./background5.png";
+import flagsImageNight from "./background2.png";
 import flagsImageDay from "./background3.png";
 
 class WelcomePage extends React.Component {
