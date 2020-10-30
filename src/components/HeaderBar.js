@@ -8,7 +8,7 @@ class HeaderBar extends React.Component {
         super(props);
         this.state = {
             BarOpen : window.innerWidth > 600,
-            darkMode : true
+            darkMode : false
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
@@ -52,11 +52,6 @@ class HeaderBar extends React.Component {
     
 
     handleDarkModeChanged(){
-        if (this.state.darkMode === false) {
-            this.setState( { darkMode : true } )
-        } else {
-            this.setState( { darkMode : false } )
-        }
         this.props.callbackParent(this.state.darkMode);
     }
 
@@ -64,20 +59,20 @@ class HeaderBar extends React.Component {
     render() {
 
         const items = (
-            <div className={this.state.darkMode ? "" : "dark-mode-Headerbar"} >
+            <div className={this.props.darkMode ? "dark-mode-Headerbar" : ""} >
                 <Link to="/">
                     <li>
-                        <i className={this.state.darkMode ? "fas fa-home " : "fas fa-home dark-mode-icon" }>&nbsp;Home</i>
+                        <i className={this.props.darkMode ? "fas fa-home dark-mode-icon " : "fas fa-home " }>&nbsp;Home</i>
                     </li>
                 </Link>
                 <Link to="/translations">
                     <li>
-                        <i className={this.state.darkMode ? "fas fa-search " : "fas fa-search dark-mode-icon"}>&nbsp;Search</i>
+                        <i className={this.props.darkMode ? "fas fa-search dark-mode-icon" : "fas fa-search "}>&nbsp;Search</i>
                     </li>
                 </Link>
                 <Link to="/about">
                     <li>
-                        <i className={this.state.darkMode ? "fas fa-info-circle " : "fas fa-info-circle dark-mode-icon"}>&nbsp;About</i>
+                        <i className={this.props.darkMode ? "fas fa-info-circle dark-mode-icon" : "fas fa-info-circle "}>&nbsp;About</i>
                     </li>
                 </Link>
             </div>
@@ -85,14 +80,14 @@ class HeaderBar extends React.Component {
         return (
 
 
-            <nav className={this.state.darkMode ? "" : "dark-mode-Headerbar"}> 
+            <nav className={this.props.darkMode ? "dark-mode-Headerbar" : ""}> 
                 <ul>
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
-                        <i className= { this.state.darkMode ? "fas fa-bars" : " fas fa-bars dark-mode-icon " } />
+                        <i className= { this.props.darkMode ? "fas fa-bars dark-mode-icon" : " fas fa-bars  " } />
                     </li>
                     
                     <li id="darkMode" onClick={this.handleDarkMode } >
-                        <i className={ this.state.darkMode ? "fas fa-sun" : "fas fa-moon dark-mode-icon" }/>
+                        <i className={ this.props.darkMode ? "fas fa-sun dark-mode-icon" : "fas fa-moon " }/>
                     </li>
                     { this.state.BarOpen ? items : null }
                 </ul>

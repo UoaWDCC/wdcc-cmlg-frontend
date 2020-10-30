@@ -21,9 +21,11 @@ class App extends React.Component{
         }
     }
 
-    onDarkModeChanged( bool ){
+
+
+    onDarkModeChanged(){
         this.setState( {
-            darkMode : bool
+            darkMode : !this.state.darkMode 
         } );
     }
 
@@ -31,7 +33,7 @@ class App extends React.Component{
     render(){
         return (
             <Router className="App" >
-                <HeaderBar callbackParent = { this.darkModeChanged } />  
+                <HeaderBar callbackParent = { this.darkModeChanged } darkMode = {this.state.darkMode} />  
                 {/* A <Switch> looks through its children <Route>s and
                 renders the first one that matches the current URL. */}
                     <Switch>
