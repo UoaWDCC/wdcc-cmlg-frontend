@@ -1,18 +1,19 @@
 .search-page {
-    display: grid;
-    height: 100vh;
-    grid-template-rows: max-content;
+    display: flex;
+    height: calc(100vh - 44px);
+    flex-direction: column;
 }
 
 .table-div {
     overflow: scroll;
-    height: 100%;
+    flex: 1;
 }
 
 .pagination {
     margin-left: auto;
     margin-right: 0;
     padding: 5px;
+    bottom: 0;
 }
 
 .dark-mode {
