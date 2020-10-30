@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/HeaderBar.css";
-import { Link } from "react-router-dom";
-//import "./css/DarkMode.css"
+
+import { NavLink } from "react-router-dom";
 
 class HeaderBar extends React.Component {
     constructor(props) {
@@ -59,22 +59,23 @@ class HeaderBar extends React.Component {
     render() {
 
         const items = (
-            <div className={this.props.darkMode ? "dark-mode-Headerbar" : ""} >
-                <Link to="/">
+
+            <div>
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} exact to="/">
                     <li>
                         <i className={this.props.darkMode ? "fas fa-home dark-mode-icon " : "fas fa-home " }>&nbsp;Home</i>
                     </li>
-                </Link>
-                <Link to="/translations">
+                </NavLink>
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/translations">
                     <li>
                         <i className={this.props.darkMode ? "fas fa-search dark-mode-icon" : "fas fa-search "}>&nbsp;Search</i>
                     </li>
-                </Link>
-                <Link to="/about">
+                </NavLink>
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/about">
                     <li>
                         <i className={this.props.darkMode ? "fas fa-info-circle dark-mode-icon" : "fas fa-info-circle "}>&nbsp;About</i>
                     </li>
-                </Link>
+                </NavLink>
             </div>
         );
         return (
@@ -87,7 +88,7 @@ class HeaderBar extends React.Component {
                     </li>
                     
                     <li id="darkMode" onClick={this.handleDarkMode } >
-                        <i className={ this.props.darkMode ? "fas fa-sun dark-mode-icon" : "fas fa-moon " }/>
+                        <i className={ this.props.darkMode ? "fas fa-moon dark-mode-icon" : "fas fa-sun " }/>
                     </li>
                     { this.state.BarOpen ? items : null }
                 </ul>

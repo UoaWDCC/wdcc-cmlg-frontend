@@ -62,6 +62,7 @@ class SelectCol extends React.Component {
         return (
             <div id = "selectColumns" ref={ node => this.node = node }>
                 <button className = { `btn btn-light selectColButton ${ this.props.darkMode ? "dark-mode" : ""  }` }  onClick = { this.onButtonClick }  title = "Select Languages">
+
                     <i className="fas fa-tasks"/>
 
                 </button>
