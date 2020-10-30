@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/HeaderBar.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class HeaderBar extends React.Component {
     constructor(props) {
@@ -50,21 +50,21 @@ class HeaderBar extends React.Component {
     render() {
         const items = (
             <div>
-                <Link to="/">
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} exact to="/">
                     <li>
                         <i className="fas fa-home">&nbsp;Home</i>
                     </li>
-                </Link>
-                <Link to="/translations">
+                </NavLink>
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/translations">
                     <li>
                         <i className="fas fa-search">&nbsp;Search</i>
                     </li>
-                </Link>
-                <Link to="/about">
+                </NavLink>
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/about">
                     <li>
                         <i className="fas fa-info-circle">&nbsp;About</i>
                     </li>
-                </Link>
+                </NavLink>
             </div>
         );
         return (
