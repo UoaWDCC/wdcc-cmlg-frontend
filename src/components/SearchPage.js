@@ -166,10 +166,13 @@ class SearchPage extends React.Component {
             <div className = "search-page">
                 <div>
                     <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
-                    <SelectCol getsSelectedLanguage = { this.handleSelectCol }
-                               allLanguages = { this.state.selectedColumns }/>
 
-                    <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
+
+                    <div style={ { display: "flow-root" } }>
+                        <SelectCol getsSelectedLanguage = { this.handleSelectCol }
+                                   allLanguages = { this.state.selectedColumns }/>
+                        <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
+                    </div>
                 </div>
 
                 <div className = "table-div">
