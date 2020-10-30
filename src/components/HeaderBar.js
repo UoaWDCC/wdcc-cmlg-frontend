@@ -1,7 +1,11 @@
 import React from "react";
 import "./css/HeaderBar.css";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 //import "./css/DarkMode.css"
+=======
+import { NavLink } from "react-router-dom";
+>>>>>>> 9195442719fa71194eeecc72f261bb8c7c44f7e3
 
 class HeaderBar extends React.Component {
     constructor(props) {
@@ -65,25 +69,27 @@ class HeaderBar extends React.Component {
 
         const items = (
             // <div className={this.state.darkMode ? "dark-mode-Headerbar" : ""} >
-            <div className={this.state.darkMode ? "" : "dark-mode-Headerbar"} >
-                <Link to="/">
+            // <div className={this.state.darkMode ? "" : "dark-mode-Headerbar"} >
+            //     <Link to="/">
+            <div >
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} exact to="/">
                     <li>
                         <i className={this.state.darkMode ? "fas fa-home " : "fas fa-home dark-mode-icon" }>&nbsp;Home</i>
                         {/* <i className="fas fa-home">&nbsp;Home</i> */}
                     </li>
-                </Link>
-                <Link to="/translations">
+                </NavLink>
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/translations">
                     <li>
                         <i className={this.state.darkMode ? "fas fa-search " : "fas fa-search dark-mode-icon"}>&nbsp;Search</i>
                         {/* <i className="fas fa-search">&nbsp;Search</i> */}
                     </li>
-                </Link>
-                <Link to="/about">
+                </NavLink>
+                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/about">
                     <li>
                         <i className={this.state.darkMode ? "fas fa-info-circle " : "fas fa-info-circle dark-mode-icon"}>&nbsp;About</i>
                         {/* <i className="fas fa-info-circle">&nbsp;About</i> */}
                     </li>
-                </Link>
+                </NavLink>
             </div>
         );
         return (
