@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
             sequenceNumber: "",
             totalPages: 1,
             currentPage: 1,
-            rowsPerPage: 10,
+            rowsPerPage: 10
         };
 
         // only emit changes if this function has not been called in the past 180 ms
@@ -172,7 +172,6 @@ class SearchPage extends React.Component {
                                allLanguages = { this.state.selectedColumns }/>
 
                     <RowsPerPageToggleButton darkMode= {this.props.darkMode} onButtonClicked = { this.handleRowsPerPageChanges }/>
-                    {console.log(this.props.darkMode)}
                 </div>
 
 
