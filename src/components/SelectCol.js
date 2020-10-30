@@ -54,14 +54,14 @@ class SelectCol extends React.Component {
 
         const card = (
             <div className = { this.props.darkMode ? "card dark-mode" : "card" }>
-                <h6 id = "card-title">All Languages</h6>
+                <h6 id = { this.props.darkMode ? "dark-mode-title" : "card-title" }>All Languages</h6>
                 { Languages }
             </div>
         );
 
         return (
             <div id = "selectColumns" ref={ node => this.node = node }>
-                <button className = "btn btn-light selectColButton"  onClick = { this.onButtonClick }  title = "Select Languages">
+                <button className = { `btn btn-light selectColButton ${ this.props.darkMode ? "dark-mode" : ""  }` }  onClick = { this.onButtonClick }  title = "Select Languages">
                     <i className="fas fa-tasks"/>
 
                 </button>
