@@ -22,6 +22,7 @@
 
 .dark-mode-bar {
     background-color: black;
+    color: white;
 }
 
 .search:hover {

@@ -22,6 +22,7 @@ li i:hover {
 #darkMode{
     float: right;
     margin-right: 2%;
+    cursor:pointer
 }
 
 #bar {
