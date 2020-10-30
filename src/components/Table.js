@@ -190,7 +190,7 @@ class Table extends React.Component {
 
     render() {
         return (
-            <table className={ this.props.darkMode ? "table table-dark table-striped " : "table table-striped"  }>
+            <table className={ ` table table-striped ${ this.props.darkMode ? "table-dark" : ""} ` }>
 
                 <thead>
                     <tr>

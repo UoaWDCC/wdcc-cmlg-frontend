@@ -63,17 +63,17 @@ class HeaderBar extends React.Component {
             <div>
                 <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} exact to="/">
                     <li>
-                        <i className={this.props.darkMode ? "fas fa-home dark-mode-icon " : "fas fa-home " }>&nbsp;Home</i>
+                        <i className={ ` fas fa-home ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Home</i>
                     </li>
                 </NavLink>
                 <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/translations">
                     <li>
-                        <i className={this.props.darkMode ? "fas fa-search dark-mode-icon" : "fas fa-search "}>&nbsp;Search</i>
+                        <i className={ ` fas fa-search ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Search</i>
                     </li>
                 </NavLink>
                 <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/about">
                     <li>
-                        <i className={this.props.darkMode ? "fas fa-info-circle dark-mode-icon" : "fas fa-info-circle "}>&nbsp;About</i>
+                        <i className={ ` fas fa-info-circle ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;About</i>
                     </li>
                 </NavLink>
             </div>
@@ -81,14 +81,14 @@ class HeaderBar extends React.Component {
         return (
 
 
-            <nav className={this.props.darkMode ? "dark-mode-Headerbar" : ""}> 
+            <nav className={ this.props.darkMode ? "dark-mode-Headerbar" : ""}> 
                 <ul>
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
-                        <i className= { this.props.darkMode ? "fas fa-bars dark-mode-icon" : " fas fa-bars  " } />
+                        <i className= { ` fas fa-bars ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
                     
                     <li id="darkMode" onClick={this.handleDarkMode } >
-                        <i className={ this.props.darkMode ? "fas fa-moon dark-mode-icon" : "fas fa-sun " }/>
+                        <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon" : "fa-sun" } ` }/>
                     </li>
                     { this.state.BarOpen ? items : null }
                 </ul>
