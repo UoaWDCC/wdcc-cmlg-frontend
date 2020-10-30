@@ -97,7 +97,7 @@ class SearchPage extends React.Component {
         let sequenceTime = new Date();
 
         // for testing, change cmlgbackend.wdcc to cmlgdevbackend.wdcc
-        let url = 'https://cmlgdevbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
+        let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
                   '&pageRows=' + this.state.rowsPerPage;
 
 

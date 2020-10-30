@@ -1,6 +1,8 @@
 .aboutUsPage {
     overflow: auto;
     max-Height: 100vh;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 #mainTitle {
@@ -24,8 +26,6 @@
 p {
     font-family: Calibri;
     text-align: left;
-    margin-left: 45vh;
-    margin-right: 200px;
 }
 
 .dark-mode {
