@@ -98,7 +98,7 @@ class SearchPage extends React.Component {
 
         // for testing, change cmlgbackend.wdcc to cmlgdevbackend.wdcc
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
-                  '&pageRows=' + this.state.rowsPerPage;
+                  '&pageRows=all';
 
 
         if ( this.state.word !== '' ) {
