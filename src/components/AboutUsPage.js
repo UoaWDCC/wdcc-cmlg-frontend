@@ -4,17 +4,18 @@ import "./css/AboutUsPage.css";
 class AboutUsPage extends React.Component {
     render() {
         return (
+
             <div className= { this.props.darkMode ? "aboutUsPage dark-mode" : "aboutUsPage" }>
-                <h1>
-                    About us<br/>
-                </h1>
+                <p id="mainTitle">
+                    ABOUT US<br/>
+                </p>
                 <p>
                     We are a group of six students studying at The University of Auckland. As part of
                     UoA’s Web Development Consulting Club (WDCC), we have came together to development
-                    this Multilingual Glossary. We hope you enjoy using our software!<br/><br/>
+                    this Multilingual Glossary. We hope you enjoy using our software!<br/><br/><br/>
                 </p>
-                <p id="title">
-                    Contributors:<br/>
+                <p id="smallTitle">
+                    CONTRIBUTORS:<br/>
                 </p>
                 <p>
                     Emily Yang<br/>
@@ -22,28 +23,30 @@ class AboutUsPage extends React.Component {
                     Dave Shin<br/>
                     Eileen Liang<br/>
                     Kevin Ge<br/>
-                    Yujia Wu<br/><br/>
+                    Yujia Wu<br/>
+                    Janus Li<br/>
+                    Davis Dimalen<br/><br/><br/>
                 </p>
-                <p id="title">
-                    Release history:<br/>
-                </p>
-                <p id="version">
-                    v1.0<br/>
-                </p>
-                <p>
-                    First release.<br/><br/>
+                <p id="smallTitle">
+                    RELEASE HISTORY:<br/>
                 </p>
                 <p id="version">
-                    v2.0<br/>
+                    - v1.0<br/>
                 </p>
                 <p>
-                    Updated UI for the website,<br/>
-                    Implemented instant searching,<br/>
-                    Updated alphabetically sorting words,<br/>
-                    Display optional languages,<br/>
-                    Fix the first column and the header,<br/>
-                    Implement the WelcomePage,<br/>
-                    Fixed minor bugs.<br/><br/>
+                    1. First release.<br/><br/>
+                </p>
+                <p id="version">
+                    - v2.0<br/>
+                </p>
+                <p>
+                    1. Updated UI for the website,<br/>
+                    2. Implemented instant searching,<br/>
+                    3. Updated alphabetically sorting words,<br/>
+                    4. Display optional languages,<br/>
+                    5. Fix the first column and the header,<br/>
+                    6. Implement the WelcomePage,<br/>
+                    7. Fixed minor bugs.<br/><br/><br/>
                 </p>
             </div>
 
