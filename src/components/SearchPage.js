@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
             sequenceNumber: "",
             totalPages: 1,
             currentPage: 1,
-			rowsPerPage: 10
+            rowsPerPage: 10
         };
 
         // only emit changes if this function has not been called in the past 180 ms
@@ -100,6 +100,7 @@ class SearchPage extends React.Component {
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
                   '&pageRows=all';
 
+
         if ( this.state.word !== '' ) {
             // add search words
             url += '&word=' + this.state.word;
@@ -163,17 +164,21 @@ class SearchPage extends React.Component {
 
     render() {
         return (
-            <div className = "search-page">
+            <div className = { ` search-page ${ this.props.darkMode ? "dark-mode" : "" } ` }>
                 <div>
-                    <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } }> </SearchBar>
-
-
+                    <SearchBar data = { { changeWord: this.handleChangeWord.bind( this ) } } darkMode = { this.props.darkMode }> </SearchBar>
+                    
                     <div style={ { display: "flow-root" } }>
-                        <SelectCol getsSelectedLanguage = { this.handleSelectCol }
+
+                        <SelectCol darkMode= {this.props.darkMode}
+                                   getsSelectedLanguage = { this.handleSelectCol }
                                    allLanguages = { this.state.selectedColumns }/>
-                        <RowsPerPageToggleButton onButtonClicked = { this.handleRowsPerPageChanges }/>
+
+                        <RowsPerPageToggleButton darkMode= {this.props.darkMode} onButtonClicked = { this.handleRowsPerPageChanges }/>
                     </div>
+
                 </div>
+
 
                 <div className = "table-div">
                     <Table columns = { this.state.selectedColumns }
@@ -181,6 +186,7 @@ class SearchPage extends React.Component {
                            isLoading = { this.state.isTableLoading }
                            currentPage = { this.state.currentPage }
                            rowsPerPage = { this.state.rowsPerPage }
+                           darkMode = { this.props.darkMode }
                     />
                 </div>
                 <div>

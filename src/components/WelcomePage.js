@@ -1,17 +1,16 @@
 import React from "react";
 import "./css/WelcomePage.css";
 import { Link } from "react-router-dom";
-import flagsImage from "./background4.png";
+import flagsImageNight from "./flagsImageNight.png";
+import flagsImageDay from "./flagsImageDay.png";
 
 class WelcomePage extends React.Component {
     render() {
         return (
-            <div className="welcomePage">
-                <img id="background-img" src={flagsImage} alt="Flags background"/>
-                {/* <h1>Welcome</h1>
-                <p>to Crisis Translation</p> */}
+            <div className={ ` welcomePage ${ this.props.darkMode ? "dark-mode" : "" } ` }>
+                <img id="background-img" src={ this.props.darkMode ? flagsImageNight : flagsImageDay } alt="Flags background" />
                 <Link to="/translations">
-                    <button type="button" className="btn btn-outline-dark">Start searching</button>
+                    <button type="button" className={ ` btn btn-outline-dark ${ this.props.darkMode? "btn-dark-mode" : "" } ` }>Start searching</button>
                 </Link>
             </div>
 

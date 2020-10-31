@@ -21,6 +21,7 @@ li i:hover {
 #darkMode{
     float: right;
     margin-right: 2%;
+    cursor:pointer
 }
 
 #bar {
@@ -38,4 +39,13 @@ li i:hover {
         float: left;
         display: block;
     }
+}
+
+
+.dark-mode-Headerbar{
+    background-color: black;
+}
+
+.dark-mode-icon{
+    color: white;
 }

@@ -13,10 +13,16 @@
     white-space: nowrap;
 }
 
+
 .bar {
     border:0;
     text-align: center;
     width: 75%;
+}
+
+.dark-mode-bar {
+    background-color: black;
+    color: white;
 }
 
 .search:hover {
@@ -40,3 +46,14 @@
         width: 60% !important;
     }
 }
+
+.dark-mode {
+    color : white;
+}
+
+
+.dark-mode-bar::-webkit-input-placeholder {
+    color: white;
+}
+
+

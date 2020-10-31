@@ -53,18 +53,22 @@ class SelectCol extends React.Component {
         );
 
         const card = (
-            <div className = "card">
-                <h6 id = "card-title">All Languages</h6>
+            <div className = { ` card ${ this.props.darkMode ? "dark-mode" : "" } ` }>
+                <h6 id = { this.props.darkMode ? "dark-mode-title" : "card-title" }>All Languages</h6>
                 { Languages }
             </div>
         );
 
         return (
             <div id = "selectColumns" ref={ node => this.node = node }>
-                <button className = "btn btn-light selectColButton"  onClick = { this.onButtonClick }>
+                <button className = { ` btn btn-light selectColButton ${ this.props.darkMode ? "dark-mode" : ""  } ` }  onClick = { this.onButtonClick } >
+
                     <i className="fas fa-tasks"/>
+
                 </button>
+
                 { this.state.showComponent ? card : null }
+
             </div>
         );
     }

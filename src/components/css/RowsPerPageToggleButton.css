@@ -3,4 +3,16 @@
     margin-right: 2%;
     margin-bottom: 2%;
     float: right;
+
 }
+
+.dark-mode {
+    background-color: black ;
+    color: white ;
+}
+
+.dark-mode-active {
+    color: white ;
+    background-color: black;
+}
+

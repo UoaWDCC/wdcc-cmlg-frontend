@@ -1,15 +1,17 @@
 import React from "react";
 import "./css/HeaderBar.css";
+
 import { NavLink } from "react-router-dom";
 
 class HeaderBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            BarOpen : window.innerWidth > 600
+            BarOpen : window.innerWidth > 600,
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
+        this.handleDarkMode = this.handleDarkModeChanged.bind( this )
         this.handleClickOutside = this.handleClickOutside.bind( this )
     }
 
@@ -46,39 +48,51 @@ class HeaderBar extends React.Component {
         window.removeEventListener( "resize", this.updateBarOpen );
         document.removeEventListener( 'click', this.handleClickOutside );
     }
+    
+
+    handleDarkModeChanged(){
+        this.props.callbackParent(this.state.darkMode);
+    }
+
 
     render() {
+
         const items = (
+
             <div>
                 <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} exact to="/">
                     <li>
-                        <i className="fas fa-home">&nbsp;Home</i>
+                        <i className={ ` fas fa-home ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Home</i>
                     </li>
                 </NavLink>
                 <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/translations">
                     <li>
-                        <i className="fas fa-search">&nbsp;Search</i>
+                        <i className={ ` fas fa-search ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Search</i>
                     </li>
                 </NavLink>
                 <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/about">
                     <li>
-                        <i className="fas fa-info-circle">&nbsp;About</i>
+                        <i className={ ` fas fa-info-circle ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;About</i>
                     </li>
                 </NavLink>
             </div>
         );
         return (
-            <nav>
+
+
+            <nav className={ this.props.darkMode ? "dark-mode-Headerbar" : ""}> 
                 <ul>
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
-                        <i className="fas fa-bars"/>
+                        <i className= { ` fas fa-bars ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
-                    <li id="darkMode">
-                        <i className="fas fa-moon"/>
+                    
+                    <li id="darkMode" onClick={this.handleDarkMode } >
+                        <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon" : "fa-sun" } ` }/>
                     </li>
                     { this.state.BarOpen ? items : null }
                 </ul>
             </nav>
+            
         );
     }
 

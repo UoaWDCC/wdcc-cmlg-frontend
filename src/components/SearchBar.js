@@ -34,10 +34,12 @@ class SearchBar extends React.Component{
     // call the changeWord function in the SearchPage class to change its state
     render() {
         return(
-            <div className='search'> 
-                <input autoFocus className='bar' type="text" placeholder={ this.state.placeholderText }
+
+            <div className='search' > 
+                <input autoFocus className= { ` bar ${ this.props.darkMode ? "dark-mode-bar" : "" } ` } 
+                       type="text" placeholder={ this.state.placeholderText }
                        onChange = { ( e ) => this.props.data.changeWord( e.target.value ) }/>
-                <SearchIcon className='search-icon'/>
+                <SearchIcon className={ ` search-icon ${ this.props.darkMode ? "dark-mode" : "" } ` }/>
             </div>
         )
     }

@@ -41,3 +41,12 @@
         overflow: auto;
     }
 }
+
+.dark-mode {
+    background-color: black;
+}
+
+#dark-mode-title {
+    color: white;
+    padding-top: 8px;
+}
