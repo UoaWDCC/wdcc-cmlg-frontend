@@ -1,8 +1,8 @@
 import React from "react";
-import "./css/WelcomePage.css";
+import "../css/WelcomePage.css";
 import { Link } from "react-router-dom";
-import flagsImageNight from "./flagsImageNight.png";
-import flagsImageDay from "./flagsImageDay.png";
+import flagsImageNight from "../resource/flagsImageNight.png";
+import flagsImageDay from "../resource/flagsImageDay.png";
 
 class WelcomePage extends React.Component {
     render() {

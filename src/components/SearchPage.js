@@ -5,7 +5,7 @@ import Table from "./Table";
 import Pagination from './Pagination';
 import debounce from 'lodash.debounce';
 
-import "./css/SearchPage.css"
+import "../css/SearchPage.css"
 import { RowsPerPageToggleButton } from "./RowsPerPageToggleButton";
 
 class SearchPage extends React.Component {

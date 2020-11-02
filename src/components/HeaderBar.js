@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/HeaderBar.css";
+import "../css/HeaderBar.css";
 
 import { NavLink } from "react-router-dom";
 
@@ -16,6 +16,13 @@ class HeaderBar extends React.Component {
     }
 
     handleBarToggleClick() {
+        if (!this.state.BarOpen) {
+            console.log(!this.state.BarOpen)
+            document.addEventListener("click", this.handleClickOutside);
+        } else {
+            document.removeEventListener("click", this.handleClickOutside);
+        }
+
         this.setState( ( prevState ) => {
             return { BarOpen: !prevState.BarOpen }
         } )
@@ -30,7 +37,7 @@ class HeaderBar extends React.Component {
     }
 
     handleClickOutside( event ) {
-        if ( !this.node || !this.node.contains( event.target ) ) {
+        if (!this.node.contains( event.target ) ) {
             this.setState( {
                 BarOpen: window.innerWidth > 600
             } );
@@ -40,13 +47,11 @@ class HeaderBar extends React.Component {
     // Add event listener
     componentDidMount() {
         window.addEventListener( "resize", this.updateBarOpen );
-        document.addEventListener( 'click', this.handleClickOutside );
     }
 
     //Remove event listener
     componentWillUnmount() {
         window.removeEventListener( "resize", this.updateBarOpen );
-        document.removeEventListener( 'click', this.handleClickOutside );
     }
     
 
@@ -58,7 +63,6 @@ class HeaderBar extends React.Component {
     render() {
 
         const items = (
-
             <div>
                 <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} exact to="/">
                     <li>
@@ -77,9 +81,8 @@ class HeaderBar extends React.Component {
                 </NavLink>
             </div>
         );
+
         return (
-
-
             <nav className={ this.props.darkMode ? "dark-mode-Headerbar" : ""}> 
                 <ul>
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
@@ -89,13 +92,12 @@ class HeaderBar extends React.Component {
                     <li id="darkMode" onClick={this.handleDarkMode } >
                         <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon" : "fa-sun" } ` }/>
                     </li>
-                    { this.state.BarOpen ? items : null }
+                    { this.state.BarOpen && items }
                 </ul>
             </nav>
             
         );
     }
-
 }
 
 export default HeaderBar;

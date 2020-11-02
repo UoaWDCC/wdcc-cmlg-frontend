@@ -1,5 +1,5 @@
 import React from 'react';
-import "./css/SelectCol.css";
+import "../css/SelectCol.css";
 
 class SelectCol extends React.Component {
     constructor( props ) {
@@ -22,25 +22,21 @@ class SelectCol extends React.Component {
     }
 
     onButtonClick() {
+        if (!this.state.showComponent) {
+            document.addEventListener("click", this.handleClickOutside);
+        } else {
+            document.removeEventListener("click", this.handleClickOutside);
+        }
+
         this.setState( prevState => ( {
             showComponent: !prevState.showComponent
         } ) );
     }
 
     handleClickOutside = event => {
-        if ( !this.node || !this.node.contains( event.target ) ) {
-            this.setState( {
-                showComponent: false
-            } );
+        if (!this.node.contains( event.target ) ) {
+            this.onButtonClick();
         }
-    }
-
-    componentDidMount() {
-        document.addEventListener('click', this.handleClickOutside );
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener('click', this.handleClickOutside );
     }
 
     render() {
@@ -52,22 +48,19 @@ class SelectCol extends React.Component {
             </div>
         );
 
-        const card = (
-            <div className = { ` card ${ this.props.darkMode ? "dark-mode" : "" } ` }>
-                <h6 id = { this.props.darkMode ? "dark-mode-title" : "card-title" }>All Languages</h6>
-                { Languages }
-            </div>
-        );
-
         return (
             <div id = "selectColumns" ref={ node => this.node = node }>
-                <button className = { ` btn btn-light selectColButton ${ this.props.darkMode ? "dark-mode" : ""  } ` }  onClick = { this.onButtonClick } >
-
+                <button className = { ` btn btn-light selectColButton ${ this.props.darkMode ? "dark-mode" : ""  } ` }
+                        onClick = { this.onButtonClick } >
                     <i className="fas fa-tasks"/>
-
                 </button>
 
-                { this.state.showComponent ? card : null }
+                { this.state.showComponent && (
+                    <div className = { ` card ${ this.props.darkMode ? "dark-mode" : "" } ` }>
+                        <h6 id = { this.props.darkMode ? "dark-mode-title" : "card-title" }>All Languages</h6>
+                        { Languages }
+                    </div>
+                ) }
 
             </div>
         );

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./css/RowsPerPageToggleButton.css"
+import "../css/RowsPerPageToggleButton.css"
 
 
 export function RowsPerPageToggleButton( props ) {
