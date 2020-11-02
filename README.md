@@ -1,18 +1,13 @@
 # Multilingual Glossary Frontend
-This project is about the frontend of the translation website. It allowed users to see a table contains translations in different languages. Users are also able to search for keywords in real-time and display optional languages. In the future, we will allow users to download the table into a .csv file, so they can use it in other places. 
+This project is about the frontend of COVID-19_Multilingual_Glossary project. It allowed users to see a table contains translations in different languages. Users are also able to search for keywords in real-time and display optional languages. In the future, we will allow users to download the table into a .csv file, so they can use it in other places. 
 
 The framework we use in this project is the [REACT](https://reactjs.org/). 
-
-## Team Members:
-* Yujia Wu [ywu666](https://github.com/ywu666)
-* Kevin Ge [jge385](https://github.com/jge385)
-* Dave Shin 
 
 ## Getted Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequesties
-Please make sure you install node.js, Material UI, MUI-datatables in your local machines.
+Please make sure you install node.js in your local machines.
 
 ### Installation
 For [Node.js](https://nodejs.org/en/), please visit the official website and download from there. All installation below via npm. 
