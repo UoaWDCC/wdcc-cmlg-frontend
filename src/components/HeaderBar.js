@@ -17,7 +17,6 @@ class HeaderBar extends React.Component {
 
     handleBarToggleClick() {
         if (!this.state.BarOpen) {
-            console.log(!this.state.BarOpen)
             document.addEventListener("click", this.handleClickOutside);
         } else {
             document.removeEventListener("click", this.handleClickOutside);
