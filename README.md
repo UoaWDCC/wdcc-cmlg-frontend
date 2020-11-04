@@ -2,7 +2,7 @@
 This project is about the frontend of COVID-19_Multilingual_Glossary project. It allowed users to see a table contains translations in different languages. Users are also able to search for keywords in real-time and display optional languages. In the future, we will allow users to download the table into a .csv file, so they can use it in other places. 
 
 The framework we use in this project is the [REACT](https://reactjs.org/). 
-<br> <b>Website Link: https://cmlg.wdcc.co.nz/ <b>
+<br> <b>Website Link: https://cmlg.wdcc.co.nz/ </b>
 
 ## Getted Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
