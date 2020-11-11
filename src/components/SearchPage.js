@@ -107,7 +107,6 @@ class SearchPage extends React.Component {
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
                   '&pageRows=all';
 
-
         if ( this.state.word !== '' ) {
             // add search words
             url += '&word=' + this.state.word;
@@ -197,7 +196,7 @@ class SearchPage extends React.Component {
                            darkMode = { this.props.darkMode }
                     />
                 </div>
-                <div>
+                <div className = "pagination">
                     { this.state.totalPages > 1 &&
                       <Pagination totalPages = { this.state.totalPages }
                                   pageNeighbours={ 2 }

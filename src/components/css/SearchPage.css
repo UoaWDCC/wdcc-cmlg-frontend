@@ -1,7 +1,8 @@
 .search-page {
     display: flex;
-    height: calc(100vh - 44px);
     flex-direction: column;
+    flex: 1 1 auto;
+    overflow-y: auto;
 }
 
 .table-div {
