@@ -75,8 +75,15 @@ class SearchPage extends React.Component {
     }
 
     handleRowsPerPageChanges( numberOfPagesPerRow ) {
-    	this.setState( {
-			rowsPerPage: numberOfPagesPerRow
+        let totalPages = 1;
+        if ( numberOfPagesPerRow !== "all" ) {
+            // calculate the total pages needed
+            //@Todo only get displayed data from backend
+            totalPages = Math.ceil( this.state.tableData.length / numberOfPagesPerRow );
+        }
+        this.setState( {
+			rowsPerPage: numberOfPagesPerRow,
+            totalPages: totalPages
 		} )
 	}
 
@@ -146,6 +153,7 @@ class SearchPage extends React.Component {
                 }
 
                 // calculate how many pages are needed if user doesn't want to see all pages
+                //@Todo use the value provided by the backend directly
                 let totalPages = responseData.totalPageNum;
                 if ( this.state.rowsPerPage !== "all" ) {
                     totalPages = Math.ceil( sortedListOfWords.length / this.state.rowsPerPage );

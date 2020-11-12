@@ -131,6 +131,7 @@ class Table extends React.Component {
         } )
     }
 
+    //@Todo sorting should be moved to backend
     sortColumn() {
 
         let sortedTranslationData = this.props.data.slice();
@@ -170,6 +171,7 @@ class Table extends React.Component {
         return sortedTranslationData;
     }
 
+    //@Todo this should be moved to backend
     getDisplayedData(sortedData ) {
 
         let dataDisplayed = [];
