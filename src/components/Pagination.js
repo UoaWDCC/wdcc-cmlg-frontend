@@ -97,7 +97,7 @@ class Pagination extends React.Component {
 
         return (
             <nav aria-label="Pagination">
-                <ul className="pagination">
+                <ul className={ ` pagination ${ this.props.darkMode ? 'dark-mode' : '' }` }>
                     { pages.map( ( page, index ) => {
 
                         if ( page === LEFT_PAGE ) return (

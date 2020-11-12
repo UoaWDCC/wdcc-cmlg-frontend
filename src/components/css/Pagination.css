@@ -21,12 +21,22 @@
    color: #212529;
 }
 
-#ellipsis:hover {
-   color: gray;
-   background-color: white;
-}
-
 #ellipsis {
    pointer-events: none;
    cursor: default;
+}
+
+.dark-mode .page-link {
+   background-color: black;
+   color:#d3d9df;
+} 
+
+.dark-mode .page-link:hover {
+   color: #212529;
+   background-color: #d3d9df;
+}
+
+.dark-mode .page-item.active .page-link {
+   color: white;
+   background-color: black;
 }

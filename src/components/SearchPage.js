@@ -202,6 +202,7 @@ class SearchPage extends React.Component {
                                 pageNeighbours={ 2 }
                                 onPageChanged={ this.onPageChanged }
                                 currentPage = { this.state.currentPage }
+                                darkMode = { this.props.darkMode }
                     /> 
                 </div>
                 }
