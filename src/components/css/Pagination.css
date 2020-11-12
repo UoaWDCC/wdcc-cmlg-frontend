@@ -1,3 +1,9 @@
+.pagination {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
 .page-link {
    margin: 1px; 
    border: none;
