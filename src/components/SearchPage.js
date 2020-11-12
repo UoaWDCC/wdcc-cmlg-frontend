@@ -196,14 +196,15 @@ class SearchPage extends React.Component {
                            darkMode = { this.props.darkMode }
                     />
                 </div>
+                { this.state.totalPages > 1 && 
                 <div className = "pagination">
-                    { this.state.totalPages > 1 &&
-                      <Pagination totalPages = { this.state.totalPages }
-                                  pageNeighbours={ 2 }
-                                  onPageChanged={ this.onPageChanged }
-                                  currentPage = { this.state.currentPage }
-                      /> }
+                    <Pagination totalPages = { this.state.totalPages }
+                                pageNeighbours={ 2 }
+                                onPageChanged={ this.onPageChanged }
+                                currentPage = { this.state.currentPage }
+                    /> 
                 </div>
+                }
             </div>
         );
     }
