@@ -97,11 +97,10 @@ class Pagination extends React.Component {
 
         return (
             <nav aria-label="Pagination">
-                <ul className={ ` pagination ${ this.props.darkMode ? 'dark-mode' : '' }` }>
-                    { pages.map( ( page, index ) => {
+                    { pages.map( ( page ) => {
 
                         if ( page === LEFT_PAGE ) return (
-                            <li key={ index } className="page-item">
+                            <li key={ LEFT_PAGE } className="page-item">
                                 <a className="page-link" href="#" aria-label="Previous" onClick={ this.handleMoveLeft }>
                                     <span aria-hidden="true">&lt;</span>
                                 </a>
@@ -109,7 +108,7 @@ class Pagination extends React.Component {
                         );
 
                         if ( page === RIGHT_PAGE ) return (
-                            <li key={ index } className="page-item">
+                            <li key={ RIGHT_PAGE } className="page-item">
                                 <a className="page-link" href="#" aria-label="Next" onClick={ this.handleMoveRight }>
                                     <span aria-hidden="true">&gt;</span>
                                 </a>
@@ -117,7 +116,7 @@ class Pagination extends React.Component {
                         );
 
                         if ( page === ELLIPSIS ) return (
-                            <li key={ index } className="page-item">
+                            <li className="page-item">
                                 <a className="page-link" id="ellipsis" aria-label="Ellipsis">
                                     <span aria-hidden="true">&hellip;</span>
                                 </a>
@@ -125,7 +124,7 @@ class Pagination extends React.Component {
                         );
 
                         return (
-                            <li key={ index } className={ `page-item${ this.props.currentPage === page ? ' active' : '' }` }>
+                            <li key={ page } className={ `page-item${ this.props.currentPage === page ? ' active' : '' }` }>
                                 <a className="page-link" href="#" onClick={ this.handleClick( page ) }>{ page }</a>
                             </li>
                         );
