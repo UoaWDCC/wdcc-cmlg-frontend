@@ -97,6 +97,7 @@ class Pagination extends React.Component {
 
         return (
             <nav aria-label="Pagination">
+                <ul className={ `pagination ${ this.props.darkMode ? 'dark-mode' : '' }` }>
                     { pages.map( ( page ) => {
 
                         if ( page === LEFT_PAGE ) return (
@@ -124,7 +125,7 @@ class Pagination extends React.Component {
                         );
 
                         return (
-                            <li key={ page } className={ `page-item${ this.props.currentPage === page ? ' active' : '' }` }>
+                            <li key={ page } className={ `page-item ${ this.props.currentPage === page ? 'active' : '' }` }>
                                 <a className="page-link" href="#" onClick={ this.handleClick( page ) }>{ page }</a>
                             </li>
                         );

@@ -17,7 +17,8 @@
    text-decoration: underline;
 }
 
-.page-link:hover {
+.pagination .page-link:hover, .dark-mode .page-item.active .page-link:hover{
+   background-color: #e9ecef;
    color: #212529;
 }
 
@@ -31,12 +32,7 @@
    color:#d3d9df;
 } 
 
-.dark-mode .page-link:hover {
-   color: #212529;
-   background-color: #d3d9df;
-}
-
 .dark-mode .page-item.active .page-link {
-   color: white;
    background-color: black;
+   color: white;
 }
