@@ -1,12 +1,20 @@
 .search-page {
-    display: grid;
-    height: 100vh;
-    grid-template-rows: max-content;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    overflow-y: auto;
 }
 
 .table-div {
     overflow: scroll;
-    height: 100%;
+    flex: 1;
+}
+
+.pagination {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 5px;
+    bottom: 0;
 }
 
 .dark-mode {

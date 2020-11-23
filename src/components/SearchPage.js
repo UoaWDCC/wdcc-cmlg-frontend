@@ -107,7 +107,6 @@ class SearchPage extends React.Component {
         let url = 'https://cmlgbackend.wdcc.co.nz/api/translations?sequence=' + sequenceTime.getTime() +
                   '&pageRows=all';
 
-
         if ( this.state.word !== '' ) {
             // add search words
             url += '&word=' + this.state.word;
@@ -197,14 +196,16 @@ class SearchPage extends React.Component {
                            darkMode = { this.props.darkMode }
                     />
                 </div>
-                <div>
-                    { this.state.totalPages > 1 &&
-                      <Pagination totalPages = { this.state.totalPages }
-                                  pageNeighbours={ 2 }
-                                  onPageChanged={ this.onPageChanged }
-                                  currentPage = { this.state.currentPage }
-                      /> }
+                { this.state.totalPages > 1 && 
+                <div className = "pagination">
+                    <Pagination totalPages = { this.state.totalPages }
+                                pageNeighbours = { 2 }
+                                onPageChanged = { this.onPageChanged }
+                                currentPage = { this.state.currentPage }
+                                darkMode = { this.props.darkMode }
+                    /> 
                 </div>
+                }
             </div>
         );
     }

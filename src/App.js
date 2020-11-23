@@ -32,22 +32,24 @@ class App extends React.Component{
 
     render(){
         return (
-            <Router className="App" >
-                <HeaderBar callbackParent = { this.darkModeChanged } darkMode = {this.state.darkMode} />  
-                {/* A <Switch> looks through its children <Route>s and
-                renders the first one that matches the current URL. */}
-                    <Switch>
-                        <Route path="/translations">
-                            <SearchPage darkMode= {this.state.darkMode} />
-                        </Route>
-                        <Route exact path="/">
-                            <WelcomePage darkMode= {this.state.darkMode}/>
-                        </Route>
-                        <Route path="/about">
-                            <AboutUsPage darkMode= {this.state.darkMode}/>
-                        </Route>
-                    </Switch>
-            </Router>
+            <div className="App">
+                <Router>
+                    <HeaderBar callbackParent = { this.darkModeChanged } darkMode = {this.state.darkMode} />  
+                    {/* A <Switch> looks through its children <Route>s and
+                    renders the first one that matches the current URL. */}
+                        <Switch>
+                            <Route path="/translations">
+                                <SearchPage darkMode= {this.state.darkMode} />
+                            </Route>
+                            <Route exact path="/">
+                                <WelcomePage darkMode= {this.state.darkMode}/>
+                            </Route>
+                            <Route path="/about">
+                                <AboutUsPage darkMode= {this.state.darkMode}/>
+                            </Route>
+                        </Switch>
+                </Router>
+            </div>
         );
     }
 }

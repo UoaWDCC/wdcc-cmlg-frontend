@@ -1,0 +1,38 @@
+.pagination {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.page-link {
+   margin: 1px; 
+   border: none;
+   color: gray;
+   background-color: white;
+}
+
+.page-item.active .page-link {
+   color: black;
+   background-color: white;
+   text-decoration: underline;
+}
+
+.pagination .page-link:hover, .dark-mode .page-item.active .page-link:hover{
+   background-color: #e9ecef;
+   color: #212529;
+}
+
+#ellipsis {
+   pointer-events: none;
+   cursor: default;
+}
+
+.dark-mode .page-link {
+   background-color: black;
+   color:#d3d9df;
+} 
+
+.dark-mode .page-item.active .page-link {
+   background-color: black;
+   color: white;
+}

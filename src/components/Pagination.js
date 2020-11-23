@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "./css/Pagination.css"
 
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
@@ -96,36 +97,35 @@ class Pagination extends React.Component {
 
         return (
             <nav aria-label="Pagination">
-                <ul className="pagination">
-                    { pages.map( ( page, index ) => {
+                <ul className={ `pagination ${ this.props.darkMode ? 'dark-mode' : '' }` }>
+                    { pages.map( ( page ) => {
 
                         if ( page === LEFT_PAGE ) return (
-                            <li key={ index } className="page-item">
+                            <li key={ LEFT_PAGE } className="page-item">
                                 <a className="page-link" href="#" aria-label="Previous" onClick={ this.handleMoveLeft }>
                                     <span aria-hidden="true">&lt;</span>
-                                    <span className="sr-only">Previous</span>
                                 </a>
                             </li>
                         );
 
                         if ( page === RIGHT_PAGE ) return (
-                            <li key={ index } className="page-item">
+                            <li key={ RIGHT_PAGE } className="page-item">
                                 <a className="page-link" href="#" aria-label="Next" onClick={ this.handleMoveRight }>
                                     <span aria-hidden="true">&gt;</span>
-                                    <span className="sr-only">Next</span>
                                 </a>
                             </li>
                         );
 
                         if ( page === ELLIPSIS ) return (
-                            <li key={ index } className="page-item">
-                                <span aria-hidden="true">&hellip;</span>
-                                <span className="sr-only"/>
+                            <li className="page-item">
+                                <a className="page-link" id="ellipsis" aria-label="Ellipsis">
+                                    <span aria-hidden="true">&hellip;</span>
+                                </a>
                             </li>
                         );
 
                         return (
-                            <li key={ index } className={ `page-item${ this.props.currentPage === page ? ' active' : '' }` }>
+                            <li key={ page } className={ `page-item ${ this.props.currentPage === page ? 'active' : '' }` }>
                                 <a className="page-link" href="#" onClick={ this.handleClick( page ) }>{ page }</a>
                             </li>
                         );
