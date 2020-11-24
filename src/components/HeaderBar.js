@@ -63,17 +63,17 @@ class HeaderBar extends React.Component {
 
         const items = (
             <div>
-                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} exact to="/">
+                <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} exact to="/">
                     <li>
                         <i className={ ` fas fa-home ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Home</i>
                     </li>
                 </NavLink>
-                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/translations">
+                <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/translations">
                     <li>
                         <i className={ ` fas fa-search ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Search</i>
                     </li>
                 </NavLink>
-                <NavLink activeStyle={{textShadow: "2px 2px 5px #5DADE2"}} to="/about">
+                <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/about">
                     <li>
                         <i className={ ` fas fa-info-circle ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;About</i>
                     </li>
@@ -82,13 +82,13 @@ class HeaderBar extends React.Component {
         );
 
         return (
-            <nav className={ this.props.darkMode ? "dark-mode-Headerbar" : ""}> 
+            <nav className={ this.props.darkMode ? "dark-mode-Headerbar" : "" }>
                 <ul>
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
                         <i className= { ` fas fa-bars ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
                     
-                    <li id="darkMode" onClick={this.handleDarkMode } >
+                    <li id="darkMode" onClick={ this.handleDarkMode } >
                         <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon" : "fa-sun" } ` }/>
                     </li>
                     { this.state.BarOpen && items }

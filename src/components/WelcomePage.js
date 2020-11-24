@@ -8,9 +8,11 @@ class WelcomePage extends React.Component {
     render() {
         return (
             <div className={ ` welcomePage ${ this.props.darkMode ? "dark-mode" : "" } ` }>
-                <img id="background-img" src={ this.props.darkMode ? flagsImageNight : flagsImageDay } alt="Flags background" />
+                <img id="background-img" src={ this.props.darkMode ? flagsImageNight : flagsImageDay }
+                     alt="Flags background" />
                 <Link to="/translations">
-                    <button type="button" className={ ` btn btn-outline-dark ${ this.props.darkMode? "btn-dark-mode" : "" } ` }>Start searching</button>
+                    <button type="button" className={ ` btn btn-outline-dark 
+                    ${ this.props.darkMode? "btn-dark-mode" : "" } ` }>Start searching</button>
                 </Link>
             </div>
 
