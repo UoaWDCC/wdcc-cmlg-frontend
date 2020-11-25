@@ -1,6 +1,6 @@
 import React from 'react';
-import './css/SearchBar.css';
-import { ReactComponent as SearchIcon } from './search-solid.svg';
+import '../css/SearchBar.css';
+import { ReactComponent as SearchIcon } from '../resource/search-solid.svg';
 
 class SearchBar extends React.Component{
     constructor( props ) {
@@ -20,7 +20,6 @@ class SearchBar extends React.Component{
 
     // Add event listener
     componentDidMount() {
-        this.updateDimensions();
         window.addEventListener( "resize", this.updateDimensions.bind( this ) );
     }
 
@@ -34,7 +33,6 @@ class SearchBar extends React.Component{
     // call the changeWord function in the SearchPage class to change its state
     render() {
         return(
-
             <div className='search' > 
                 <input autoFocus className= { ` bar ${ this.props.darkMode ? "dark-mode-bar" : "" } ` } 
                        type="text" placeholder={ this.state.placeholderText }
