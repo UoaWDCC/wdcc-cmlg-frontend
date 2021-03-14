@@ -181,7 +181,7 @@ class SearchPage extends React.Component {
                                    getsSelectedLanguage = { this.handleSelectCol }
                                    allLanguages = { this.state.selectedColumns }/>
 
-                        <RowsPerPageToggleButton darkMode= {this.props.darkMode} onButtonClicked = { this.handleRowsPerPageChanges } activebtn = { this.state.rowsPerPage }/>
+                        <RowsPerPageToggleButton darkMode= {this.props.darkMode} onButtonClicked = { this.handleRowsPerPageChanges } activeButton = { this.state.rowsPerPage }/>
                     </div>
 
                 </div>
