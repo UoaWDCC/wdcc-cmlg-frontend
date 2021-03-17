@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+body {
+    line-height: normal;
+}
+
+#title-txt {
+    font-size: 7vw;
+    text-align: center;
+    font-weight: bold;
+}
+
 .welcomePage {
     height: 100vh;
     display: flex;
@@ -17,43 +27,11 @@
     max-width: 100%;
 }
 
-img {
-    max-width:100%
-}
+/* Responsive design for title and button */
+@media screen and (min-width: 760px) {
 
-h1 {
-    color: black;
-    font-size: 4.25em;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    text-shadow: 4px 4px 0px rgba(72, 154, 232, 0.89);
-}
-
-p {
-    font-size: 1.3rem;
-}
-
-/* Responsive design for h1 */
-@media screen and (min-width: 320px) {
-    h1 {
-        font-size: 1.5em;
-    }
-    
-    #background-img {
-        width: 100%;
-        padding-bottom: 15px;
-    }
-    
-}
-
-@media (min-width: 760px) {
-    h1 {
-        font-size: 3.25em;
-    }
-
-    #background-img {
-        width: 70%;
-        padding-bottom: 20px;
+    #title-txt {
+        font-size: 4.5vw;
     }
 
     .btn {
