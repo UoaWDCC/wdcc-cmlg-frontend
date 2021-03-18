@@ -34,7 +34,7 @@ class SelectCol extends React.Component {
     }
 
     handleClickOutside = event => {
-        if (!this.node.contains( event.target ) ) {
+        if ( this.node && !this.node.contains( event.target ) ) {
             this.onButtonClick();
         }
     }

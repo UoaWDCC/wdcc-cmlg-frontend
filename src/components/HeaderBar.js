@@ -36,7 +36,7 @@ class HeaderBar extends React.Component {
     }
 
     handleClickOutside( event ) {
-        if (!this.node.contains( event.target ) ) {
+        if ( this.node && !this.node.contains( event.target ) ) {
             this.setState( {
                 BarOpen: window.innerWidth > 600
             } );
