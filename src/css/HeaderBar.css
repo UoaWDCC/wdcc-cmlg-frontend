@@ -18,6 +18,10 @@ li i:hover {
     opacity: 0.7;
 }
 
+.fa-icon-inner-text {
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
 #darkMode{
     float: right;
     margin-right: 2%;

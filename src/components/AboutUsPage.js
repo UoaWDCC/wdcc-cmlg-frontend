@@ -11,7 +11,7 @@ class AboutUsPage extends React.Component {
                 </p>
                 <p>
                     We are a group of six students studying at The University of Auckland. As part of
-                    UoA’s Web Development Consulting Club (WDCC), we have came together to development
+                    UoA's Web Development Consulting Club (WDCC), we have came together to development
                     this Multilingual Glossary. We hope you enjoy using our software!<br/><br/><br/>
                 </p>
                 <p id="smallTitle">
