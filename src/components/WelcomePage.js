@@ -6,7 +6,7 @@ class WelcomePage extends React.Component {
     render() {
         return (
             <div className={ ` welcomePage ${ this.props.darkMode ? "dark-mode" : "" } ` }>
-                <h id="title-txt">COVID-19 Multilingual Glossary</h>
+                <h1 id="title-txt">COVID-19 Multilingual Glossary</h1>
                 <br />
                 <Link to="/translations">
                     <button type="button" className={ ` btn btn-outline-dark 
