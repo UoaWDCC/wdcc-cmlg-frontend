@@ -98,7 +98,7 @@ class Pagination extends React.Component {
         return (
             <nav aria-label="Pagination">
                 <ul className={ `pagination ${ this.props.darkMode ? 'dark-mode' : '' }` }>
-                    { pages.map( ( page ) => {
+                    { pages.map( ( page, index ) => {
 
                         if ( page === LEFT_PAGE ) return (
                             <li key={ LEFT_PAGE } className="page-item">
@@ -117,7 +117,7 @@ class Pagination extends React.Component {
                         );
 
                         if ( page === ELLIPSIS ) return (
-                            <li className="page-item">
+                            <li key={ ELLIPSIS + index } className="page-item">
                                 <a className="page-link" id="ellipsis" aria-label="Ellipsis">
                                     <span aria-hidden="true">&hellip;</span>
                                 </a>
