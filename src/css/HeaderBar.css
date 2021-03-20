@@ -20,6 +20,7 @@ li i:hover {
 
 .headerBarText {
     font-family: 'Helvetica Neue', sans-serif;
+    font-weight: normal;
 }
 
 #darkMode{
