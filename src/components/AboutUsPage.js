@@ -46,7 +46,17 @@ class AboutUsPage extends React.Component {
                     4. Display optional languages,<br/>
                     5. Fix the first column and the header,<br/>
                     6. Implement the WelcomePage,<br/>
-                    7. Fixed minor bugs.<br/><br/><br/>
+                    7. Fixed minor bugs.<br/><br/>
+                </p>
+                <p id="version">
+                    - v3.0<br/>
+                </p>
+                <p>
+                    1. Renewed the welcome page,<br/>
+                    2. Changed the font of the whole page to be Helvetica,<br/>
+                    3. Implemented dark mode,<br/>
+                    4. Page pagination added, <br/>
+                    5. Fixed minor bugs.<br/><br/><br/>
                 </p>
             </div>
 
