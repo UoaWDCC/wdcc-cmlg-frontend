@@ -65,17 +65,17 @@ class HeaderBar extends React.Component {
             <div>
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} exact to="/">
                     <li>
-                        <i className={ ` fas fa-home ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Home</i>
+                        <i className={ ` fas fa-home ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }><span className="headerBarText">&nbsp;Home</span></i>
                     </li>
                 </NavLink>
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/translations">
                     <li>
-                        <i className={ ` fas fa-search ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;Search</i>
+                        <i className={ ` fas fa-search ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }><span className="headerBarText">&nbsp;Search</span></i>
                     </li>
                 </NavLink>
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/about">
                     <li>
-                        <i className={ ` fas fa-info-circle ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }>&nbsp;About</i>
+                        <i className={ ` fas fa-info-circle ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }><span className="headerBarText">&nbsp;About</span></i>
                     </li>
                 </NavLink>
             </div>
