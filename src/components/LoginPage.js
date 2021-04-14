@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../css/LoginPage.css";
 
 const onSubmit = () => {
-
+    // TODO: Send username and password to backend login api
 }
 
 const LoginForm = () => {
@@ -12,22 +12,20 @@ const LoginForm = () => {
 
     return (
 
-        <div className="base-container">
+        <div className="container">
             <div className="header">Login</div>
-            <div className="content">
-                <div className="form">
-                    <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" placeholder="username" />
-                    </div>
-                    <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" placeholder="password" />
-                    </div>
+            <div className="form">
+                <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" placeholder="username" onChange={ (e) => { setUsername(e.target.value) } }/>
+                </div>
+                <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" placeholder="password" onChange={ (e) => { setPassword(e.target.value) } } />
                 </div>
             </div>
             <div className="footer">
-                <button type="button" className="btn">
+                <button type="button" className="btn" onClick={ onSubmit }>
                     Login
                 </button>
             </div>
