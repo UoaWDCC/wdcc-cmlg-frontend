@@ -5,14 +5,14 @@ const onSubmit = () => {
     // TODO: Send username and password to backend login api
 }
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     return (
 
-        <div className="container">
+        <div className={ ` container ${props.darkMode ? "dark-mode" : ""} `}>
             <div className="header">Login</div>
             <div className="form">
                 <div className="form-group">
@@ -25,7 +25,7 @@ const LoginForm = () => {
                 </div>
             </div>
             <div className="footer">
-                <button type="button" className="btn" onClick={ onSubmit }>
+                <button type="button" className={ `btn ${props.darkMode ? "dark-mode-btn" : ""} `} onClick={ onSubmit }>
                     Login
                 </button>
             </div>
