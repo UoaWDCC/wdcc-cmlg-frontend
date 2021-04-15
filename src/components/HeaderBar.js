@@ -11,10 +11,13 @@ class HeaderBar extends React.Component {
             SettingOpen : false
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
+        this.handleSettingToggleClick = this.handleSettingToggleClick( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
         this.handleDarkMode = this.handleDarkModeChanged.bind( this )
         this.handleClickOutside = this.handleClickOutside.bind( this )
-        this.handleSetting = this.handleSetting.bind( this )
+        this.handleClickOutsideForSetting = this.handleClickOutsideForSetting( this )
+        // this.nodeSetting = React.createRef();
+        // this.handleSetting = this.handleSetting.bind( this )
     }
 
     handleBarToggleClick() {
@@ -29,6 +32,18 @@ class HeaderBar extends React.Component {
         } )
     }
 
+    handleSettingToggleClick() {
+        if (!this.state.SettingOpen) {
+            document.addEventListener("click", this.handleClickOutsideForSetting);
+        } else {
+            document.removeEventListener("click", this.handleClickOutsideForSetting);
+        }
+
+        this.setState( ( prevState ) => {
+            return { SettingOpen: !prevState.SettingOpen }
+        } )
+    }
+
     updateBarOpen() {
         if ( window.innerWidth > 600 ) {
             this.setState( { BarOpen: true } );
@@ -40,7 +55,18 @@ class HeaderBar extends React.Component {
     handleClickOutside( event ) {
         if ( this.node && !this.node.contains( event.target ) ) {
             this.setState( {
-                BarOpen: window.innerWidth > 600
+                BarOpen: window.innerWidth > 600,
+            } );
+        }
+    }
+
+    handleClickOutsideForSetting( event ) {
+        console.log("xxxxx");
+        console.log(event);
+        console.log(this.nodeSetting);
+        if ( this.nodeSetting && !this.nodeSetting.contains( event.target ) ) {
+            this.setState( {
+                SettingOpen : !this.state.SettingOpen
             } );
         }
     }
@@ -55,7 +81,6 @@ class HeaderBar extends React.Component {
     componentWillUnmount() {
         window.removeEventListener( "resize", this.updateBarOpen );
     }
-    
 
     handleDarkModeChanged() {
         this.props.callbackParent(this.state.darkMode);
@@ -96,7 +121,7 @@ class HeaderBar extends React.Component {
                 </li>
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/login">
                     <li id="login">
-                        <i class={ ` fas fa-sign-in-alt ${ this.props.darkMode ? "dark-mode-icon" : ""} `}></i>
+                        <i className={ ` fas fa-sign-in-alt ${ this.props.darkMode ? "dark-mode-icon" : ""} `}></i>
                     </li>
                 </NavLink>
             </div>
@@ -108,14 +133,14 @@ class HeaderBar extends React.Component {
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
                         <i className= { ` fas fa-bars ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
-                    <li id="setting"  onClick={ this.handleSetting } >
+                    <li id="setting" ref={ nodeSetting => this.nodeSetting = nodeSetting } onClick={ this.handleSettingToggleClick } >
+                    {/* <li id="setting" ref={ node => this.nodeSetting = node } onClick={ this.handleSetting } > */}
                         <i className={ ` fas fa-cog ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
                     { this.state.BarOpen && items }
                     { this.state.SettingOpen && settingOptions}
                 </ul>
             </nav>
-            
         );
     }
 }
