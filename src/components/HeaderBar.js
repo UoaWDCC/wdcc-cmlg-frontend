@@ -11,13 +11,11 @@ class HeaderBar extends React.Component {
             SettingOpen : false
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
-        this.handleSettingToggleClick = this.handleSettingToggleClick( this )
+        this.handleSettingToggleClick = this.handleSettingToggleClick.bind( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
         this.handleDarkMode = this.handleDarkModeChanged.bind( this )
         this.handleClickOutside = this.handleClickOutside.bind( this )
-        this.handleClickOutsideForSetting = this.handleClickOutsideForSetting( this )
-        // this.nodeSetting = React.createRef();
-        // this.handleSetting = this.handleSetting.bind( this )
+        this.handleClickOutsideForSetting = this.handleClickOutsideForSetting.bind( this )
     }
 
     handleBarToggleClick() {
@@ -38,7 +36,6 @@ class HeaderBar extends React.Component {
         } else {
             document.removeEventListener("click", this.handleClickOutsideForSetting);
         }
-
         this.setState( ( prevState ) => {
             return { SettingOpen: !prevState.SettingOpen }
         } )
@@ -61,12 +58,9 @@ class HeaderBar extends React.Component {
     }
 
     handleClickOutsideForSetting( event ) {
-        console.log("xxxxx");
-        console.log(event);
-        console.log(this.nodeSetting);
         if ( this.nodeSetting && !this.nodeSetting.contains( event.target ) ) {
             this.setState( {
-                SettingOpen : !this.state.SettingOpen
+                SettingOpen : false
             } );
         }
     }
@@ -134,7 +128,6 @@ class HeaderBar extends React.Component {
                         <i className= { ` fas fa-bars ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
                     <li id="setting" ref={ nodeSetting => this.nodeSetting = nodeSetting } onClick={ this.handleSettingToggleClick } >
-                    {/* <li id="setting" ref={ node => this.nodeSetting = node } onClick={ this.handleSetting } > */}
                         <i className={ ` fas fa-cog ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
                     { this.state.BarOpen && items }
