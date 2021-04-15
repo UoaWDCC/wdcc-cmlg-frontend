@@ -8,11 +8,13 @@ class HeaderBar extends React.Component {
         super(props);
         this.state = {
             BarOpen : window.innerWidth > 600,
+            SettingOpen : false
         }
         this.handleBarToggleClick = this.handleBarToggleClick.bind( this )
         this.updateBarOpen = this.updateBarOpen.bind( this )
         this.handleDarkMode = this.handleDarkModeChanged.bind( this )
         this.handleClickOutside = this.handleClickOutside.bind( this )
+        this.handleSetting = this.handleSetting.bind( this )
     }
 
     handleBarToggleClick() {
@@ -43,6 +45,7 @@ class HeaderBar extends React.Component {
         }
     }
 
+
     // Add event listener
     componentDidMount() {
         window.addEventListener( "resize", this.updateBarOpen );
@@ -54,10 +57,15 @@ class HeaderBar extends React.Component {
     }
     
 
-    handleDarkModeChanged(){
+    handleDarkModeChanged() {
         this.props.callbackParent(this.state.darkMode);
     }
 
+    handleSetting() {
+        this.setState( {
+            SettingOpen : !this.state.SettingOpen
+        } );
+    }
 
     render() {
 
@@ -81,17 +89,30 @@ class HeaderBar extends React.Component {
             </div>
         );
 
+        const settingOptions = (
+            <div className="settingCard">
+                <li id="darkMode" onClick={ this.handleDarkMode } >
+                    <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon" : "fa-sun" } ` } />
+                </li>
+                <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/login">
+                    <li id="login">
+                        <i class={ ` fas fa-sign-in-alt ${ this.props.darkMode ? "dark-mode-icon" : ""} `}></i>
+                    </li>
+                </NavLink>
+            </div>
+        )
+
         return (
             <nav className={ this.props.darkMode ? "dark-mode-Headerbar" : "" }>
                 <ul>
                     <li id="bar" ref={ node => this.node = node } onClick={ this.handleBarToggleClick }>
                         <i className= { ` fas fa-bars ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
-                    
-                    <li id="darkMode" onClick={ this.handleDarkMode } >
-                        <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon" : "fa-sun" } ` }/>
+                    <li id="setting"  onClick={ this.handleSetting } >
+                        <i className={ ` fas fa-cog ${ this.props.darkMode ? "dark-mode-icon" : "" } ` } />
                     </li>
                     { this.state.BarOpen && items }
+                    { this.state.SettingOpen && settingOptions}
                 </ul>
             </nav>
             

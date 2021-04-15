@@ -23,10 +23,24 @@ li i:hover {
     font-weight: normal;
 }
 
-#darkMode{
+#setting{
     float: right;
     margin-right: 2%;
     cursor:pointer
+}
+
+.settingCard{
+    float: right;
+    margin-right: 2%;
+    cursor:pointer
+    /* width: 3rem;
+    padding-left: 10px;
+    padding-bottom:10px;
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    z-index: 1000;
+    flex-direction: column; */
 }
 
 #bar {
@@ -43,6 +57,19 @@ li i:hover {
     #bar{
         float: left;
         display: block;
+    }
+    .settingCard{
+        margin-top: 10%;
+        position: fixed;
+        right: 0%;
+        /* width: 3.8rem;
+        padding-left: 10px;
+        padding-bottom:10px;
+        position: fixed;
+        right: 5px;
+        top: 35px;
+        z-index: 1000;
+        flex-direction: column; */
     }
 }
 
