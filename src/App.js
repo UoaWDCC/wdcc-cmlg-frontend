@@ -10,6 +10,7 @@ import WelcomePage from "./components/WelcomePage";
 import HeaderBar from "./components/HeaderBar";
 import AboutUsPage from "./components/AboutUsPage";
 import "./App.css";
+import LoginPage from "./components/LoginPage";
 
 
 class App extends React.Component{
@@ -46,6 +47,9 @@ class App extends React.Component{
                             </Route>
                             <Route path="/about">
                                 <AboutUsPage darkMode= {this.state.darkMode}/>
+                            </Route>
+                            <Route path="/login">
+                                <LoginPage darkMode= {this.state.darkMode}/>
                             </Route>
                         </Switch>
                 </Router>
