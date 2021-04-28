@@ -109,13 +109,15 @@ class HeaderBar extends React.Component {
         );
 
         const settingOptions = (
-            <div className="settingCard">
-                <li id="darkMode" onClick={ this.handleDarkMode } >
-                    <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon" : "fa-sun" } ` } />
+            <div className={` settingCard ${this.props.darkMode ? "dark-mode-settingCard" : "" }  `}>
+                <li id="darkModeIcon" onClick={ this.handleDarkMode } >
+                    <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon " : "fa-sun" } ` } > </i> 
+                    <i> <span className={ `${ this.props.darkMode ? "dark-mode-span" : "" } ` }> {this.props.darkMode ? "Dark" : "Light" }  </span>  </i>
                 </li>
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/login">
                     <li id="login">
                         <i className={ ` fas fa-sign-in-alt ${ this.props.darkMode ? "dark-mode-icon" : ""} `}></i>
+                        <i> <span className={ `${ this.props.darkMode ? "dark-mode-span" : "" } ` }> Login </span>  </i>
                     </li>
                 </NavLink>
             </div>
