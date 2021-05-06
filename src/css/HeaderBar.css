@@ -30,15 +30,10 @@ li i:hover {
 }
 
 .settingCard {
-  /* float: right;
-    margin-right: 2%;
-    cursor:pointer */
-  width: 8rem;
-  /* padding-left: 10px; */
-  /* padding-bottom:10px; */
+  width: 7rem;
   position: fixed;
   right: 10px;
-  top: 30px;
+  top: 40px;
   z-index: 1000;
   flex-direction: column;
   background-color: white;
@@ -52,29 +47,6 @@ li i:hover {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
-  li i {
-    float: none;
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-  #bar {
-    float: left;
-    display: block;
-  }
-  .settingCard {
-    margin-top: 0%;
-    position: fixed;
-    right: 10px;
-    border-radius: 10%;
-  }
-
-  /* .settingCard li i {
-        display: inline-block;
-    } */
-}
-
 .dark-mode-Headerbar {
   background-color: black;
 }
@@ -85,6 +57,7 @@ li i:hover {
 
 #darkModeIcon {
   display: inline-flex;
+  right: 20px;
 }
 
 #login {
@@ -99,3 +72,4 @@ li i:hover {
   background-color: black;
   border-color: grey;
 }
+
