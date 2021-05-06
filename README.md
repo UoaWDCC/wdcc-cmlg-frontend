@@ -8,24 +8,16 @@ The framework we use in this project is the [REACT](https://reactjs.org/).
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequesties
-Please make sure you install node.js in your local machines.
+- Have git installed: https://git-scm.com/downloads
+- Have Node.js installed: https://nodejs.org/en/
 
 ### Installation
 For [Node.js](https://nodejs.org/en/), please visit the official website and download from there. All installation below via npm. 
 
-Creating a REACT project via npm
-```
-npx create-react-app my-app
-cd my-app
-npm start
-```
-
-After finishing installation, you can pull the code from the master branch down to your local computers. (Assume you are currently inside the my-app directory)
-```
-git init
-git add remote origin url
-git pull origin master
-```
+### To clone the project to a vscode environment:
+1) Get the HTTPS URL for the repo, and put it into vscode (click "clone repository in vscode welcome page)
+2) After the cloning is complete, run npm install to install dependencies
+3) Run npm start to check the project was cloned properly
 
 ### Run Project
 ```
