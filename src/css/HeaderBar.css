@@ -68,8 +68,26 @@ li i:hover {
   color: white;
 }
 
+.dark-mode-span-login {
+  color: white;
+}
+
 .dark-mode-settingCard {
   background-color: black;
   border-color: grey;
 }
 
+
+@media screen and (max-width: 600px) {
+  li i {
+      float: none;
+      display: block;
+      width: 100%;
+      text-align: left;
+      right: 20px i !important;
+  }
+  #bar{
+      float: left;
+      display: block;
+  }
+}

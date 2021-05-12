@@ -58,7 +58,9 @@ class HeaderBar extends React.Component {
     }
 
     handleClickOutsideForSetting( event ) {
-        if ( this.nodeSetting && !this.nodeSetting.contains( event.target ) ) {
+
+        if ( this.nodeSetting &&  event.target.className !== "dark-mode-span " && event.target.className !== "light-mode-span "  && !this.nodeSetting.contains( event.target ))  {
+ 
             this.setState( {
                 SettingOpen : false
             } );
@@ -89,7 +91,7 @@ class HeaderBar extends React.Component {
     render() {
 
         const items = (
-            <div>
+            <div className="items">
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} exact to="/">
                     <li>
                         <i className={ ` fas fa-home ${ this.props.darkMode ? "dark-mode-icon" : "" } ` }><span className="headerBarText">&nbsp;Home</span></i>
@@ -112,12 +114,12 @@ class HeaderBar extends React.Component {
             <div className={` settingCard ${this.props.darkMode ? "dark-mode-settingCard" : "" }  `}>
                 <li id="darkModeIcon" onClick={ this.handleDarkMode } >
                     <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-moon " : "fa-sun" } ` } > </i> 
-                    <i > <span className={ `${ this.props.darkMode ? "dark-mode-span" : "" } ` }> {this.props.darkMode ? "Dark Mode" : "Light Mode" }  </span>  </i>
+                    <i > <span className={ `${ this.props.darkMode ? "dark-mode-span" : "light-mode-span" } ` }> {this.props.darkMode ? "Dark Mode" : "Light Mode" }  </span>  </i>
                 </li>
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/login">
                     <li id="login">
                         <i className={ ` fas fa-sign-in-alt ${ this.props.darkMode ? "dark-mode-icon" : ""} `}></i>
-                        <i> <span className={ `${ this.props.darkMode ? "dark-mode-span" : "" } ` }> Login </span>  </i>
+                        <i> <span className={ `${ this.props.darkMode ? "dark-mode-span-login" : "" } ` }> Login </span>  </i>
                     </li>
                 </NavLink>
             </div>
