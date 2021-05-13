@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/LoginPage.css";
+import styles from "../css/LoginPage.module.css";
 
 const onSubmit = () => {
   // TODO: Send username and password to backend login api
@@ -10,12 +10,13 @@ const LoginForm = (props) => {
   const [password, setPassword] = useState("");
 
   return (
-    <div className={` container ${props.darkMode ? "dark-mode" : ""} `}>
-      <div className="header">Login</div>
-      <div className="form">
-        <div className="form-group">
+    <div className={` ${styles.container} ${props.darkMode ? "dark-mode" : ""} `}>
+      <div className={ styles.header }>Login</div>
+      <div className={styles.form}>
+        <div className={styles["form-group"]}>
           <label htmlFor="username">Username</label>
           <input
+            className={styles["login-input"]}
             type="text"
             name="username"
             placeholder="username"
@@ -24,9 +25,10 @@ const LoginForm = (props) => {
             }}
           />
         </div>
-        <div className="form-group">
+        <div className={styles["form-group"]}>
           <label htmlFor="password">Password</label>
           <input
+            className={styles["login-input"]}
             type="password"
             name="password"
             placeholder="password"
@@ -36,10 +38,10 @@ const LoginForm = (props) => {
           />
         </div>
       </div>
-      <div className="footer">
+      <div className={styles.footer}>
         <button
           type="button"
-          className={`btn ${props.darkMode ? "dark-mode-btn" : ""} `}
+          className={` btn ${props.darkMode ? styles["dark-mode-btn"] : ""} }`}
           onClick={onSubmit}
         >
           Login

@@ -29,7 +29,7 @@ label {
     font-size: 20px;
 }
 
-input {
+.login-input {
     margin-top: 6px;
     min-width: 18em;
     height: 37px;
@@ -48,18 +48,6 @@ input:focus {
 
 .footer {
     margin-top: 1%;
-}
-
-.btn {
-    border: 2px solid black;
-}
-
-.btn:focus {
-    box-shadow: none !important;
-}
-
-.btn:hover {
-    background-color: lightgray;
 }
 
 .dark-mode {

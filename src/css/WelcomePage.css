@@ -23,8 +23,13 @@ body {
 }
 
 .btn {
+    border: 2px solid black;
     border-radius: 25px;
     max-width: 100%;
+}
+
+.btn:hover {
+    background-color: lightgray;
 }
 
 /* Responsive design for title and button */
