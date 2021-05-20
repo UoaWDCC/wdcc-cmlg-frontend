@@ -60,6 +60,10 @@ li i:hover {
   right: 20px;
 }
 
+#darkModeIcon:hover {
+  cursor: pointer;
+}
+
 #login {
   display: inline-flex;
 }
@@ -77,17 +81,16 @@ li i:hover {
   border-color: grey;
 }
 
-
 @media screen and (max-width: 600px) {
   li i {
-      float: none;
-      display: block;
-      width: 100%;
-      text-align: left;
-      right: 20px i !important;
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    right: 20px i !important;
   }
-  #bar{
-      float: left;
-      display: block;
+  #bar {
+    float: left;
+    display: block;
   }
 }
