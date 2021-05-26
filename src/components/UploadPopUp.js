@@ -1,20 +1,37 @@
+import { SaveRounded } from '@material-ui/icons';
 import React, { useState } from 'react';
 
 function UploadPopUp() {
 
     const [file, setFile] = useState();
+    const [error, setError] = useState(false);
+
+    const isShown = true;
 
     function onChangeHandler(e) {
          setFile(e.target.files[0])
     }
 
-    function handleUploadSubmit(e) {
+    // I don't know how you can print something in the footer when the button of the Save changes is clicked ㅠㅠ
+
+    function handleUploadSubmit(e) { // what is e?
         console.log("file to submit",file)
+
         // Validate the file => correct extension/ headers
+        const valid = false;
+        //setError(!valid);
+        if (valid) {
+            setError(false);
+            // Make fetch/axios call to backend to upload the file 
+            // https://cmlgbackend.wdcc.co.nz/api/uploadfile
+
+        } else {
+            setError(true);
+        }
         
-        // Make fetch/axios call to backend to upload the file 
-        // https://cmlgbackend.wdcc.co.nz/api/uploadfile
     }
+
+    // would I need a function for the different error messages
 
     return (
         <div className='UploadPopUp '>
@@ -51,7 +68,9 @@ function UploadPopUp() {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="submit" form='fileForm' className="btn btn-primary" onClick={handleUploadSubmit} >Save changes</button>
+                            {/* { error ? <p>Error</p> : <p></p> } */}
+                            { error && <p className = "error-msg">Error</p>}
+                            <button id="demo"type="submit" form='fileForm' className="btn btn-primary" onClick={handleUploadSubmit} >Save changes</button>
                         </div>
                     </div>
                 </div>
