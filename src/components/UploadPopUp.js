@@ -71,6 +71,7 @@ function UploadPopUp() {
                         <div className="modal-footer">
                             {/* { error ? <p>Error</p> : <p></p> } */}
                             { error && <p id = "error-msg">Upload Error</p>}
+                            <button type="submit" form='fileForm' className="btn btn-primary" onClick={handleUploadSubmit} >Save changes</button>
                         </div>
                     </div>
                 </div>
