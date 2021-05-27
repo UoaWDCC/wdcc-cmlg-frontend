@@ -41,7 +41,7 @@ const LoginForm = (props) => {
       <div className={styles.footer}>
         <button
           type="button"
-          className={` btn ${props.darkMode ? styles["dark-mode-btn"] : ""} }`}
+          className={` btn btn-outline-dark ${props.darkMode ? styles["btn-dark-mode"] : ""} }`}
           onClick={onSubmit}
         >
           Login

@@ -10,7 +10,7 @@ class WelcomePage extends React.Component {
                 <h1 id="title-txt"> COVID-19 Multilingual Glossary </h1>
                 <br />
                 <Link to="/translations">
-                    <button type="button" className={ ` btn btn-outline-dark 
+                    <button type="button" className={ ` btn welcomeBtn btn-outline-dark 
                     ${ this.props.darkMode? "btn-dark-mode" : "" } ` }>Start searching</button>
                 </Link>
                 <UploadPopUp></UploadPopUp>
