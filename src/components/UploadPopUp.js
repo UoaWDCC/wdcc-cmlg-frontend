@@ -1,5 +1,6 @@
 import { SaveRounded } from '@material-ui/icons';
 import React, { useState } from 'react';
+import "../css/UploadPopUp.css";
 
 function UploadPopUp() {
 
@@ -69,8 +70,7 @@ function UploadPopUp() {
                         </div>
                         <div className="modal-footer">
                             {/* { error ? <p>Error</p> : <p></p> } */}
-                            { error && <p className = "error-msg">Error</p>}
-                            <button id="demo"type="submit" form='fileForm' className="btn btn-primary" onClick={handleUploadSubmit} >Save changes</button>
+                            { error && <p id = "error-msg">Upload Error</p>}
                         </div>
                     </div>
                 </div>
