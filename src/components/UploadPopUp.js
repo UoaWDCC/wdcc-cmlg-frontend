@@ -1,81 +1,102 @@
-import { SaveRounded } from '@material-ui/icons';
+import { DialogContent, DialogContentText, DialogActions, IconButton, Typography, withStyles } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import { Dialog, Button } from '@material-ui/core';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+
 import React, { useState } from 'react';
 import "../css/UploadPopUp.css";
+
+// From https://material-ui.com/components/dialogs/#customized-dialogs
+const styles = (theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
+
+const errorMsgText = {
+    invalidExtension: "Invalid file extension ",
+    invalidHeaders: "Invalid file format – Columns must be in the following order: Chinese, English, Italian, Arabic, Serbian, Croatian, Russian, German, Hebrew,  French,  Hungarian,  Slovak,  Spanish, Português, Türkçe, Greek, Romanian"
+}
 
 function UploadPopUp() {
 
     const [file, setFile] = useState();
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
+    const [open, setOpen] = React.useState(true);
 
-    const isShown = true;
-
-    function onChangeHandler(e) {
-         setFile(e.target.files[0])
+    function onFileChangeHandler(e) {
+        setFile(e.target.files[0])
     }
-
-    // I don't know how you can print something in the footer when the button of the Save changes is clicked ㅠㅠ
 
     function handleUploadSubmit(e) { // what is e?
-        console.log("file to submit",file)
+        console.log("file to submit", file)
+        let errMsg = "";
 
         // Validate the file => correct extension/ headers
-        const valid = false;
-        //setError(!valid);
-        if (valid) {
-            setError(false);
+        // Inside the validation method, set the error message and return it
+        // errMsg = errorMsgText.invalidExtension;
+        // errMsg = errorMsgText.invalidHeader;
+
+        if (errMsg == "") {
             // Make fetch/axios call to backend to upload the file 
             // https://cmlgbackend.wdcc.co.nz/api/uploadfile
-
+            handleClose();
         } else {
-            setError(true);
+            setError(errMsg);
         }
-        
     }
 
-    // would I need a function for the different error messages
+    // To be deleted
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        setError("");
+    };
+
+    // From https://material-ui.com/components/dialogs/#customized-dialogs
+    const DialogTitle = withStyles(styles)((props) => {
+        const { children, classes, onClose, ...other } = props;
+        return (
+            <MuiDialogTitle disableTypography className={classes.root} {...other}>
+                <Typography variant="h6">{children}</Typography>
+                {onClose ? (
+                    <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                        <CloseIcon />
+                    </IconButton>
+                ) : null}
+            </MuiDialogTitle>
+        );
+    });
 
     return (
         <div className='UploadPopUp '>
+            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                Open modal
+            </Button>
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth={true} maxWidth='sm'>
+                <DialogTitle id="form-dialog-title" onClose={handleClose}>Upload Translations</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Accepted format: *.xlsx
+                    </DialogContentText>
+                    <input type="file" accept=".xlsx" onChange={onFileChangeHandler} />
+                    <p id="error-msg">{error}</p>
+                </DialogContent>
+                <DialogActions>
+                    <button onClick={handleUploadSubmit} className={`btn btn-light`}>Upload</button>
+                </DialogActions>
+            </Dialog>
 
-            {/* <form action="/action_page.php" method="get">
-                <button name="subject" type="submit" value="HTML">hi</button>
-                <button name="subject" type="submit" value="CSS">bye</button>
-            </form>
-            <form action="/action_page.php" method="get">
-                Choose your favorite subject:
-                <button name="subject" type="submit" value="fav_HTML">HTML</button>
-                <button name="subject" type="submit" value="fav_CSS">CSS</button>
-            </form> */}
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
-            </button>
-
-            <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Upload Translations</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <p>Accepted format: *.xlsx</p>
-                            {/* Testing out the form submission */}
-                            {/* <form id='fileForm' enctype="multipart/form-data" method="post" action='https://cmlgbackend.wdcc.co.nz/api/uploadfile'> */}
-                            <form id='fileForm' action='#'>
-                                <input type="file" accept=".xlsx" onChange={onChangeHandler}/>                                
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            {/* { error ? <p>Error</p> : <p></p> } */}
-                            { error && <p id = "error-msg">Upload Error</p>}
-                            <button type="submit" form='fileForm' className="btn btn-primary" onClick={handleUploadSubmit} >Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     );
