@@ -1,57 +1,88 @@
 .container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 7%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7%;
 }
 
 .header {
-    font-size: 32px;
-    margin-bottom: 5%;
-}
-
-.form {
-    margin-top: 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: fit-content;
-}
-
-label {
-    font-size: 20px;
-}
-
-.login-input {
-    margin-top: 6px;
-    min-width: 18em;
-    height: 37px;
-    padding: 0px 10px;
-    font-size: 16px;
-    background-color: #f3f3f3;
-    border: 0;
-    border-radius: 4px;
-    margin-bottom: 31px;
-}
-
-.login-input:focus {
-    outline: none;
-    box-shadow: 0px 0px 12px 0.8px;
+  font-size: 32px;
+  align-items: center;
+  margin-bottom: 5%;
 }
 
 .footer {
-    margin-top: 1%;
+  width: 10%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+}
+
+label {
+  font-size: 20px;
+}
+
+.login-input {
+  margin-top: 6px;
+  min-width: 18em;
+  height: 37px;
+  padding: 0px 10px;
+  font-size: 16px;
+  background-color: #f3f3f3;
+  border: 0;
+  border-radius: 4px;
+  margin-bottom: 31px;
+}
+
+.login-input:focus {
+  outline: none;
+  box-shadow: 0px 0px 12px 0.8px;
+}
+
+.footer {
+  margin-top: 1%;
+  text-align: center;
 }
 
 .dark-mode {
-    background-color: black;
+  background-color: black;
+}
+
+.dark-mode-btn {
+  color: white;
+  border: 2px solid white !important;
+  background-color: black !important;
+}
+
+.dark-mode-btn:hover {
+  border: 2px solid grey !important;
+}
+
+.btn {
+  font-size: 21px;
+  padding: 5px 20px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: lightgray;
 }
 
 .btn-dark-mode{
@@ -66,4 +97,8 @@ label {
     color: rgb(0, 0, 0);
     border-width: 2px;
     border-color: rgb(0, 0, 0);
+}
+
+.btn:focus {
+  outline: 0;
 }
