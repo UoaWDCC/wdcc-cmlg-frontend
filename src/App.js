@@ -10,6 +10,7 @@ import WelcomePage from "./components/WelcomePage";
 import HeaderBar from "./components/HeaderBar";
 import AboutUsPage from "./components/AboutUsPage";
 import "./App.css";
+import LoginPage from "./components/LoginPage";
 
 
 class App extends React.Component{
@@ -25,16 +26,16 @@ class App extends React.Component{
 
     onDarkModeChanged(){
         this.setState( {
-            darkMode : !this.state.darkMode 
+            darkMode : !this.state.darkMode
         } );
     }
 
 
     render(){
         return (
-            <div className="App">
+            <div className={ ` App ${this.state.darkMode ? "dark-mode" : ""} `} >
                 <Router>
-                    <HeaderBar callbackParent = { this.darkModeChanged } darkMode = {this.state.darkMode} />  
+                    <HeaderBar callbackParent = { this.darkModeChanged } darkMode = {this.state.darkMode} />
                     {/* A <Switch> looks through its children <Route>s and
                     renders the first one that matches the current URL. */}
                         <Switch>
@@ -46,6 +47,9 @@ class App extends React.Component{
                             </Route>
                             <Route path="/about">
                                 <AboutUsPage darkMode= {this.state.darkMode}/>
+                            </Route>
+                            <Route path="/login">
+                                <LoginPage darkMode= {this.state.darkMode}/>
                             </Route>
                         </Switch>
                 </Router>

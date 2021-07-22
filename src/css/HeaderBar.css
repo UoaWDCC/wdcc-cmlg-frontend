@@ -1,56 +1,96 @@
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow-y: hidden;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
 }
 
-li i{
-    display: block;
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    width: 30%;
+li i {
+  display: block;
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  width: 30%;
 }
 
 li i:hover {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .headerBarText {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: normal;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: normal;
 }
 
-#darkMode{
-    float: right;
-    margin-right: 2%;
-    cursor:pointer
+#setting {
+  float: right;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+.settingCard {
+  width: 7rem;
+  position: fixed;
+  right: 10px;
+  top: 40px;
+  z-index: 1000;
+  flex-direction: column;
+  background-color: white;
+  border: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 10%;
 }
 
 #bar {
-    display: none;
+  display: none;
+}
+
+.dark-mode-Headerbar {
+  background-color: black;
+}
+
+.dark-mode-icon {
+  color: white;
+}
+
+#darkModeIcon {
+  display: inline-flex;
+  right: 20px;
+}
+
+#darkModeIcon:hover {
+  cursor: pointer;
+}
+
+#login {
+  display: inline-flex;
+}
+
+.dark-mode-span {
+  color: white;
+}
+
+.dark-mode-span-login {
+  color: white;
+}
+
+.dark-mode-settingCard {
+  background-color: black;
+  border-color: grey;
 }
 
 @media screen and (max-width: 600px) {
-    li i {
-        float: none;
-        display: block;
-        width: 100%;
-        text-align: left;
-    }
-    #bar{
-        float: left;
-        display: block;
-    }
-}
-
-
-.dark-mode-Headerbar{
-    background-color: black;
-}
-
-.dark-mode-icon{
-    color: white;
+  li i {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    right: 20px i !important;
+  }
+  #bar {
+    float: left;
+    display: block;
+  }
 }

@@ -1,45 +1,48 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    line-height: normal;
+  line-height: normal;
 }
 
 #title-txt {
-    font-size: 7vw;
-    text-align: center;
-    font-weight: bold;
+  font-size: 7vw;
+  text-align: center;
+  font-weight: bold;
 }
 
 .welcomePage {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;   
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.btn {
-    border-radius: 25px;
-    max-width: 100%;
+.welcomeBtn {
+  border: 2px solid black;
+  border-radius: 25px;
+  max-width: 100%;
+}
+
+.welcomeBtn:hover {
+  background-color: black;
 }
 
 /* Responsive design for title and button */
 @media screen and (min-width: 760px) {
+  #title-txt {
+    font-size: 4.5vw;
+  }
 
-    #title-txt {
-        font-size: 4.5vw;
-    }
-
-    .btn {
-        font-size: 1.25rem;
-        padding: .5rem 1rem;
-    }
+  .welcomeBtn {
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+  }
 }
-
 
 .btn-dark-mode{
     background-color: rgb(0, 0, 0);
@@ -54,5 +57,3 @@ body {
     border-width: 2px;
     border-color: rgb(0, 0, 0);
 }
-
-
