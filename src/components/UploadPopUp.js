@@ -22,14 +22,14 @@ const styles = (theme) => ({
 
 const errorMsgText = {
     invalidExtension: "Invalid file extension ",
-    invalidHeaders: "Invalid file format – Columns must be in the following order: Chinese, English, Italian, Arabic, Serbian, Croatian, Russian, German, Hebrew,  French,  Hungarian,  Slovak,  Spanish, Português, Türkçe, Greek, Romanian"
+    invalidHeaders: "Invalid file format – Columns must be in the following order: Chinese, Pinyin, English, Italian, Arabic, Serbian, Croatian, Russian, German, Hebrew,  French,  Hungarian,  Slovak,  Spanish, Português, Türkçe, Greek, Romanian"
 }
 
 function UploadPopUp() {
 
     const [file, setFile] = useState();
     const [error, setError] = useState("");
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
     function onFileChangeHandler(e) {
         setFile(e.target.files[0])
@@ -37,7 +37,7 @@ function UploadPopUp() {
 
     function handleUploadSubmit(e) { // what is e?
         console.log("file to submit", file)
-        let errMsg = "";
+        let errMsg = errorMsgText.invalidHeaders;
 
         // Validate the file => correct extension/ headers
         // Inside the validation method, set the error message and return it
