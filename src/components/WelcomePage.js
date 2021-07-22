@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/WelcomePage.css";
 import { Link } from "react-router-dom";
+import UploadPopUp from "./UploadPopUp";
 
 class WelcomePage extends React.Component {
     render() {
@@ -12,6 +13,7 @@ class WelcomePage extends React.Component {
                     <button type="button" className={ ` btn btn-outline-dark 
                     ${ this.props.darkMode? "btn-dark-mode" : "" } ` }>Start searching</button>
                 </Link>
+                <UploadPopUp></UploadPopUp>
             </div>
 
         );
