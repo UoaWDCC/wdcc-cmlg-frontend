@@ -1,9 +1,10 @@
 import { DialogContent, DialogContentText, DialogActions, IconButton, Typography, withStyles } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import { Dialog, Button } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import "../css/UploadPopUp.css";
 
 // From https://material-ui.com/components/dialogs/#customized-dialogs
@@ -26,6 +27,16 @@ const errorMsgText = {
 }
 
 function UploadPopUp() {
+    const darkMode = true;
+    const theme = useMemo(
+        () =>
+            createMuiTheme({
+                palette: {
+                    type: darkMode ? 'dark' : 'light',
+                },
+            }),
+        [darkMode],
+    );
 
     const [file, setFile] = useState();
     const [error, setError] = useState("");
@@ -80,22 +91,26 @@ function UploadPopUp() {
 
     return (
         <div className='UploadPopUp '>
+            {/* TO BE REMOVED */}
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                 Open modal
             </Button>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth={true} maxWidth='sm'>
-                <DialogTitle id="form-dialog-title" onClose={handleClose}>Upload Translations</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Accepted format: *.xlsx
-                    </DialogContentText>
-                    <input type="file" accept=".xlsx" onChange={onFileChangeHandler} />
-                    <p id="error-msg">{error}</p>
-                </DialogContent>
-                <DialogActions>
-                    <button onClick={handleUploadSubmit} className={`btn btn-light`}>Upload</button>
-                </DialogActions>
-            </Dialog>
+            {/* TO BE REMOVED */}
+            <ThemeProvider theme={theme}>
+                <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth={true} maxWidth='sm'>
+                    <DialogTitle id="form-dialog-title" onClose={handleClose}>Upload Translations</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Accepted format: *.xlsx
+                        </DialogContentText>
+                        <input type="file" accept=".xlsx" onChange={onFileChangeHandler} />
+                        <p id="error-msg">{error}</p>
+                    </DialogContent>
+                    <DialogActions>
+                        <button onClick={handleUploadSubmit} className={`btn btn-light`}>Upload</button>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
 
 
         </div>
