@@ -32,6 +32,7 @@ li:hover {
 }
 
 .settingCard {
+  width: 10rem;
   position: fixed;
   right: 10px;
   top: 40px;
@@ -75,6 +76,47 @@ li:hover {
   text-decoration: none;
 }
 
+span.light-mode-span {
+  position: relative;
+  right: 15px;
+}
+
+span.light-mode-span-translations {
+  position: relative;
+  right: 15px;
+}
+
+span.dark-mode-span-translations {
+  color: white;
+  position: relative;
+  right: 15px;
+}
+
+i.fas.fa-sign-in-alt:before {
+  position: relative;
+    top: 2px;
+}
+
+i.fas.fa-sun {
+  position: relative;
+  top: 10px;
+}
+
+i.fas.dark-mode-icon {
+  position: relative;
+  top: 10px;
+}
+
+i.fas.fa-upload {
+  position: relative;
+  top: 10px;
+}
+
+#span {
+  position: relative;
+  right: 15px;
+}
+
 #darkModeIcon:hover {
   cursor: pointer;
 }
@@ -83,8 +125,10 @@ li:hover {
   display: inline-flex;
 }
 
-.dark-mode-span {
+span.dark-mode-span {
   color: white;
+  position: relative;
+  right: 15px;
 }
 
 .dark-mode-span-login {
