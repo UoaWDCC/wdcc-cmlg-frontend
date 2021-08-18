@@ -49,6 +49,22 @@ li:hover {
   display: none;
 }
 
+@media screen and (max-width: 600px) {
+  li i {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    right: 20px i !important;
+  }
+  #bar {
+    float: left;
+    display: block;
+  }
+}
+
+/* dark mode */
+
 .dark-mode-Headerbar {
   background-color: black;
 }
@@ -75,30 +91,15 @@ li:hover {
   text-decoration: none;
 }
 
-span.light-mode-span {
-  position: relative;
-  right: 15px;
-}
-
-span.light-mode-span-translations {
-  position: relative;
-  right: 15px;
-}
-
 span.dark-mode-span-translations {
   color: white;
   position: relative;
   right: 15px;
 }
 
-i.fas.fa-sign-in-alt:before {
+i.fas.fa-sign-in-alt.dark-mode-icon:before {
   position: relative;
-    top: 2px;
-}
-
-i.fas.fa-sun {
-  position: relative;
-  top: 10px;
+  top: -8px;
 }
 
 i.fas.dark-mode-icon {
@@ -106,22 +107,8 @@ i.fas.dark-mode-icon {
   top: 10px;
 }
 
-i.fas.fa-upload {
-  position: relative;
-  top: 10px;
-}
-
-#span {
-  position: relative;
-  right: 15px;
-}
-
 #darkModeIcon:hover {
   cursor: pointer;
-}
-
-#login {
-  display: inline-flex;
 }
 
 span.dark-mode-span {
@@ -139,16 +126,54 @@ span.dark-mode-span {
   border-color: grey;
 }
 
-@media screen and (max-width: 600px) {
-  li i {
-    float: none;
-    display: block;
-    width: 100%;
-    text-align: left;
-    right: 20px i !important;
-  }
-  #bar {
-    float: left;
-    display: block;
-  }
+i.fas.fa-cog.dark-mode-icon {
+  position: initial;
+}
+
+i.fas.fa-info-circle.dark-mode-icon {
+  position: initial;
+}
+
+i.fas.fa-search.dark-mode-icon {
+  position: initial;
+}
+
+i.fas.fa-home.dark-mode-icon {
+  position: initial;
+}
+
+/* light mode */
+
+span.light-mode-span {
+  position: relative;
+  right: 15px;
+}
+
+span.light-mode-span-translations {
+  position: relative;
+  right: 15px;
+}
+
+i.fas.fa-sign-in-alt:before {
+  position: relative;
+  top: 2px;
+}
+
+i.fas.fa-sun {
+  position: relative;
+  top: 10px;
+}
+
+i.fas.fa-upload {
+  position: relative;
+  top: 10px;
+}
+
+#span {
+  position: relative;
+  right: 15px;
+}
+
+#login {
+  display: inline-flex;
 }
