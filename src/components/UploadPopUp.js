@@ -1,42 +1,18 @@
 import { DialogContent, DialogContentText, DialogActions, IconButton, Typography, withStyles } from '@material-ui/core';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import { Dialog, Button } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 
-import React, { useMemo, useState } from 'react';
-import "../css/UploadPopUp.css";
-
-// From https://material-ui.com/components/dialogs/#customized-dialogs
-const styles = (theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2),
-    },
-    closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500],
-    },
-});
+import React, { useState } from 'react';
+import useStyles from '../css/UploadPopupsCss';
 
 const errorMsgText = {
     invalidExtension: "Invalid file extension ",
     invalidHeaders: "Invalid file format – Columns must be in the following order: Chinese, Pinyin, English, Italian, Arabic, Serbian, Croatian, Russian, German, Hebrew,  French,  Hungarian,  Slovak,  Spanish, Português, Türkçe, Greek, Romanian"
 }
 
-function UploadPopUp() {
-    const darkMode = true;
-    const theme = useMemo(
-        () =>
-            createMuiTheme({
-                palette: {
-                    type: darkMode ? 'dark' : 'light',
-                },
-            }),
-        [darkMode],
-    );
+function UploadPopUp({ darkMode }) {
+    const classes = useStyles();
 
     const [file, setFile] = useState();
     const [error, setError] = useState("");
@@ -75,13 +51,20 @@ function UploadPopUp() {
     };
 
     // From https://material-ui.com/components/dialogs/#customized-dialogs
-    const DialogTitle = withStyles(styles)((props) => {
-        const { children, classes, onClose, ...other } = props;
+    const DialogTitle = ((props) => {
+        const { children, onClose, ...other } = props;
         return (
-            <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            <MuiDialogTitle disableTypography classes={{
+                root: classes.dialogTitle
+            }} {...other}>
                 <Typography variant="h6">{children}</Typography>
                 {onClose ? (
-                    <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <IconButton aria-label="close" 
+                        classes={{
+                            root: `${classes.dialogCloseButton} ${darkMode ? classes.dialogCloseButtonDark : ""}`
+                        }}
+                        onClick={onClose}
+                    >
                         <CloseIcon />
                     </IconButton>
                 ) : null}
@@ -96,23 +79,33 @@ function UploadPopUp() {
                 Open modal
             </Button>
             {/* TO BE REMOVED */}
-            <ThemeProvider theme={theme}>
-                <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth={true} maxWidth='sm'>
-                    <DialogTitle id="form-dialog-title" onClose={handleClose}>Upload Translations</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Accepted format: *.xlsx
-                        </DialogContentText>
-                        <input type="file" accept=".xlsx" onChange={onFileChangeHandler} />
-                        <p id="error-msg">{error}</p>
-                    </DialogContent>
-                    <DialogActions>
-                        <button onClick={handleUploadSubmit} className={`btn btn-light`}>Upload</button>
-                    </DialogActions>
-                </Dialog>
-            </ThemeProvider>
-
-
+            <Dialog 
+                open={open} onClose={handleClose} aria-labelledby="form-dialog-title" 
+                fullWidth={true} maxWidth='sm'
+                classes={{
+                    paper: darkMode ? classes.dialogPaper : ""
+                }}
+            >
+                <DialogTitle id="form-dialog-title" onClose={handleClose}>Upload Translations</DialogTitle>
+                <DialogContent>
+                    <DialogContentText classes={{
+                        root: darkMode ? classes.dialogContentTextDark : ""
+                    }}>
+                        Accepted format: *.xlsx
+                    </DialogContentText>
+                    <input type="file" accept=".xlsx" onChange={onFileChangeHandler} />
+                    <p 
+                        className={ `${ classes.errorMsg } ${ darkMode ? classes.errorMsgDark : classes.errorMsgLight }` }
+                    >
+                        {error}
+                    </p>
+                </DialogContent>
+                <DialogActions>
+                    <button onClick={handleUploadSubmit} className={
+                        `btn btn-light btn-outline-dark ${ darkMode? "btn-dark-mode" : "" } `}
+                    >Upload</button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }
