@@ -13,7 +13,7 @@ class WelcomePage extends React.Component {
                     <button type="button" className={ ` btn welcomeBtn btn-outline-dark 
                     ${ this.props.darkMode? "btn-dark-mode" : "" } ` }>Start searching</button>
                 </Link>
-                <UploadPopUp></UploadPopUp>
+                <UploadPopUp darkMode={this.props.darkMode}></UploadPopUp>
             </div>
 
         );
