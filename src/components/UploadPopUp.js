@@ -102,7 +102,7 @@ function UploadPopUp({ darkMode }) {
                 </DialogContent>
                 <DialogActions>
                     <button onClick={handleUploadSubmit} className={
-                        `btn btn-light btn-outline-dark ${ darkMode? "btn-dark-mode" : "" } `}
+                        `btn btn-outline-dark ${ darkMode? "btn-dark-mode" : "btn-light" } `}
                     >Upload</button>
                 </DialogActions>
             </Dialog>
