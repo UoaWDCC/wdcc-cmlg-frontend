@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     errorMsg: {
-        fontFamily: 'Arial, Helvetica, sans-serif',  
         color: 'red',
         marginTop: '12px',
         marginBottom: '0px',
