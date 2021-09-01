@@ -143,6 +143,11 @@ i.fas.fa-home.dark-mode-icon {
   position: initial;
 }
 
+i.fas.fa-moon {
+  position: relative;
+  top: 10px;
+}
+
 /* light mode */
 
 span.light-mode-span {
