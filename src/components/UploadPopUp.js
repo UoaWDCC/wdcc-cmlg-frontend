@@ -1,6 +1,6 @@
 import { DialogContent, DialogContentText, DialogActions, IconButton, Typography, withStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { Dialog, Button } from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 
 import React, { useState } from 'react';
@@ -11,18 +11,17 @@ const errorMsgText = {
     invalidHeaders: "Invalid file format – Columns must be in the following order: Chinese, Pinyin, English, Italian, Arabic, Serbian, Croatian, Russian, German, Hebrew,  French,  Hungarian,  Slovak,  Spanish, Português, Türkçe, Greek, Romanian"
 }
 
-function UploadPopUp({ darkMode }) {
+function UploadPopUp({ darkMode, isOpen, handleClosePopUp }) {
     const classes = useStyles();
 
     const [file, setFile] = useState();
     const [error, setError] = useState("");
-    const [open, setOpen] = React.useState(false);
 
     function onFileChangeHandler(e) {
         setFile(e.target.files[0])
     }
 
-    function handleUploadSubmit(e) { // what is e?
+    function handleUploadSubmit(e) {
         console.log("file to submit", file)
         let errMsg = errorMsgText.invalidHeaders;
 
@@ -40,13 +39,8 @@ function UploadPopUp({ darkMode }) {
         }
     }
 
-    // To be deleted
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
     const handleClose = () => {
-        setOpen(false);
+        handleClosePopUp();
         setError("");
     };
 
@@ -74,13 +68,8 @@ function UploadPopUp({ darkMode }) {
 
     return (
         <div className='UploadPopUp '>
-            {/* TO BE REMOVED */}
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Open modal
-            </Button>
-            {/* TO BE REMOVED */}
             <Dialog 
-                open={open} onClose={handleClose} aria-labelledby="form-dialog-title" 
+                open={isOpen} onClose={handleClose} aria-labelledby="form-dialog-title" 
                 fullWidth={true} maxWidth='sm'
                 classes={{
                     paper: darkMode ? classes.dialogPaper : ""
