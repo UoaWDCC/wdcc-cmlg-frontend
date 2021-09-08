@@ -67,7 +67,7 @@ function UploadPopUp() {
       "Romanian",
     ];
 
-    readXlsxFile(file).then((rows) => {
+    let validationError = await readXlsxFile(file).then((rows) => {
       if (JSON.stringify(rows[0]) === JSON.stringify(langArray)) {
         correct = true;
       }
@@ -83,18 +83,14 @@ function UploadPopUp() {
         return errorMsgText.invalidHeaders; // same issue
       }
     });
-    console.log("end validation");
+    console.log("end validation" + validationError);
+    return validationError;
   }
 
   async function handleUploadSubmit(e) {
     // what is e?
     let errMsg = await validateExcelFile();
-    console.log("after");
-
-    // Validate the file => correct extension/ headers
-    // Inside the validation method, set the error message and return it
-    // errMsg = errorMsgText.invalidExtension;
-    // errMsg = errorMsgText.invalidHeader;
+    console.log("after" + errMsg);
 
     if (errMsg == "") {
       console.log("correct");
@@ -106,9 +102,6 @@ function UploadPopUp() {
       setError(errMsg); // this isn't working anymore??????
     }
   }
-
-  // Validate the file => correct extension/ headers
-  // Inside the validation method, set the error message and return it
 
   // To be deleted
   const handleClickOpen = () => {
