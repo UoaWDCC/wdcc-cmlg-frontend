@@ -67,20 +67,23 @@ function UploadPopUp() {
       "Romanian",
     ];
 
+    // Checking that the file extension is .xlsx
+
+    if (fileArray[1] != "xlsx") {
+      console.log("ext");
+      return errorMsgText.invalidExtension;
+    }
+    // Checking that the Excel headers are correct
     let validationError = await readXlsxFile(file).then((rows) => {
       if (JSON.stringify(rows[0]) === JSON.stringify(langArray)) {
         correct = true;
       }
 
-      if (fileArray[1] === "xlsx" && correct === true) {
-        console.log("alg");
+      if (correct) {
         return "";
-      } else if (fileArray[1] != "xlsx") {
-        console.log("ext");
-        return errorMsgText.invalidExtension; // not returning the error message?? can't see it on the pop-up box anymore :(((
-      } else if (correct == false) {
+      } else {
         console.log("headers");
-        return errorMsgText.invalidHeaders; // same issue
+        return errorMsgText.invalidHeaders;
       }
     });
     console.log("end validation" + validationError);
@@ -88,18 +91,15 @@ function UploadPopUp() {
   }
 
   async function handleUploadSubmit(e) {
-    // what is e?
     let errMsg = await validateExcelFile();
     console.log("after" + errMsg);
 
     if (errMsg == "") {
-      console.log("correct");
       // Make fetch/axios call to backend to upload the file
       // https://cmlgbackend.wdcc.co.nz/api/uploadfile
       handleClose();
     } else {
-      console.log("else"); // the correct file is using the else statement, which can't be right...
-      setError(errMsg); // this isn't working anymore??????
+      setError(errMsg);
     }
   }
 
