@@ -79,9 +79,9 @@ li:hover {
   cursor: pointer;
 }
 
-#login {
-  display: inline-flex;
-}
+/*#login {*/
+/*  display: inline-flex;*/
+/*}*/
 
 .dark-mode-span {
   color: white;

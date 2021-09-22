@@ -97,6 +97,24 @@ class HeaderBar extends React.Component {
 
     render() {
 
+        const upload = (
+            <li id="uploadIcon" className="setting-item" onClick={this.updatePopUpOpen} >
+                <i className={` fa fa-upload ${this.props.darkMode ? "dark-mode-icon" : ""} `} />
+                <span> Upload Translation </span>
+            </li>
+        );
+
+        const login = (
+            // <li id="login">
+                <NavLink className="setting-item setting-nav-item" activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/login">
+                    <li id="login">
+                        <i className={` fas fa-sign-in-alt ${this.props.darkMode ? "dark-mode-icon" : ""} `}><span className={`${this.props.darkMode ? "dark-mode-span-login" : ""} `}>&nbsp;Login</span></i>
+                    {/*<span className={`${this.props.darkMode ? "dark-mode-span-login" : ""} `}> Login </span>*/}
+                    </li>
+                </NavLink>
+            // </li>
+        );
+
         const items = (
             <div className="items">
                 <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} exact to="/">
@@ -114,6 +132,8 @@ class HeaderBar extends React.Component {
                         <i className={` fas fa-info-circle ${this.props.darkMode ? "dark-mode-icon" : ""} `}><span className="headerBarText">&nbsp;About</span></i>
                     </li>
                 </NavLink>
+                {window.innerWidth <= 600 && upload}
+                {window.innerWidth <= 600 && login}
             </div>
         );
 
@@ -123,16 +143,8 @@ class HeaderBar extends React.Component {
                     <i className={` fas ${this.props.darkMode ? "dark-mode-icon fa-moon " : "fa-sun"} `} />
                     <span className={`${this.props.darkMode ? "dark-mode-span" : "light-mode-span"} `}> {this.props.darkMode ? "Dark Mode" : "Light Mode"}  </span>
                 </li>
-                <li id="uploadIcon" className="setting-item" onClick={this.updatePopUpOpen} >
-                    <i className={` fa fa-upload ${this.props.darkMode ? "dark-mode-icon" : ""} `} />
-                    <span> Upload Translation </span>
-                </li>
-                <li id="login">
-                    <NavLink className="setting-item setting-nav-item" activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/login">
-                        <i className={` fas fa-sign-in-alt ${this.props.darkMode ? "dark-mode-icon" : ""} `}></i>
-                        <span className={`${this.props.darkMode ? "dark-mode-span-login" : ""} `}> Login </span>
-                    </NavLink>
-                </li>
+                {this.state.BarOpen && upload}
+                {this.state.BarOpen && login}
             </div>
         )
 
