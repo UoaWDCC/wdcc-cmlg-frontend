@@ -120,8 +120,8 @@ class HeaderBar extends React.Component {
         const settingOptions = (
             <div className={` settingCard ${this.props.darkMode ? "dark-mode-settingCard" : ""}  `}>
                 <li id="darkModeIcon" className="setting-item" onClick={this.handleDarkMode} >
-                    <i className={` fas ${this.props.darkMode ? "dark-mode-icon fa-moon " : "fa-sun"} `} />
-                    <span className={`${this.props.darkMode ? "dark-mode-span" : "light-mode-span"} `}> {this.props.darkMode ? "Dark Mode" : "Light Mode"}  </span>
+                    <i className={ ` fas ${ this.props.darkMode ? "dark-mode-icon fa-sun" : "fa-moon" } ` } > </i>
+                    <i > <span className={ `${ this.props.darkMode ? "dark-mode-span" : "light-mode-span" } ` }> {this.props.darkMode ? "Light Mode" : "Dark Mode" }  </span>  </i>
                 </li>
                 <li id="uploadIcon" className="setting-item" onClick={this.updatePopUpOpen} >
                     <i className={` fa fa-upload ${this.props.darkMode ? "dark-mode-icon" : ""} `} />

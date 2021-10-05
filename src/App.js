@@ -11,6 +11,7 @@ import HeaderBar from "./components/HeaderBar";
 import AboutUsPage from "./components/AboutUsPage";
 import "./App.css";
 import LoginPage from "./components/LoginPage";
+import UploadPopUp from "./components/UploadPopUp";
 
 
 class App extends React.Component{
@@ -22,20 +23,25 @@ class App extends React.Component{
         }
     }
 
-
-
     onDarkModeChanged(){
         this.setState( {
             darkMode : !this.state.darkMode
         } );
     }
 
+    handleUploadButtonPressed() {
+        this.setState( {
+            darkMode : !this.state.darkMode,
+            isOpen : true
+        } );
+    }
 
     render(){
         return (
             <div className={ ` App ${this.state.darkMode ? "dark-mode" : ""} `} >
                 <Router>
-                    <HeaderBar callbackParent = { this.darkModeChanged } darkMode = {this.state.darkMode} />
+                    <HeaderBar callbackParent = { this.darkModeChanged } darkMode = {this.state.darkMode} handleUploadButtonPressed = {this.handleUploadButtonPressed} />
+                    {/* <UploadPopUp isOpen={true}/> */}
                     {/* A <Switch> looks through its children <Route>s and
                     renders the first one that matches the current URL. */}
                         <Switch>
