@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import styles from "../css/LoginPage.module.css";
 
 const LoginForm = (props) => {
+  const { storeToken } = useContext(AuthContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
@@ -22,6 +25,8 @@ const LoginForm = (props) => {
         .then((response) => response.json())
         .then((result) => {
           // handle token
+          console.log(result);
+          storeToken(result);
           setSuccess(true);
         })
         .catch((error) => {
