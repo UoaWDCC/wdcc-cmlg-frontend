@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import AuthContext from "./AuthContext";
 
 export default function AuthContextProvider({ children }) {
 
-  const [token, setToken] = useState(null);
+    function storeToken(token) {
+        sessionStorage.setItem("token", token);
+    }
 
-  function storeToken(token) {
-    setToken(token);
-  }
+    function getToken() {
+        return sessionStorage.getItem("token");
+    }
 
-  return (
-    <AuthContext.Provider
-      value={{
-        storeToken,
-        token,
-        // clearToken,  for logout
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+    function clearToken() {
+        sessionStorage.removeItem("token");
+    }
+
+    return (
+        <AuthContext.Provider
+            value={{
+                storeToken,
+                getToken,
+                // clearToken,  for logout
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
 }
