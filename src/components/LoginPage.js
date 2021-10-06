@@ -25,8 +25,8 @@ const LoginForm = (props) => {
                 .then((response) => response.json())
                 .then((result) => {
                     // handle token
-                    console.log(result);
-                    storeToken(result);
+                    console.log(result);    // delete this console.log after connecting with backend    
+                    storeToken(result.token);
                     setSuccess(true);
                 })
                 .catch((error) => {
