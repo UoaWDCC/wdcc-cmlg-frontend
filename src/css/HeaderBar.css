@@ -32,7 +32,6 @@ li:hover {
 }
 
 .settingCard {
-  width: 10rem;
   position: fixed;
   right: 10px;
   top: 40px;
@@ -49,22 +48,6 @@ li:hover {
 #bar {
   display: none;
 }
-
-@media screen and (max-width: 600px) {
-  li i {
-    float: none;
-    display: block;
-    width: 100%;
-    text-align: left;
-    right: 20px i !important;
-  }
-  #bar {
-    float: left;
-    display: block;
-  }
-}
-
-/* dark mode */
 
 .dark-mode-Headerbar {
   background-color: black;
@@ -92,30 +75,16 @@ li:hover {
   text-decoration: none;
 }
 
-span.dark-mode-span-translations {
-  color: white;
-  position: relative;
-  right: 15px;
-}
-
-i.fas.fa-sign-in-alt.dark-mode-icon:before {
-  position: relative;
-  top: -8px;
-}
-
-i.fas.dark-mode-icon {
-  position: relative;
-  top: 10px;
-}
-
 #darkModeIcon:hover {
   cursor: pointer;
 }
 
-span.dark-mode-span {
+#login {
+  display: inline-flex;
+}
+
+.dark-mode-span {
   color: white;
-  position: relative;
-  right: 15px;
 }
 
 .dark-mode-span-login {
@@ -127,59 +96,16 @@ span.dark-mode-span {
   border-color: grey;
 }
 
-i.fas.fa-cog.dark-mode-icon {
-  position: initial;
-}
-
-i.fas.fa-info-circle.dark-mode-icon {
-  position: initial;
-}
-
-i.fas.fa-search.dark-mode-icon {
-  position: initial;
-}
-
-i.fas.fa-home.dark-mode-icon {
-  position: initial;
-}
-
-i.fas.fa-moon {
-  position: relative;
-  top: 10px;
-}
-
-/* light mode */
-
-span.light-mode-span {
-  position: relative;
-  right: 15px;
-}
-
-span.light-mode-span-translations {
-  position: relative;
-  right: 15px;
-}
-
-i.fas.fa-sign-in-alt:before {
-  position: relative;
-  top: 2px;
-}
-
-i.fas.fa-sun {
-  position: relative;
-  top: 10px;
-}
-
-i.fas.fa-upload {
-  position: relative;
-  top: 10px;
-}
-
-#span {
-  position: relative;
-  right: 15px;
-}
-
-#login {
-  display: inline-flex;
+@media screen and (max-width: 600px) {
+  li i {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    right: 20px i !important;
+  }
+  #bar {
+    float: left;
+    display: block;
+  }
 }
