@@ -102,3 +102,11 @@ label {
 .btn:focus {
   outline: 0;
 }
+
+.textDangerLight {
+  color: red
+}
+
+.textDangerDark {
+  color: #cf6679
+}
