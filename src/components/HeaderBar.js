@@ -1,13 +1,15 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import "../css/HeaderBar.css";
 
 import { NavLink } from "react-router-dom";
 import UploadPopUp from "./UploadPopUp";
+import AuthContext from "../context/AuthContext";
 
 function HeaderBar({darkMode, callbackParent}) {
     const [barOpen, setBarOpen] = useState(window.innerWidth > 600);
     const [settingOpen, setSettingOpen] = useState(false);
     const [popupOpen, setPopupOpen] = useState(false);
+    const {getToken} = useContext(AuthContext);
 
     const nodeSetting = useRef(null);
     const nodeHeaderBar = useRef(null);
@@ -98,10 +100,11 @@ function HeaderBar({darkMode, callbackParent}) {
                 <i className={` fas ${darkMode ? "dark-mode-icon fa-sun" : "fa-moon"} `} > </i>
                 <i > <span className={`${darkMode ? "dark-mode-span" : "light-mode-span"} `}> {darkMode ? "Light Mode" : "Dark Mode"}  </span>  </i>
             </li>
+            {getToken() &&
             <li id="uploadIcon" className="setting-item" onClick={updatePopUpOpen} >
                 <i className={` fa fa-upload ${darkMode ? "dark-mode-icon" : ""} `} />
                 <span> Upload Translation </span>
-            </li>
+            </li>}
             <li id="login">
                 <NavLink className="setting-item setting-nav-item" activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} to="/login">
                     <i className={` fas fa-sign-in-alt ${darkMode ? "dark-mode-icon" : ""} `}></i>
