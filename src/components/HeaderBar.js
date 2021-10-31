@@ -10,6 +10,7 @@ function HeaderBar({darkMode, callbackParent}) {
     const [popupOpen, setPopupOpen] = useState(false);
 
     const nodeSetting = useRef(null);
+    const nodeHeaderBar = useRef(null);
 
     function handleBarToggleClick() {
         if (!barOpen) {
@@ -43,16 +44,17 @@ function HeaderBar({darkMode, callbackParent}) {
         setPopupOpen(!popupOpen);
     }
 
-    function handleClickOutside(event) {
-        if (this.node && !this.node.contains(event.target)) {
+    const handleClickOutside = useCallback((event) => {
+        if (nodeHeaderBar.current && !nodeHeaderBar.current.contains(event.target)) {
             setBarOpen(window.innerWidth > 600);
+            document.removeEventListener("click", handleClickOutside);
         }
-    }
+    }, []);
 
     // useCallback is required to pass the equality check of function for event listener 
     // ref: https://dev.to/marcostreng/how-to-really-remove-eventlisteners-in-react-3och
     const handleClickOutsideForSetting = useCallback((event) => {
-        if (nodeSetting.current && event.target.className !== "dark-mode-span " && event.target.className !== "light-mode-span " && !nodeSetting.current.contains(event.target)) {
+        if (nodeSetting.current && !nodeSetting.current.contains(event.target)) {
             setSettingOpen(false);
             document.removeEventListener("click", handleClickOutsideForSetting);
         }
@@ -70,12 +72,8 @@ function HeaderBar({darkMode, callbackParent}) {
         callbackParent(darkMode);
     }
 
-    function handleSetting() {
-        setSettingOpen(!settingOpen);
-    }
-
     const items = (
-        <div className="items">
+        <div ref={nodeHeaderBar} className="items">
             <NavLink activeStyle={{ textShadow: "2px 2px 5px #5DADE2" }} exact to="/">
                 <li>
                     <i className={` fas fa-home ${darkMode ? "dark-mode-icon" : ""} `}><span className="headerBarText">&nbsp;Home</span></i>
@@ -95,7 +93,7 @@ function HeaderBar({darkMode, callbackParent}) {
     );
 
     const settingOptions = (
-        <div className={` settingCard ${darkMode ? "dark-mode-settingCard" : ""}  `}>
+        <div ref={nodeSetting} className={` settingCard ${darkMode ? "dark-mode-settingCard" : ""}  `}>
             <li id="darkModeIcon" className="setting-item" onClick={handleDarkModeChanged} >
                 <i className={` fas ${darkMode ? "dark-mode-icon fa-sun" : "fa-moon"} `} > </i>
                 <i > <span className={`${darkMode ? "dark-mode-span" : "light-mode-span"} `}> {darkMode ? "Light Mode" : "Dark Mode"}  </span>  </i>
@@ -119,7 +117,7 @@ function HeaderBar({darkMode, callbackParent}) {
                 <li id="bar" onClick={handleBarToggleClick}>
                     <i className={` fas fa-bars ${darkMode ? "dark-mode-icon" : ""} `} />
                 </li>
-                <li id="setting" ref={nodeSetting} onClick={handleSettingToggleClick} >
+                <li id="setting" onClick={handleSettingToggleClick} >
                     <i className={` fas fa-cog ${darkMode ? "dark-mode-icon" : ""} `} />
                 </li>
                 {barOpen && items}
