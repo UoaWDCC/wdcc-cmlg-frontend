@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "../css/HeaderBar.css";
 
 import { NavLink } from "react-router-dom";
@@ -8,6 +8,8 @@ function HeaderBar({darkMode, callbackParent}) {
     const [barOpen, setBarOpen] = useState(window.innerWidth > 600);
     const [settingOpen, setSettingOpen] = useState(false);
     const [popupOpen, setPopupOpen] = useState(false);
+
+    const nodeSetting = useRef(null);
 
     function handleBarToggleClick() {
         if (!barOpen) {
@@ -20,7 +22,7 @@ function HeaderBar({darkMode, callbackParent}) {
     }
 
     function handleSettingToggleClick() {
-        if (settingOpen) {
+        if (!settingOpen) {
             document.addEventListener("click", handleClickOutsideForSetting);
         } else {
             document.removeEventListener("click", handleClickOutsideForSetting);
@@ -42,18 +44,19 @@ function HeaderBar({darkMode, callbackParent}) {
     }
 
     function handleClickOutside(event) {
-        console.log(event.target);
-        console.log(this)
         if (this.node && !this.node.contains(event.target)) {
             setBarOpen(window.innerWidth > 600);
         }
     }
 
-    function handleClickOutsideForSetting(event) {
-        if (this.nodeSetting && event.target.className !== "dark-mode-span " && event.target.className !== "light-mode-span " && !this.nodeSetting.contains(event.target)) {
+    // useCallback is required to pass the equality check of function for event listener 
+    // ref: https://dev.to/marcostreng/how-to-really-remove-eventlisteners-in-react-3och
+    const handleClickOutsideForSetting = useCallback((event) => {
+        if (nodeSetting.current && event.target.className !== "dark-mode-span " && event.target.className !== "light-mode-span " && !nodeSetting.current.contains(event.target)) {
             setSettingOpen(false);
+            document.removeEventListener("click", handleClickOutsideForSetting);
         }
-    }
+    }, []);
 
     useEffect(() => {
         window.addEventListener("resize", updateBarOpen);
@@ -116,7 +119,7 @@ function HeaderBar({darkMode, callbackParent}) {
                 <li id="bar" onClick={handleBarToggleClick}>
                     <i className={` fas fa-bars ${darkMode ? "dark-mode-icon" : ""} `} />
                 </li>
-                <li id="setting" onClick={handleSettingToggleClick} >
+                <li id="setting" ref={nodeSetting} onClick={handleSettingToggleClick} >
                     <i className={` fas fa-cog ${darkMode ? "dark-mode-icon" : ""} `} />
                 </li>
                 {barOpen && items}
