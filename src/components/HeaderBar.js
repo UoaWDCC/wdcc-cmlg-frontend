@@ -11,7 +11,7 @@ function HeaderBar({darkMode, callbackParent}) {
     const [popupOpen, setPopupOpen] = useState(false);
     const {getToken} = useContext(AuthContext);
 
-    const nodeSetting = useRef(null);
+    const nodeMode = useRef(null);
     const nodeHeaderBar = useRef(null);
 
     function handleBarToggleClick() {
@@ -56,7 +56,8 @@ function HeaderBar({darkMode, callbackParent}) {
     // useCallback is required to pass the equality check of function for event listener 
     // ref: https://dev.to/marcostreng/how-to-really-remove-eventlisteners-in-react-3och
     const handleClickOutsideForSetting = useCallback((event) => {
-        if (nodeSetting.current && !nodeSetting.current.contains(event.target)) {
+        console.log(event.target.classList)
+        if (nodeMode.current && !nodeMode.current.contains(event.target)) {
             setSettingOpen(false);
             document.removeEventListener("click", handleClickOutsideForSetting);
         }
@@ -95,8 +96,8 @@ function HeaderBar({darkMode, callbackParent}) {
     );
 
     const settingOptions = (
-        <div ref={nodeSetting} className={` settingCard ${darkMode ? "dark-mode-settingCard" : ""}  `}>
-            <li id="darkModeIcon" className="setting-item" onClick={handleDarkModeChanged} >
+        <div className={` settingCard ${darkMode ? "dark-mode-settingCard" : ""}  `}>
+            <li ref={nodeMode} id="darkModeIcon" className="setting-item" onClick={handleDarkModeChanged} >
                 <i className={` fas ${darkMode ? "dark-mode-icon fa-sun" : "fa-moon"} `} > </i>
                 <i > <span className={`${darkMode ? "dark-mode-span" : "light-mode-span"} `}> {darkMode ? "Light Mode" : "Dark Mode"}  </span>  </i>
             </li>
