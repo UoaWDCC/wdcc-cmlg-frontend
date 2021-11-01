@@ -56,7 +56,6 @@ function HeaderBar({darkMode, callbackParent}) {
     // useCallback is required to pass the equality check of function for event listener 
     // ref: https://dev.to/marcostreng/how-to-really-remove-eventlisteners-in-react-3och
     const handleClickOutsideForSetting = useCallback((event) => {
-        console.log(event.target.classList)
         if (nodeMode.current && !nodeMode.current.contains(event.target)) {
             setSettingOpen(false);
             document.removeEventListener("click", handleClickOutsideForSetting);
